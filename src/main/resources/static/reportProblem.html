@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main-menu.css">
+    <link rel="stylesheet" href="css/buttonReportProblem.css">
+    <link rel="stylesheet" href="css/table-style.css">
+    <title>Сообщить о проблеме</title>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+        function init(){
+            var myMap = new ymaps.Map("map", {
+                center: [56.14656449, 40.40288382],
+                zoom: 13
+            });
+        }
+    </script>
+
+    <ul class="menu-main">
+        <li class="nazvanie" >KonohaLIVE</li>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="problems.html">Проблемы</a></li>
+        <li><a href="news.html">Новости</a></li>
+        <li><form action="reportProblem.html">
+            <button class="glo" type="submit" >Сообщить о проблеме</button>
+        </form></li>
+    </ul>
+</head>
+<body>
+<form>
+    <div>
+        <table class="reportProblems" align="center">
+            <tr>
+                <td align="center" style="font-size: 24px">
+                    <b>Сообщить о проблеме</b>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
+                    <input type="text" placeholder="Укажите точку на карте">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <select id="categories" class="categories">
+                        <option selected disabled>Укажите категорию проблемы:</option>
+                        <option value="road">Дорожные проблемы</option>
+                        <option value="social">Социальная сфера</option>
+                        <option value="urban">Городское хозяйство</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <input type="comment" placeholder="Описание проблемы" style="height: 100px">
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="height: 50px;">
+                    <input type="file" multiple accept="image/*,image/jpeg">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="glo" type="submit" >Отправить</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</form>
+</body>
+</html>

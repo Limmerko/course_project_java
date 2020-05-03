@@ -1,0 +1,93 @@
+table.problems {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 0px;
+    background: #ffffff;
+    color: #656665;
+    border: 1px solid rgba(122,122,122,0.5);
+    border-radius: 10px;
+    width: 350px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+table.problems input {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    width: 90%;
+    height: 50px;
+    background: rgba(230, 230, 230, 0.25);
+    font-size: 14px;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+table.news {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 5px;
+    background: #ffffff;
+    color: #656665;
+    border: 1px solid rgba(122,122,122,0.5);
+    border-radius: 10px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+table.problems-info {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 5px;
+    background: #ffffff;
+    color: #656665;
+    border: 1px solid rgba(122,122,122,0.5);
+    border-radius: 10px;
+    width: 500px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+table.problems-info label {
+    font-size: 18px;
+    padding: 10px;
+}
+
+th {
+    font-size: 18px;
+    padding: 10px;
+}
+.semi {
+    opacity: 0.5;
+}
+
+
+table.reportProblems {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 5px;
+    background: #ffffff;
+    color: #656665;
+    border: 1px solid rgba(122,122,122,0.5);
+    border-radius: 10px;
+    width: 700px;
+    height: 700px;
+    margin: 0 auto;
+}
+
+table.reportProblems input {
+    width: 90%;
+    height: 50px;
+    background: rgba(230, 230, 230, 0.25);
+    font-size: 14px;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+

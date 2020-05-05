@@ -5,6 +5,19 @@
 <head><title>JSP</title></head>
 <body>
 <h1>Reposrt Problems</h1>
-
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="file" multiple accept="image/*,image/jpeg">
+<button class="glo" type="submit" >Отправить</button>
+</form>
+<table>
+    <tr>
+        <td>OriginalFileName:</td>
+        <td>${file.originalFilename}</td>
+    </tr>
+    <tr>
+        <td>Type:</td>
+        <td>${file.contentType}</td>
+    </tr>
+</table>
 </body>
 </html>

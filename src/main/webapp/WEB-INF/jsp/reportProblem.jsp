@@ -17,6 +17,7 @@
     <tr>
         <td>Type:</td>
         <td>${file.contentType}</td>
+        <td><img src="${img}"/> </td>
     </tr>
 </table>
 </body>

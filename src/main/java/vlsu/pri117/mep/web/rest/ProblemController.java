@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 @Controller
 public class ProblemController {
@@ -26,7 +26,8 @@ public class ProblemController {
         // тута сервис
         modelMap.addAttribute("file", file);
         try {
-            cloudinary.uploader().upload(new File(file.getOriginalFilename()), ObjectUtils.emptyMap());
+            Map img = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+            modelMap.addAttribute("img", img.get("url"));
         } catch (IOException e){
             System.out.println(e.getMessage());
         }

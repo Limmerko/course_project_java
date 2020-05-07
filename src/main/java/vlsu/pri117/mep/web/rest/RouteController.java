@@ -22,11 +22,12 @@ public class RouteController {
         return "main";
     }
 
-    @GetMapping("/news")
+    // перенес
+    /*@GetMapping("/news")
     public String news() {
         // тута сервис
         return "news";
-    }
+    }*/
 
     @GetMapping("/problem-info")
     public String problemInfo() {

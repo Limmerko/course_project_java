@@ -15,13 +15,19 @@ public class News {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "news_id")
     private Long id;
+
     private String title;
+
     private String description;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
     private LocalDateTime date;
+
     private Long countOfVotes;
+
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Comment> comments;
+
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 

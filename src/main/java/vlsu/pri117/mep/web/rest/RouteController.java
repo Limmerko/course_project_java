@@ -22,7 +22,7 @@ public class RouteController {
         return "main";
     }
 
-    // перенес
+    // перенесен в NewsController
     /*@GetMapping("/news")
     public String news() {
         // тута сервис
@@ -35,12 +35,13 @@ public class RouteController {
         return "problemInfo";
     }
 
-    @GetMapping("/problems")
+    /*@GetMapping("/problems")
     public String problems() {
         // тута сервис
         return "problems";
-    }
+    }*/
 
+    // перенесен в ProblemsController
     @GetMapping("/report-problem")
     public String reportProblem() {
         // тута сервис

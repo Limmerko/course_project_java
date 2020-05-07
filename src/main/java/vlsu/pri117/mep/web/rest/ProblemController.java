@@ -25,7 +25,7 @@ public class ProblemController {
 
     @PostMapping("/problem")
     //@RequestParam("file") MultipartFile file
-    public void createProblem(@RequestBody Problem problem, ModelMap modelMap){
+    public void createProblem(@RequestBody Problem problem){
         // тута сервис
 
 //        modelMap.addAttribute("file", file);

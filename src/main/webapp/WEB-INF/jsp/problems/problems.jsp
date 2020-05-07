@@ -5,7 +5,7 @@
 <head><title>JSP</title></head>
 <body>
 <h1>Problems</h1>
-    <c:forEach var="item" items="problems">
+    <c:forEach var="item" items="${problems}">
         ${item}
     </c:forEach>
 </body>

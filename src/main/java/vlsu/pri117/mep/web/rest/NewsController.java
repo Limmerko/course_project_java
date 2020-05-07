@@ -22,10 +22,9 @@ public class NewsController {
     }
 
     @PostMapping("/news")
-    public String createNews(@RequestBody News news){
+    public void createNews(@RequestBody News news){
         // тута сервис
-        newsService.save(news);
-        return "страница";
+        this.getNews(newsService.save(news).getId());
     }
 
     @PutMapping("/news")

@@ -4,39 +4,48 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import vlsu.pri117.mep.model.Problem;
+import vlsu.pri117.mep.service.ProblemService;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 @Controller
 public class ProblemController {
 
+    private final ProblemService problemService;
     private final Cloudinary cloudinary;
 
-    public ProblemController(Cloudinary cloudinary) {
+    public ProblemController(Cloudinary cloudinary, ProblemService problemService) {
         this.cloudinary = cloudinary;
+        this.problemService = problemService;
     }
 
     @PostMapping("/problem")
-    public String createProblem(@RequestParam("file") MultipartFile file,  ModelMap modelMap){
+    //@RequestParam("file") MultipartFile file
+    public void createProblem(@RequestBody Problem problem, ModelMap modelMap){
         // тута сервис
-        modelMap.addAttribute("file", file);
-        try {
-            Map img = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
-            modelMap.addAttribute("img", img.get("url"));
-        } catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-        return "reportProblem";
+
+//        modelMap.addAttribute("file", file);
+//        try {
+//            cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+//        } catch (IOException e){
+//            System.out.println(e.getMessage());
+//        }
+        this.getProblem(problemService.save(problem).getId());
     }
 
-    @GetMapping("/problem")
-    public String getProblem(){
-        // тута сервис
-        return "reportProblem";
+    @GetMapping("/problem/{id}")
+    public String getProblem(@PathVariable Long id){
+        problemService.findOne(id);
+        return "problemInfo";
+    }
+
+    @GetMapping("/problems")
+    public String getProblems(ModelMap modelMap){
+        modelMap.addAttribute("problems", problemService.findAll());
+        return "problems";
     }
 }

@@ -23,7 +23,7 @@ public class ProblemController {
         this.problemService = problemService;
     }
 
-    @PostMapping("/problem")
+    @PostMapping("/problems")
     //@RequestParam("file") MultipartFile file
     public void createProblem(@RequestBody Problem problem){
         // тута сервис
@@ -37,15 +37,15 @@ public class ProblemController {
         this.getProblem(problemService.save(problem).getId());
     }
 
-    @GetMapping("/problem/{id}")
+    @GetMapping("/problems/{id}")
     public String getProblem(@PathVariable Long id){
         problemService.findOne(id);
-        return "problemInfo";
+        return "problems/problemInfo";
     }
 
     @GetMapping("/problems")
     public String getProblems(ModelMap modelMap){
         modelMap.addAttribute("problems", problemService.findAll());
-        return "problems";
+        return "problems/problems";
     }
 }

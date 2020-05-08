@@ -18,7 +18,7 @@ public class NewsController {
     public String getAllNews() {
         // тута сервис
         newsService.findAll();
-        return "страница";
+        return "news/news";
     }
 
     @PostMapping("/news")

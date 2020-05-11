@@ -18,6 +18,8 @@ public class News {
 
     private String title;
 
+    private String mainPhoto;
+
     private String description;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
@@ -101,6 +103,14 @@ public class News {
         this.photos = photos;
     }
 
+    public String getMainPhoto() {
+        return mainPhoto;
+    }
+
+    public void setMainPhoto(String mainPhoto) {
+        this.mainPhoto = mainPhoto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,6 +118,7 @@ public class News {
         News news = (News) o;
         return Objects.equals(id, news.id) &&
                 Objects.equals(title, news.title) &&
+                Objects.equals(mainPhoto, news.mainPhoto) &&
                 Objects.equals(description, news.description) &&
                 Objects.equals(date, news.date) &&
                 Objects.equals(countOfVotes, news.countOfVotes) &&
@@ -118,7 +129,7 @@ public class News {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, date, countOfVotes, comments, creationDate, photos);
+        return Objects.hash(id, title, mainPhoto, description, date, countOfVotes, comments, creationDate, photos);
     }
 
     @Override
@@ -126,6 +137,7 @@ public class News {
         return "News{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", mainPhoto='" + mainPhoto + '\'' +
                 ", description='" + description + '\'' +
                 ", date=" + date +
                 ", countOfVotes=" + countOfVotes +

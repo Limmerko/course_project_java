@@ -24,6 +24,8 @@ public class Problem {
 
     private String description;
 
+    private String mainPhoto;
+
     private Long countOfVotes;
 
     @ManyToOne
@@ -136,6 +138,14 @@ public class Problem {
         this.photos = photos;
     }
 
+    public String getMainPhoto() {
+        return mainPhoto;
+    }
+
+    public void setMainPhoto(String mainPhoto) {
+        this.mainPhoto = mainPhoto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -145,6 +155,7 @@ public class Problem {
                 Objects.equals(address, problem.address) &&
                 Objects.equals(date, problem.date) &&
                 Objects.equals(description, problem.description) &&
+                Objects.equals(mainPhoto, problem.mainPhoto) &&
                 Objects.equals(countOfVotes, problem.countOfVotes) &&
                 Objects.equals(author, problem.author) &&
                 status == problem.status &&
@@ -156,7 +167,7 @@ public class Problem {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, address, date, description, countOfVotes, author, status, comments, requests, creationDate, photos);
+        return Objects.hash(id, address, date, description, mainPhoto, countOfVotes, author, status, comments, requests, creationDate, photos);
     }
 
     @Override
@@ -166,6 +177,7 @@ public class Problem {
                 ", address='" + address + '\'' +
                 ", date=" + date +
                 ", description='" + description + '\'' +
+                ", mainPhoto='" + mainPhoto + '\'' +
                 ", countOfVotes=" + countOfVotes +
                 ", author=" + author +
                 ", status=" + status +

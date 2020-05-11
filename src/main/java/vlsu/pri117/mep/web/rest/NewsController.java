@@ -1,6 +1,7 @@
 package vlsu.pri117.mep.web.rest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import vlsu.pri117.mep.model.News;
 import vlsu.pri117.mep.service.NewsService;
@@ -21,10 +22,10 @@ public class NewsController {
         return "news/news";
     }
 
-    @PostMapping("/news")
-    public void createNews(@RequestBody News news){
+    @PostMapping("/news/new")
+    public void createNews(@RequestBody News news, ModelMap modelMap){
         // тута сервис
-        this.getNews(newsService.save(news).getId());
+        this.getNews(newsService.save(news).getId(), modelMap);
     }
 
     @PutMapping("/news")
@@ -35,10 +36,11 @@ public class NewsController {
     }
 
     @GetMapping("/news/{id}")
-    public String getNews(@PathVariable Long id) {
+    public String getNews(@PathVariable Long id, ModelMap modelMap) {
         // тута сервис
-        newsService.findOne(id);
-        return "страница";
+        News news = newsService.findOne(id);
+        modelMap.addAttribute("news", news);
+        return "news/getNews";
     }
 
     @DeleteMapping("news/{id}")

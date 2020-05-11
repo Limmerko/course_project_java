@@ -22,8 +22,13 @@
 
 </head>
 <body>
-<h1>News info</h1>
-
+<h1>Информация о новости</h1>
+<table>
+    <tr>
+        <td>Новость:</td>
+        <td>${news}</td>
+    </tr>
+</table>
 
 
 

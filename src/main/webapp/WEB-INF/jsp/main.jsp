@@ -18,6 +18,7 @@
             });
         }
     </script>
+    <script src="placemark.js" type="text/javascript"></script>
 
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>

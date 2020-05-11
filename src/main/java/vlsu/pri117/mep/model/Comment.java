@@ -10,16 +10,21 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String text;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User author;
-    @ManyToOne()
+
+    @ManyToOne
     @JoinColumn(name = "news_id")
     private News news;
+
     @ManyToOne
     @JoinColumn(name = "problem_id")
     private Problem problem;
+
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 

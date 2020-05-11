@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "news")
@@ -29,6 +30,9 @@ public class News {
 
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
+
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Photo> photos;
 
     public News() {
     }
@@ -89,27 +93,32 @@ public class News {
         this.creationDate = creationDate;
     }
 
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         News news = (News) o;
-
-        if (!id.equals(news.id)) return false;
-        if (title != null ? !title.equals(news.title) : news.title != null) return false;
-        if (description != null ? !description.equals(news.description) : news.description != null) return false;
-        return creationDate.equals(news.creationDate);
-
+        return Objects.equals(id, news.id) &&
+                Objects.equals(title, news.title) &&
+                Objects.equals(description, news.description) &&
+                Objects.equals(date, news.date) &&
+                Objects.equals(countOfVotes, news.countOfVotes) &&
+                Objects.equals(comments, news.comments) &&
+                Objects.equals(creationDate, news.creationDate) &&
+                Objects.equals(photos, news.photos);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + creationDate.hashCode();
-        return result;
+        return Objects.hash(id, title, description, date, countOfVotes, comments, creationDate, photos);
     }
 
     @Override
@@ -122,6 +131,7 @@ public class News {
                 ", countOfVotes=" + countOfVotes +
                 ", comments=" + comments +
                 ", creationDate=" + creationDate +
+                ", photos=" + photos +
                 '}';
     }
 }

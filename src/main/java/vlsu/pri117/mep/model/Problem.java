@@ -7,30 +7,43 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "problems")
 public class Problem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "problem_id")
     private Long id;
+
     private String address;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
     private LocalDateTime date;
+
     private String description;
+
     private Long countOfVotes;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User author;
+
     @Enumerated(EnumType.STRING)
     private StatusProblem status;
+
     @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
     private List<Comment> comments;
+
     @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
     private List<Request> requests;
+
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
+
+    @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Photo> photos;
 
     public Problem() {
     }
@@ -115,25 +128,35 @@ public class Problem {
         this.creationDate = creationDate;
     }
 
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Problem problem = (Problem) o;
-
-        if (!id.equals(problem.id)) return false;
-        if (!author.equals(problem.author)) return false;
-        return creationDate.equals(problem.creationDate);
-
+        return Objects.equals(id, problem.id) &&
+                Objects.equals(address, problem.address) &&
+                Objects.equals(date, problem.date) &&
+                Objects.equals(description, problem.description) &&
+                Objects.equals(countOfVotes, problem.countOfVotes) &&
+                Objects.equals(author, problem.author) &&
+                status == problem.status &&
+                Objects.equals(comments, problem.comments) &&
+                Objects.equals(requests, problem.requests) &&
+                Objects.equals(creationDate, problem.creationDate) &&
+                Objects.equals(photos, problem.photos);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + author.hashCode();
-        result = 31 * result + creationDate.hashCode();
-        return result;
+        return Objects.hash(id, address, date, description, countOfVotes, author, status, comments, requests, creationDate, photos);
     }
 
     @Override
@@ -149,6 +172,7 @@ public class Problem {
                 ", comments=" + comments +
                 ", requests=" + requests +
                 ", creationDate=" + creationDate +
+                ", photos=" + photos +
                 '}';
     }
 }

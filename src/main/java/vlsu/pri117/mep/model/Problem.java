@@ -1,6 +1,8 @@
 package vlsu.pri117.mep.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import vlsu.pri117.mep.model.enums.CategoriesProblem;
+import vlsu.pri117.mep.model.enums.Roles;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 
 import javax.persistence.*;
@@ -27,6 +29,9 @@ public class Problem {
     private String mainPhoto;
 
     private Long countOfVotes;
+
+    @Enumerated(EnumType.STRING)
+    private CategoriesProblem category;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

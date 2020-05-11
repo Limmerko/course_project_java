@@ -22,12 +22,35 @@
 
 </head>
 <body>
-<h1>Create news</h1>
-
-
-
-
-
+<form:form method="post" action="/news/new" modelAttribute="news">
+    <table class="reportProblems" align="center">
+        <tr>
+            <td align="center" style="font-size: 24px">
+                <b>Создать новость</b>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <form:input path="title" type="commet" placeholder="Заголовок" style="height: 100px"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <form:input path="description" type="commet" placeholder="Описание" style="height: 100px"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" style="height: 50px;">
+                <form:input path="photos" type="file"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="glo" type="submit" >Отправить</button>
+            </td>
+        </tr>
+    </table>
+</form:form>
 
 </body>
 </html>

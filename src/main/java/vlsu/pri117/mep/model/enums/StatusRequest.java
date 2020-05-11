@@ -1,3 +1,4 @@
+/*
 package vlsu.pri117.mep.model.enums;
 
 public enum StatusRequest {
@@ -11,3 +12,4 @@ public enum StatusRequest {
 
     }
 }
+*/

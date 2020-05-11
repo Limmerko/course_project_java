@@ -1,3 +1,4 @@
+/*
 package vlsu.pri117.mep.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -152,3 +153,4 @@ public class Request {
                 '}';
     }
 }
+*/

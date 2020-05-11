@@ -38,9 +38,6 @@ public class Problem {
     @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
-    private List<Request> requests;
-
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
@@ -114,14 +111,6 @@ public class Problem {
         this.comments = comments;
     }
 
-    public List<Request> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
-    }
-
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
@@ -160,14 +149,13 @@ public class Problem {
                 Objects.equals(author, problem.author) &&
                 status == problem.status &&
                 Objects.equals(comments, problem.comments) &&
-                Objects.equals(requests, problem.requests) &&
                 Objects.equals(creationDate, problem.creationDate) &&
                 Objects.equals(photos, problem.photos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, address, date, description, mainPhoto, countOfVotes, author, status, comments, requests, creationDate, photos);
+        return Objects.hash(id, address, date, description, mainPhoto, countOfVotes, author, status, comments, creationDate, photos);
     }
 
     @Override
@@ -182,7 +170,6 @@ public class Problem {
                 ", author=" + author +
                 ", status=" + status +
                 ", comments=" + comments +
-                ", requests=" + requests +
                 ", creationDate=" + creationDate +
                 ", photos=" + photos +
                 '}';

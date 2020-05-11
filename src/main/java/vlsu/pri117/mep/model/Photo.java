@@ -19,9 +19,9 @@ public class Photo {
     @JoinColumn(name = "problem_id")
     private Problem problem;
 
-    @ManyToOne
+/*    @ManyToOne
     @JoinColumn(name = "request_id")
-    private Request request;
+    private Request request;*/
 
     private String url;
 
@@ -52,13 +52,13 @@ public class Photo {
         this.problem = problem;
     }
 
-    public Request getRequest() {
+/*    public Request getRequest() {
         return request;
     }
 
     public void setRequest(Request request) {
         this.request = request;
-    }
+    }*/
 
     public String getUrl() {
         return url;
@@ -76,13 +76,12 @@ public class Photo {
         return Objects.equals(id, photo.id) &&
                 Objects.equals(news, photo.news) &&
                 Objects.equals(problem, photo.problem) &&
-                Objects.equals(request, photo.request) &&
                 Objects.equals(url, photo.url);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, news, problem, request, url);
+        return Objects.hash(id, news, problem, url);
     }
 
     @Override
@@ -91,7 +90,6 @@ public class Photo {
                 "id=" + id +
                 ", news=" + news +
                 ", problem=" + problem +
-                ", request=" + request +
                 ", url='" + url + '\'' +
                 '}';
     }

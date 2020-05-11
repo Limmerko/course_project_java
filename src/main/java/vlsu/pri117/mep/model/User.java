@@ -18,8 +18,8 @@ public class User {
     private String password;
     @Enumerated(EnumType.STRING)
     private Roles role;
-    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Request> requests;
+/*    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Request> requests;*/
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Problem> problems;
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -60,13 +60,13 @@ public class User {
         this.role = role;
     }
 
-    public List<Request> getRequests() {
+/*    public List<Request> getRequests() {
         return requests;
     }
 
     public void setRequests(List<Request> requests) {
         this.requests = requests;
-    }
+    }*/
 
     public List<Problem> getProblems() {
         return problems;
@@ -112,7 +112,6 @@ public class User {
                 ", login='" + login + '\'' +
                 /*", password='" + password + '\'' +*/  //ha ha, very smart
                 ", role=" + role +
-                ", requests=" + requests +
                 ", problems=" + problems +
                 ", comments=" + comments +
                 '}';

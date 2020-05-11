@@ -1,36 +1,54 @@
 package vlsu.pri117.mep.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import vlsu.pri117.mep.model.enums.CategoriesProblem;
+import vlsu.pri117.mep.model.enums.Roles;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "problems")
 public class Problem {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "problem_id")
     private Long id;
+
     private String address;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
-    private LocalDateTime date;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    private LocalDateTime resolveDate;
+
     private String description;
+
+    private String mainPhoto;
+
     private Long countOfVotes;
+
+    @Enumerated(EnumType.STRING)
+    private CategoriesProblem category;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User author;
+
     @Enumerated(EnumType.STRING)
     private StatusProblem status;
+
     @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
     private List<Comment> comments;
-    @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
-    private List<Request> requests;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
+
+    @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
+    private List<Photo> photos;
 
     public Problem() {
     }
@@ -52,11 +70,11 @@ public class Problem {
     }
 
     public LocalDateTime getDate() {
-        return date;
+        return resolveDate;
     }
 
     public void setDate(LocalDateTime date) {
-        this.date = date;
+        this.resolveDate = date;
     }
 
     public String getDescription() {
@@ -99,14 +117,6 @@ public class Problem {
         this.comments = comments;
     }
 
-    public List<Request> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
-    }
-
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
@@ -115,25 +125,52 @@ public class Problem {
         this.creationDate = creationDate;
     }
 
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
+    public String getMainPhoto() {
+        return mainPhoto;
+    }
+
+    public void setMainPhoto(String mainPhoto) {
+        this.mainPhoto = mainPhoto;
+    }
+
+    public CategoriesProblem getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoriesProblem category) {
+        this.category = category;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Problem problem = (Problem) o;
-
-        if (!id.equals(problem.id)) return false;
-        if (!author.equals(problem.author)) return false;
-        return creationDate.equals(problem.creationDate);
-
+        return Objects.equals(id, problem.id) &&
+                Objects.equals(address, problem.address) &&
+                Objects.equals(resolveDate, problem.resolveDate) &&
+                Objects.equals(description, problem.description) &&
+                Objects.equals(mainPhoto, problem.mainPhoto) &&
+                Objects.equals(countOfVotes, problem.countOfVotes) &&
+                category == problem.category &&
+                Objects.equals(author, problem.author) &&
+                status == problem.status &&
+                Objects.equals(comments, problem.comments) &&
+                Objects.equals(creationDate, problem.creationDate) &&
+                Objects.equals(photos, problem.photos);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + author.hashCode();
-        result = 31 * result + creationDate.hashCode();
-        return result;
+        return Objects.hash(id, address, resolveDate, description, mainPhoto, countOfVotes, category, author, status, comments, creationDate, photos);
     }
 
     @Override
@@ -141,14 +178,16 @@ public class Problem {
         return "Problem{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
-                ", date=" + date +
+                ", resolveDate=" + resolveDate +
                 ", description='" + description + '\'' +
+                ", mainPhoto='" + mainPhoto + '\'' +
                 ", countOfVotes=" + countOfVotes +
+                ", category=" + category +
                 ", author=" + author +
                 ", status=" + status +
                 ", comments=" + comments +
-                ", requests=" + requests +
                 ", creationDate=" + creationDate +
+                ", photos=" + photos +
                 '}';
     }
 }

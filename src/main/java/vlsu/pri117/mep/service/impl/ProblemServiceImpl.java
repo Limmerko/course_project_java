@@ -5,6 +5,7 @@ import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.repository.ProblemRepository;
 import vlsu.pri117.mep.service.ProblemService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -18,6 +19,7 @@ public class ProblemServiceImpl implements ProblemService {
 
     @Override
     public Problem save(Problem problem) {
+        problem.setCreationDate(LocalDateTime.now());
         return problemRepository.save(problem);
     }
 

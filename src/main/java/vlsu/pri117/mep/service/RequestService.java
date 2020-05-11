@@ -1,4 +1,4 @@
-package vlsu.pri117.mep.service;
+/*package vlsu.pri117.mep.service;
 
 import vlsu.pri117.mep.model.Request;
 
@@ -12,4 +12,4 @@ public interface RequestService {
         Request findOne(Long id);
 
         void delete(Long id);
-}
+}*/

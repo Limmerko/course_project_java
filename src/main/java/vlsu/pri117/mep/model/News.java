@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "news")
@@ -17,18 +18,21 @@ public class News {
 
     private String title;
 
-    private String description;
+    private String mainPhoto;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
-    private LocalDateTime date;
+    private String description;
 
     private Long countOfVotes;
 
-    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @Column(name = "creation_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
     private LocalDateTime creationDate;
+
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
+    private List<Photo> photos;
 
     public News() {
     }
@@ -57,14 +61,6 @@ public class News {
         this.description = description;
     }
 
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
     public Long getCountOfVotes() {
         return countOfVotes;
     }
@@ -89,27 +85,40 @@ public class News {
         this.creationDate = creationDate;
     }
 
+    public List<Photo> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photo> photos) {
+        this.photos = photos;
+    }
+
+    public String getMainPhoto() {
+        return mainPhoto;
+    }
+
+    public void setMainPhoto(String mainPhoto) {
+        this.mainPhoto = mainPhoto;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         News news = (News) o;
-
-        if (!id.equals(news.id)) return false;
-        if (title != null ? !title.equals(news.title) : news.title != null) return false;
-        if (description != null ? !description.equals(news.description) : news.description != null) return false;
-        return creationDate.equals(news.creationDate);
-
+        return Objects.equals(id, news.id) &&
+                Objects.equals(title, news.title) &&
+                Objects.equals(mainPhoto, news.mainPhoto) &&
+                Objects.equals(description, news.description) &&
+                Objects.equals(countOfVotes, news.countOfVotes) &&
+                Objects.equals(comments, news.comments) &&
+                Objects.equals(creationDate, news.creationDate) &&
+                Objects.equals(photos, news.photos);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + creationDate.hashCode();
-        return result;
+        return Objects.hash(id, title, mainPhoto, description, countOfVotes, comments, creationDate, photos);
     }
 
     @Override
@@ -117,11 +126,12 @@ public class News {
         return "News{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", mainPhoto='" + mainPhoto + '\'' +
                 ", description='" + description + '\'' +
-                ", date=" + date +
                 ", countOfVotes=" + countOfVotes +
                 ", comments=" + comments +
                 ", creationDate=" + creationDate +
+                ", photos=" + photos +
                 '}';
     }
 }

@@ -23,18 +23,17 @@ public class ProblemController {
         this.problemService = problemService;
     }
 
-    @PostMapping("/problems")
+    @PostMapping("/problems/new")
     //@RequestParam("file") MultipartFile file
     public void createProblem(@RequestBody Problem problem){
-        // тута сервис
+        //modelMap.addAttribute("file", file);
+/*        try {
+            cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+        this.getProblem(problemService.save(problem).getId());*/
 
-//        modelMap.addAttribute("file", file);
-//        try {
-//            cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
-//        } catch (IOException e){
-//            System.out.println(e.getMessage());
-//        }
-        this.getProblem(problemService.save(problem).getId());
     }
 
     @GetMapping("/problems/{id}")

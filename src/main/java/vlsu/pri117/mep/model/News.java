@@ -25,13 +25,13 @@ public class News {
 
     private Long countOfVotes;
 
-    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
-    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
     private List<Photo> photos;
 
     public News() {

@@ -42,7 +42,7 @@ public class Problem {
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
-    @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
     private List<Photo> photos;
 
     public Problem() {

@@ -5,6 +5,7 @@ import vlsu.pri117.mep.model.News;
 import vlsu.pri117.mep.repository.NewsRepository;
 import vlsu.pri117.mep.service.NewsService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -20,6 +21,7 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public News save(News news) {
+        news.setCreationDate(LocalDateTime.now());
         return newsRepository.save(news);
     }
 

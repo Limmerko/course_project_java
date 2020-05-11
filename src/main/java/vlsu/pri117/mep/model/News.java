@@ -22,15 +22,13 @@ public class News {
 
     private String description;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
-    private LocalDateTime date;
-
     private Long countOfVotes;
 
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @Column(name = "creation_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
     private LocalDateTime creationDate;
 
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
@@ -61,14 +59,6 @@ public class News {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
     }
 
     public Long getCountOfVotes() {
@@ -120,7 +110,6 @@ public class News {
                 Objects.equals(title, news.title) &&
                 Objects.equals(mainPhoto, news.mainPhoto) &&
                 Objects.equals(description, news.description) &&
-                Objects.equals(date, news.date) &&
                 Objects.equals(countOfVotes, news.countOfVotes) &&
                 Objects.equals(comments, news.comments) &&
                 Objects.equals(creationDate, news.creationDate) &&
@@ -129,7 +118,7 @@ public class News {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, mainPhoto, description, date, countOfVotes, comments, creationDate, photos);
+        return Objects.hash(id, title, mainPhoto, description, countOfVotes, comments, creationDate, photos);
     }
 
     @Override
@@ -139,7 +128,6 @@ public class News {
                 ", title='" + title + '\'' +
                 ", mainPhoto='" + mainPhoto + '\'' +
                 ", description='" + description + '\'' +
-                ", date=" + date +
                 ", countOfVotes=" + countOfVotes +
                 ", comments=" + comments +
                 ", creationDate=" + creationDate +

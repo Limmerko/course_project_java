@@ -18,6 +18,7 @@ public class ProblemServiceImpl implements ProblemService {
 
     @Override
     public Problem save(Problem problem) {
+        problem.setCreationDate(LocalDateTime.now());
         return problemRepository.save(problem);
     }
 

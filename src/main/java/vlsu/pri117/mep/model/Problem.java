@@ -21,8 +21,8 @@ public class Problem {
 
     private String address;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
-    private LocalDateTime date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    private LocalDateTime resolveDate;
 
     private String description;
 
@@ -43,6 +43,7 @@ public class Problem {
     @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy HH.mm.ss")
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
@@ -69,11 +70,11 @@ public class Problem {
     }
 
     public LocalDateTime getDate() {
-        return date;
+        return resolveDate;
     }
 
     public void setDate(LocalDateTime date) {
-        this.date = date;
+        this.resolveDate = date;
     }
 
     public String getDescription() {
@@ -140,6 +141,14 @@ public class Problem {
         this.mainPhoto = mainPhoto;
     }
 
+    public CategoriesProblem getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoriesProblem category) {
+        this.category = category;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -147,10 +156,11 @@ public class Problem {
         Problem problem = (Problem) o;
         return Objects.equals(id, problem.id) &&
                 Objects.equals(address, problem.address) &&
-                Objects.equals(date, problem.date) &&
+                Objects.equals(resolveDate, problem.resolveDate) &&
                 Objects.equals(description, problem.description) &&
                 Objects.equals(mainPhoto, problem.mainPhoto) &&
                 Objects.equals(countOfVotes, problem.countOfVotes) &&
+                category == problem.category &&
                 Objects.equals(author, problem.author) &&
                 status == problem.status &&
                 Objects.equals(comments, problem.comments) &&
@@ -160,7 +170,7 @@ public class Problem {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, address, date, description, mainPhoto, countOfVotes, author, status, comments, creationDate, photos);
+        return Objects.hash(id, address, resolveDate, description, mainPhoto, countOfVotes, category, author, status, comments, creationDate, photos);
     }
 
     @Override
@@ -168,10 +178,11 @@ public class Problem {
         return "Problem{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
-                ", date=" + date +
+                ", resolveDate=" + resolveDate +
                 ", description='" + description + '\'' +
                 ", mainPhoto='" + mainPhoto + '\'' +
                 ", countOfVotes=" + countOfVotes +
+                ", category=" + category +
                 ", author=" + author +
                 ", status=" + status +
                 ", comments=" + comments +

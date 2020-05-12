@@ -22,6 +22,12 @@ public class RouteController {
         return "main";
     }
 
+    @GetMapping("/boot")
+    public String boot() {
+        // тута сервис
+        return "boot";
+    }
+
     // перенесен в NewsController
     /*@GetMapping("/news")
     public String news() {

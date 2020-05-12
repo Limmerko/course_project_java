@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/main-menu.css">
     <link rel="stylesheet" href="css/table-style.css">
     <link rel="stylesheet" href="css/buttonReportProblem.css">
-    <title>Новости</title>
+    <title>Проблемы</title>
 
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>

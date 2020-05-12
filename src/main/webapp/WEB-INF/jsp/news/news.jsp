@@ -22,8 +22,6 @@
 
 </head>
 <body>
-<h1>News</h1>
-
 
 <table class="news">
     <c:forEach var="oneNews" items="${news}">

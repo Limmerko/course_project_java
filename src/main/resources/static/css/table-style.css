@@ -90,4 +90,7 @@ table.reportProblems input {
     border-radius: 5px;
 }
 
+table.inputProblem input {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+}
 

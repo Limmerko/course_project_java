@@ -22,7 +22,7 @@
 
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>
-        <li><a href="">Главная</a></li>
+        <li><a href="" class="current">Главная</a></li>
         <li><a href="">Проблемы</a></li>
         <li><a href="">Новости</a></li>
         <li><form action="reportProblem.html">

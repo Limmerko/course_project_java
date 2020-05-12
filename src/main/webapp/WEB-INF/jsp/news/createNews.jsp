@@ -20,7 +20,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-        <form:form method="post" action="/news/new" modelAttribute="news">
+        <form:form method="post" action="/news/new" modelAttribute="news" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Заголовок</label>
                 <form:input class="form-control" id="title" path="title" type="text" placeholder="Заголовок"/>
@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 <label for="photos">Фотографии</label>
-             <form:input class="form-control" id="photos" path="photos" type="file"/>
+             <form:input class="form-control" id="photos" path="files" type="file" multiple="multiple" accept="image/*,image/jpeg"/>
             </div>
              <button class="btn btn-primary" data-toggle="tooltip"
                      data-placement="top" title="Подсказка" type="submit">Отправить</button>

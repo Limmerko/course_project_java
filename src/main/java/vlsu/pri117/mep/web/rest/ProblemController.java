@@ -23,7 +23,9 @@ import java.util.Map;
 public class ProblemController {
 
     private final ProblemService problemService;
+
     private final Cloudinary cloudinary;
+
     private final PhotoService photoService;
 
     public ProblemController(Cloudinary cloudinary, ProblemService problemService, PhotoService photoService) {

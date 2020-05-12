@@ -1,6 +1,7 @@
 package vlsu.pri117.mep.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,6 +24,9 @@ public class News {
     private String description;
 
     private Long countOfVotes;
+
+    @Transient
+    private MultipartFile[] files;
 
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
     private List<Comment> comments;
@@ -99,6 +103,14 @@ public class News {
 
     public void setMainPhoto(String mainPhoto) {
         this.mainPhoto = mainPhoto;
+    }
+
+    public MultipartFile[] getFiles() {
+        return files;
+    }
+
+    public void setFiles(MultipartFile[] files) {
+        this.files = files;
     }
 
     @Override

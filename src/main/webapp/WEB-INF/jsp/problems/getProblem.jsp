@@ -23,9 +23,8 @@
 </head>
 <body>
 <h1>Problem info</h1>
-
-
-
-
+    <c:forEach var="photo" items="${problem.photos}">
+        <img src="${photo.url}">
+    </c:forEach>
 </body>
 </html>

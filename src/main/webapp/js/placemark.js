@@ -110,4 +110,4 @@ function init() {
 
 
 
-https://tech.yandex.ru/maps/jsapi/doc/2.1/ref/reference/Placemark-docpage/
+//https://tech.yandex.ru/maps/jsapi/doc/2.1/ref/reference/Placemark-docpage/

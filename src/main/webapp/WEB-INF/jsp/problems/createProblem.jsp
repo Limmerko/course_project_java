@@ -8,7 +8,7 @@
 <!--<form method="post" enctype="multipart/form-data">
     <input type="file" name="file" multiple accept="image/*,image/jpeg">
 <button class="glo" type="submit" >Отправить</button> -->
-    <form:form method="post" modelAttribute="problem" >
+    <form:form method="post" modelAttribute="problem" enctype="multipart/form-data">
         <div>
             <table class="reportProblems" align="center">
                 <tr>
@@ -19,7 +19,7 @@
                 <tr>
                     <td align="center">
                         <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
-                        <input path="address" type="text" placeholder="Укажите точку на карте">
+                        <form:input path="address" type="text" placeholder="Укажите точку на карте"/>
                     </td>
                 </tr>
                 <tr>
@@ -39,7 +39,7 @@
                 </tr>
                 <tr>
                     <td align="center" style="height: 50px;">
-                        <input type="file" multiple accept="image/*,image/jpeg">
+                        <form:input path="files" type="file" multiple="multiple" accept="image/*,image/jpeg" />
                     </td>
                 </tr>
                 <tr>

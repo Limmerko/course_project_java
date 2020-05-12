@@ -1,6 +1,7 @@
 package vlsu.pri117.mep.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.web.multipart.MultipartFile;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.Roles;
 import vlsu.pri117.mep.model.enums.StatusProblem;
@@ -27,6 +28,9 @@ public class Problem {
     private String description;
 
     private String mainPhoto;
+
+    @Transient
+    private MultipartFile[] files;
 
     private Long countOfVotes;
 
@@ -83,6 +87,14 @@ public class Problem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public MultipartFile[] getFiles() {
+        return files;
+    }
+
+    public void setFiles(MultipartFile[] files) {
+        this.files = files;
     }
 
     public Long getCountOfVotes() {

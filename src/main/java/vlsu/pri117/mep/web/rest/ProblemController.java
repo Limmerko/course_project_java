@@ -8,35 +8,48 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import vlsu.pri117.mep.model.Photo;
 import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
+import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ProblemController {
 
     private final ProblemService problemService;
+
     private final Cloudinary cloudinary;
 
-    public ProblemController(Cloudinary cloudinary, ProblemService problemService) {
+    private final PhotoService photoService;
+
+    public ProblemController(Cloudinary cloudinary, ProblemService problemService, PhotoService photoService) {
         this.cloudinary = cloudinary;
         this.problemService = problemService;
+        this.photoService = photoService;
     }
 
     @PostMapping("/problems/new")
-    //@RequestParam("file") MultipartFile file
     public RedirectView createProblem(@ModelAttribute("problem") Problem problem){
-        //modelMap.addAttribute("file", file);
-/*        try {
-            cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+        List<Photo> photos = new ArrayList<Photo>();
+        problem = problemService.save(problem);
+        try {
+            for (MultipartFile file : problem.getFiles()) {
+                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+                Photo photo = new Photo();
+                photo.setUrl((String)uploadResult.get("url"));
+                photo.setProblem(problem);
+                photos.add(photoService.save(photo));
+            }
+            problem.setPhotos(photos);
         } catch (IOException e){
             System.out.println(e.getMessage());
         }
-        this.getProblem(problemService.save(problem).getId());*/
         return new RedirectView( "/problems/" + problemService.save(problem).getId());
     }
 

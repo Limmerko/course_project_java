@@ -3,6 +3,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/main-menu.css">
     <link rel="stylesheet" href="css/table-style.css">
@@ -26,31 +33,39 @@
 
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <h1>News</h1>
 
-
-<table class="news">
-    <c:forEach var="oneNews" items="${news}">
-        <TR>
-            <thead>
-            <TD>${oneNews.title}</TD>
-            </thead>
-        </TR>
-        <tbody>
-        <TR>
-            <TD>${oneNews.description}</TD>
-            <TD ROWSPAN=4 align="center"><img src="image/news1.jpg"></TD>
-        </TR>
-        </tbody>
-        <tfoot>
-        <TR>
-            <TD>DATE</TD>
-            <TD align="right">15 <img src="image/like_icon.png" class="semi"> 2 <img src="image/comment_icon.png" class="semi"></TD>
-        </TR>
-        </tfoot>
-    </c:forEach>
-</table>
-
+<div class="container px-lg-5">
+    <div class="row mx-lg-n5">
+        <c:forEach var="oneNews" items="${news}">
+            <div class="col">
+                <table class="table">
+                    <tbody>
+                        <tr scope="row">
+                            <td>${oneNews.title}</td>
+                            <td rowspan="3">
+                                <img src="${oneNews.mainPhoto}" width="150px" height="150px">
+                            </td>
+                        </tr>
+                        <tr scope="row">
+                            <td>${oneNews.description}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr scope="row">
+                        <td>13 мая 2020</td>
+                        <td align="right">15 <img src="image/like_icon.png" class="semi"> 2</td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <br/>
+        </c:forEach>
+    </div>
+</div>
 
 
 </body>

@@ -44,7 +44,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <button class="glo" type="submit" >Отправить</button>
+                        <button class="glo" type="submit" onlclic="myFunction()">Отправить</button>
                     </td>
                 </tr>
             </table>

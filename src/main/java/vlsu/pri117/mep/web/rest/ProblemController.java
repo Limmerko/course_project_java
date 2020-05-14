@@ -2,6 +2,8 @@ package vlsu.pri117.mep.web.rest;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -23,34 +25,22 @@ import java.util.Map;
 public class ProblemController {
 
     private final ProblemService problemService;
-
+    private final PhotoService photoService;
     private final Cloudinary cloudinary;
 
-    private final PhotoService photoService;
 
-    public ProblemController(Cloudinary cloudinary, ProblemService problemService, PhotoService photoService) {
-        this.cloudinary = cloudinary;
+    public ProblemController(ProblemService problemService, PhotoService photoService, Cloudinary cloudinary) {
         this.problemService = problemService;
         this.photoService = photoService;
+        this.cloudinary = cloudinary;
     }
 
+
     @PostMapping("/problems/new")
-    public RedirectView createProblem(@ModelAttribute("problem") Problem problem){
-        List<Photo> photos = new ArrayList<Photo>();
+    public void createProblem(@ModelAttribute("problem") Problem problem){
         problem = problemService.save(problem);
-        try {
-            for (MultipartFile file : problem.getFiles()) {
-                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
-                Photo photo = new Photo();
-                photo.setUrl((String)uploadResult.get("url"));
-                photo.setProblem(problem);
-                photos.add(photoService.save(photo));
-            }
-            problem.setPhotos(photos);
-        } catch (IOException e){
-            System.out.println(e.getMessage());
-        }
-        return new RedirectView( "/problems/" + problemService.save(problem).getId());
+        photoService.addPhotosToProblem(problem);
+        //return new RedirectView( "/problems/" + problem.getId());
     }
 
     @GetMapping("/problems/new")

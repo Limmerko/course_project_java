@@ -42,25 +42,29 @@
     <div class="row mx-lg-n5">
         <c:forEach var="oneNews" items="${news}">
             <div class="col">
-                <table class="table">
-                    <tbody>
-                        <tr scope="row">
-                            <td>${oneNews.title}</td>
-                            <td rowspan="3">
-                                <img src="${oneNews.mainPhoto}" width="150px" height="150px">
-                            </td>
-                        </tr>
-                        <tr scope="row">
-                            <td>${oneNews.description}</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                    <tr scope="row">
-                        <td>13 мая 2020</td>
-                        <td align="right">15 <img src="image/like_icon.png" class="semi"> 2</td>
-                    </tr>
-                    </tfoot>
-                </table>
+                <form:form method = "GET" action = "/news/${oneNews.id}">
+                    <button type="submit">
+                        <table class="table">
+                            <tbody>
+                                <tr scope="row">
+                                    <td>${oneNews.title}</td>
+                                    <td rowspan="3">
+                                        <img src="${oneNews.mainPhoto}" width="150px" height="150px">
+                                    </td>
+                                </tr>
+                                <tr scope="row">
+                                    <td>${oneNews.description}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr scope="row">
+                                <td>13 мая 2020</td>
+                                <td align="right">15 <img src="image/like_icon.png" class="semi"> 2</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </button>
+                </form:form>
             </div>
             <br/>
         </c:forEach>

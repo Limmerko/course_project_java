@@ -61,4 +61,16 @@ public class ProblemController {
         modelMap.addAttribute("problems", problemService.findAll());
         return "problems/problems";
     }
+
+    @GetMapping("/problems/edit/{id}")
+    public String getProblemForUpdate(@PathVariable Long id, ModelMap modelMap){
+        modelMap.addAttribute("problem", problemService.findOne(id));
+        return "problems/updateProblem";
+    }
+
+    @PostMapping("/problems/edit/{id}")
+    public String getProblemForUpdate(@ModelAttribute("problem") Problem problem){
+        problemService.save(problem);
+        return "problems/updateProblem";
+    }
 }

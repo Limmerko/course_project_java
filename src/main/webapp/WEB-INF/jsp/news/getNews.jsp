@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="с" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -44,8 +45,27 @@
                             <tbody>
                             <tr scope="row">
                                 <td scope="col">
-                                    <img src="${news.mainPhoto}" width="250px" height="250px">
-                                    Несколько фоток
+                                    <!--<img src="${news.mainPhoto}" width="250px" height="250px"> -->
+                                    <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="${news.mainPhoto}" class="d-block w-100" alt="..." width="200px" height="auto">
+                                            </div>
+                                            <с:forEach var="photo" items="${news.photos}">
+                                                <div class="carousel-item">
+                                                    <img src="${photo.url}" class="d-block w-100" alt="..." width="200px" height="auto">
+                                                </div>
+                                            </с:forEach>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselPhotos" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselPhotos" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
                                 </td>
                                 <td rowspan="3" border="1">
                                     КОММЕНТАРИИ

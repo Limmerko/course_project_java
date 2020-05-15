@@ -16,7 +16,12 @@ import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,12 +41,41 @@ public class ProblemController {
     }
 
 
-    @PostMapping("/problems/new")
+/*    @PostMapping("/problems/new")
     public void createProblem(@ModelAttribute("problem") Problem problem){
         problem = problemService.save(problem);
         photoService.addPhotosToProblem(problem);
         //return new RedirectView( "/problems/" + problem.getId());
+    }*/
+
+    @PostMapping("/problems/new")
+    public RedirectView createProblem(@ModelAttribute("problem") Problem problem) throws IOException {
+        problem = problemService.save(problem);
+        List<Photo> photos = new ArrayList<>();
+        int i = 0;
+        for( MultipartFile file : problem.getFiles()){
+            InputStream in = new ByteArrayInputStream(file.getBytes());
+            BufferedImage image = ImageIO.read(in);
+            image = image.getSubimage( 0, 0, 200, 300);
+            String dir = "D:/University/JavaProjects/course_project_java/src/main/webapp/photos/problems/" + problem.getId();
+            File dirFile = new File(dir);
+            dirFile.mkdirs();
+            File outfile = new File(dir + "/" +i + ".png");
+            try {
+                ImageIO.write(image, "png", outfile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Photo photo = new Photo();
+            photo.setUrl(outfile.getPath());
+            photo.setProblem(problem);
+            photos.add(photoService.save(photo));
+            i++;
+        }
+        problemService.save(problem);
+        return new RedirectView( "/problems/" +problemService.save(problem).getId());
     }
+
 
     @GetMapping("/problems/new")
     public ModelAndView createProblem(ModelMap modelMap){

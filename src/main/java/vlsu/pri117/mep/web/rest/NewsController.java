@@ -1,6 +1,7 @@
 package vlsu.pri117.mep.web.rest;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -54,6 +55,7 @@ public class NewsController {
             for (MultipartFile file : news.getFiles() ) {
                 Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
                 Photo photo = new Photo();
+                cloudinary.url().transformation(new Transformation().width(200).height(300).crop("scale")).imageTag((String) uploadResult.get("imageTag"));
                 photo.setUrl((String)uploadResult.get("url"));
                 photo.setNews(news);
                 photos.add(photoService.save(photo));

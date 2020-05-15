@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="с" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <!-- Required meta tags -->
@@ -49,7 +50,7 @@
                                     <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
-                                                <img src="${news.mainPhoto}" class="d-block w-100" alt="..." width="200px" height="auto">
+                                                <cl:img src="${news.mainPhoto}" class="d-block w-100" alt="..."width="100" height="150" crop="fill">
                                             </div>
                                             <с:forEach var="photo" items="${news.photos}">
                                                 <div class="carousel-item">

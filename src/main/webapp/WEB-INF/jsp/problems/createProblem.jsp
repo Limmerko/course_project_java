@@ -13,7 +13,7 @@
     <!-- Шапка сайта -->
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>
-        <li><a href="/main">Главная</a></li>
+        <li><a href="/">Главная</a></li>
         <li><a href="" class="current">Проблемы</a></li>
         <li><a href="">Новости</a></li>
         <li><form action="reportProblem.html">
@@ -41,7 +41,8 @@
                 <tr>
                     <td align="center">
                         <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
-                        <form:input path="address" type="text" name="address" id="myInput" placeholder="Укажите точку на карте"/>
+                        <input type="text" id="myInput" placeholder="Укажите точку на карте"/>
+                        <form:hidden path="address" name="myInputBD" id="myInputBD"/>
                     </td>
                 </tr>
                 <tr>

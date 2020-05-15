@@ -28,6 +28,7 @@ function init() {
             });
         }
         getAddress(coords);
+        myInputBD.value = coords;
     });
 
     // Создание метки.

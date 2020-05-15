@@ -76,6 +76,7 @@ public class NewsController {
     public String getNews(@PathVariable Long id, ModelMap modelMap) {
         // тута сервис
         News news = newsService.findOne(id);
+        news.getPhotos().remove(0);
         modelMap.addAttribute("news", news);
         return "news/getNews";
     }

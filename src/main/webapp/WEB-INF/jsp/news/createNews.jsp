@@ -3,6 +3,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
+    <link rel="stylesheet" href="../css/main-menu.css">
+    <link rel="stylesheet" href="../css/table-style.css">
+    <link rel="stylesheet" href="../css/buttonReportProblem.css">
+
+    <ul class="menu-main">
+        <li class="nazvanie">KonohaLIVE</li>
+        <li><a href="">Главная</a></li>
+        <li><a href="" class="current">Проблемы</a></li>
+        <li><a href="">Новости</a></li>
+        <li><form action="reportProblem.html">
+            <button class="glo" type="submit">Сообщить о проблеме</button>
+        </form></li>
+    </ul>
+
+
+
+
+
+
+
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,8 +58,8 @@
                 <label for="photos">Фотографии</label>
              <form:input class="form-control" id="photos" path="files" type="file" multiple="multiple" accept="image/*,image/jpeg"/>
             </div>
-             <button class="btn btn-primary" data-toggle="tooltip"
-                     data-placement="top" title="Подсказка" type="submit">Отправить</button>
+             <button class="glo" data-toggle="tooltip"
+                     data-placement="top" title="Создать новость" type="submit">Отправить</button>
         </form:form>
         </div>
     </div>

@@ -2,9 +2,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head><title>JSP</title></head>
+<head>
+    <title>Сообщить о проблеме</title>
+
+    <!-- Загрузка стилей -->
+    <link rel="stylesheet" href="../css/main-menu.css">
+    <link rel="stylesheet" href="../css/table-style.css">
+    <link rel="stylesheet" href="../css/buttonReportProblem.css">
+
+    <!-- Шапка сайта -->
+    <ul class="menu-main">
+        <li class="nazvanie">KonohaLIVE</li>
+        <li><a href="/main">Главная</a></li>
+        <li><a href="" class="current">Проблемы</a></li>
+        <li><a href="">Новости</a></li>
+        <li><form action="reportProblem.html">
+            <button class="glo" type="submit">Сообщить о проблеме</button>
+        </form></li>
+    </ul>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
+    </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/placemark.js"></script>
+
+
+</head>
 <body>
-<h1>Report Problems</h1>
 <!--<form method="post" enctype="multipart/form-data">
     <input type="file" name="file" multiple accept="image/*,image/jpeg">
 <button class="glo" type="submit" >Отправить</button> -->
@@ -18,18 +41,20 @@
                 </tr>
                 <tr>
                     <td align="center">
+
                         <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
                         <form:input path="address" type="text" placeholder="Укажите точку на карте"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">
-                        <form:select path="category">
+                        <form:select path="category" class="categories">
                             <option selected disabled>Укажите категорию проблемы:</option>
                             <c:forEach var="categ" items="${categories}">
                                 <form:option value="${categ}">${categ}</form:option>
                             </c:forEach>
                         </form:select>
+                        <em>Выберите категорию проблемы. Это важно, поскольку проблема поступит на рассмотрение соответствующему ведомству</em>
                     </td>
                 </tr>
                 <tr>
@@ -38,17 +63,32 @@
                     </td>
                 </tr>
                 <tr>
+
                     <td align="center" style="height: 50px;">
                         <form:input path="files" type="file" multiple="multiple" accept="image/*,image/jpeg" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button class="glo" type="submit" onlclic="myFunction()">Отправить</button>
+                        <button class="glo" type="submit" onlclick="ZdesDoljenBitRedirect()">Отправить</button>
                     </td>
                 </tr>
             </table>
         </div>
     </form:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

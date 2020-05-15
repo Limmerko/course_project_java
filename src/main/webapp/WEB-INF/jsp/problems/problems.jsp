@@ -4,9 +4,9 @@
 <html>
 <head>
 
-    <link rel="stylesheet" href="css/main-menu.css">
-    <link rel="stylesheet" href="css/table-style.css">
-    <link rel="stylesheet" href="css/buttonReportProblem.css">
+    <link rel="stylesheet" href="../../css/main-menu.css">
+    <link rel="stylesheet" href="../../css/table-style.css">
+    <link rel="stylesheet" href="../../css/buttonReportProblem.css">
 
     <script src="../../../../node_modules/jquery/dist/jquery.js" type="text/javascript"></script>
     <script src="../../../../node_modules/jquery.ui/ui/widget.js" type="text/javascript"></script>

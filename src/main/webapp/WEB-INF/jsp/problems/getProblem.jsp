@@ -4,9 +4,9 @@
 <html>
 <head>
 
-    <link rel="stylesheet" href="css/main-menu.css">
-    <link rel="stylesheet" href="css/table-style.css">
-    <link rel="stylesheet" href="css/buttonReportProblem.css">
+    <link rel="stylesheet" href="../../css/main-menu.css">
+    <link rel="stylesheet" href="../../css/table-style.css">
+    <link rel="stylesheet" href="../../css/buttonReportProblem.css">
     <title>Проблемы</title>
 
     <ul class="menu-main">

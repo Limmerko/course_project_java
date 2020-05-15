@@ -9,16 +9,8 @@
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
-    <script type="text/javascript">
-        ymaps.ready(init);
-        function init(){
-            var myMap = new ymaps.Map("map", {
-                center: [56.14656449, 40.40288382],
-                zoom: 13
-            });
-        }
-    </script>
-    <script src="placemark.js" type="text/javascript"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ya-map.js"></script>
+
 
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>
@@ -32,7 +24,6 @@
 
 </head>
 <body>
-<h1>yo konoha</h1>
 
 <select id="categories" class="categories" style="width: 500px; height: 40px">
     <option selected disabled>Укажите категорию проблемы:</option>

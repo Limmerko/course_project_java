@@ -4,16 +4,16 @@
 <html>
 <head>
 
-    <link rel="stylesheet" href="../../../css/main-menu.css">
-    <link rel="stylesheet" href="../../../css/table-style.css">
-    <link rel="stylesheet" href="../../../css/buttonReportProblem.css">
-    <title>Новости</title>
+    <link rel="stylesheet" href="../../css/main-menu.css">
+    <link rel="stylesheet" href="../../css/table-style.css">
+    <link rel="stylesheet" href="../../css/buttonReportProblem.css">
+    <title>Проблемы</title>
 
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>
         <li><a href="">Главная</a></li>
-        <li><a href="">Проблемы</a></li>
-        <li><a href="" class="current">Новости</a></li>
+        <li><a href="" class="current" >Проблемы</a></li>
+        <li><a href="">Новости</a></li>
         <li><form action="reportProblem.html">
             <button class="glo" type="submit">Сообщить о проблеме</button>
         </form></li>
@@ -22,17 +22,7 @@
 
 </head>
 <body>
-<h1>Информация о новости</h1>
-<table>
-    <tr>
-        <td>Новость:</td>
-        <td>${news}</td>
-    </tr>
-</table>
-
-
-
-
+<h1>Update problem</h1>
 
 </body>
 </html>

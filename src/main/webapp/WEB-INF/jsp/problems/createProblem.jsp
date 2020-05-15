@@ -25,7 +25,6 @@
     </script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/placemark.js"></script>
 
-
 </head>
 <body>
 <!--<form method="post" enctype="multipart/form-data">
@@ -41,9 +40,8 @@
                 </tr>
                 <tr>
                     <td align="center">
-
                         <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
-                        <form:input path="address" type="text" placeholder="Укажите точку на карте"/>
+                        <form:input path="address" type="text" name="address" id="myInput" placeholder="Укажите точку на карте"/>
                     </td>
                 </tr>
                 <tr>

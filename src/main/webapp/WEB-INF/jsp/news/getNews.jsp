@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/main-menu.css">
     <link rel="stylesheet" href="../css/table-style.css">
     <link rel="stylesheet" href="../css/buttonReportProblem.css">
+    <link rel="stylesheet" href="../css/carousel-style.css">
 
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
@@ -44,7 +45,7 @@
 <div class="format-text" align="center" style="color: #606060;"><h3>Информация о новости</h3></div>
 
 <div class="container px-lg-5">
-    <div class="row mx-lg-n5">-
+    <div class="row mx-lg-n5">
             <div class="col">
                         <table class="table table-striped table-bordered" >
                             <tbody>
@@ -52,13 +53,13 @@
                                 <td scope="col">
                                     <!--<img src="${news.mainPhoto}" width="250px" height="250px"> -->
                                     <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
-                                        <div class="carousel-inner" style="width: 200px; height: 200px;">
-                                            <div class="carousel-item active" style="margin-left: auto; margin-right: auto;">
-                                                <img src="${news.mainPhoto}" class="d-block" alt="..." style="width: 200px; height: auto">
+                                        <div class="carousel-inner" style="width: 500px; height: 300px;">
+                                            <div class="carousel-item active">
+                                                <img src="${news.mainPhoto}" class="car-photo w-auto h-100" alt="..." style="width: 400px; height: auto;">
                                             </div>
                                             <с:forEach var="photo" items="${news.photos}">
-                                                <div class="carousel-item" style="margin-left: auto; margin-right: auto;">
-                                                    <img src="${photo.url}" class="d-block" alt="..." style="width: 200px; height: auto">
+                                                <div class="carousel-item">
+                                                    <img src="${photo.url}" class="car-photo w-auto h-100" alt="..." style="width: 400px; height: auto;">
                                                 </div>
                                             </с:forEach>
                                         </div>

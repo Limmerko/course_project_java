@@ -39,9 +39,7 @@ public class PhotoServiceImpl implements PhotoService {
         List<Photo> photos = new ArrayList<Photo>();
         try {
             for (MultipartFile file : problem.getFiles()) {
-                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap(
-                        "eager", new Transformation().width(200).height(300).crop("fill")
-                ));
+                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
                 Photo photo = new Photo();
                 photo.setUrl((String)uploadResult.get("url"));
                 photo.setProblem(problem);

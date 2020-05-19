@@ -14,9 +14,9 @@
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>
         <li><a href="/">Главная</a></li>
-        <li><a href="" class="current">Проблемы</a></li>
-        <li><a href="">Новости</a></li>
-        <li><form action="reportProblem.html">
+        <li><a href="/problems">Проблемы</a></li>
+        <li><a href="/news">Новости</a></li>
+        <li><form action="/problems/new ">
             <button class="glo" type="submit">Сообщить о проблеме</button>
         </form></li>
     </ul>
@@ -27,9 +27,6 @@
 
 </head>
 <body>
-<!--<form method="post" enctype="multipart/form-data">
-    <input type="file" name="file" multiple accept="image/*,image/jpeg">
-<button class="glo" type="submit" >Отправить</button> -->
     <form:form method="post" modelAttribute="problem" enctype="multipart/form-data">
         <div>
             <table class="reportProblems" align="center">

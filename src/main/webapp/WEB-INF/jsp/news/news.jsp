@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <script defer src="../../../js/all.js"></script>
+
     <link rel="stylesheet" href="../../../css/main-menu.css">
     <link rel="stylesheet" href="../../../css/table-style.css">
     <link rel="stylesheet" href="../../../css/buttonReportProblem.css">
@@ -24,10 +26,10 @@
 
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>
-        <li><a href="">Главная</a></li>
-        <li><a href="">Проблемы</a></li>
-        <li><a href="" class="current">Новости</a></li>
-        <li><form action="reportProblem.html">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/problems">Проблемы</a></li>
+        <li><a href="/news" class="current">Новости</a></li>
+        <li><form action="/problems/new ">
             <button class="glo" type="submit">Сообщить о проблеме</button>
         </form></li>
     </ul>
@@ -50,19 +52,16 @@
                             <tbody>
                                 <tr scope="row">
                                     <td>${oneNews.title}</td>
-                                    <td rowspan="3">
-                                        <img src="${oneNews.mainPhoto}" width="150px" height="150px">
+                                    <td rowspan="2" width="150px" height="150px">
+                                        <img src="${oneNews.mainPhoto}" width="150px" height="auto">
                                     </td>
-                                </tr>
-                                <tr scope="row">
-                                    <td>${oneNews.description}</td>
                                 </tr>
                             </tbody>
                             <tfoot>
-                            <tr scope="row">
-                                <td>13 мая 2020</td>
-                                <td align="right">15 <img src="image/like_icon.png" class="semi"> 2</td>
-                            </tr>
+                                <tr scope="row">
+                                    <td><i class="far fa-calendar-alt"></i> 13 мая 2020</td>
+                                    <td align="right"><i class="far fa-thumbs-up"></i>15  <i class="far fa-comment"></i>2</td>
+                                </tr>
                             </tfoot>
                         </table>
                     </button>

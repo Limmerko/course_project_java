@@ -1,6 +1,7 @@
 package vlsu.pri117.mep.service.impl;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,7 +39,9 @@ public class PhotoServiceImpl implements PhotoService {
         List<Photo> photos = new ArrayList<Photo>();
         try {
             for (MultipartFile file : problem.getFiles()) {
-                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap(
+                        "eager", new Transformation().width(200).height(300).crop("fill")
+                ));
                 Photo photo = new Photo();
                 photo.setUrl((String)uploadResult.get("url"));
                 photo.setProblem(problem);

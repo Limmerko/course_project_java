@@ -6,9 +6,9 @@
     <title>Сообщить о проблеме</title>
 
     <!-- Загрузка стилей -->
-    <link rel="stylesheet" href="../css/main-menu.css">
-    <link rel="stylesheet" href="../css/table-style.css">
-    <link rel="stylesheet" href="../css/buttonReportProblem.css">
+    <link rel="stylesheet" href="../../css/main-menu.css">
+    <link rel="stylesheet" href="../../css/table-style.css">
+    <link rel="stylesheet" href="../../css/buttonReportProblem.css">
 
     <!-- Шапка сайта -->
     <ul class="menu-main">

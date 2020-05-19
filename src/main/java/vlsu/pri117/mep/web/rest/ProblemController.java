@@ -41,7 +41,6 @@ public class ProblemController {
         this.cloudinary = cloudinary;
     }
 
-
     @PostMapping("/problems/new")
     public RedirectView createProblem(@ModelAttribute("problem") Problem problem){
         problem = problemService.save(problem);

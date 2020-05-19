@@ -22,6 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,14 +42,14 @@ public class ProblemController {
     }
 
 
-/*    @PostMapping("/problems/new")
-    public void createProblem(@ModelAttribute("problem") Problem problem){
+    @PostMapping("/problems/new")
+    public RedirectView createProblem(@ModelAttribute("problem") Problem problem){
         problem = problemService.save(problem);
         photoService.addPhotosToProblem(problem);
-        //return new RedirectView( "/problems/" + problem.getId());
-    }*/
+        return new RedirectView( "/problems/" + problem.getId());
+    }
 
-    @PostMapping("/problems/new")
+/*    @PostMapping("/problems/new")
     public RedirectView createProblem(@ModelAttribute("problem") Problem problem) throws IOException {
         problem = problemService.save(problem);
         List<Photo> photos = new ArrayList<>();
@@ -74,7 +75,7 @@ public class ProblemController {
         }
         problemService.save(problem);
         return new RedirectView( "/problems/" +problemService.save(problem).getId());
-    }
+    }*/
 
 
     @GetMapping("/problems/new")
@@ -86,7 +87,9 @@ public class ProblemController {
 
     @GetMapping("/problems/{id}")
     public String getProblem(@PathVariable Long id, ModelMap modelMap){
-        modelMap.addAttribute("problem", problemService.findOne(id));
+        Problem problem = problemService.findOne(id);
+        problem.getPhotos().remove(0);
+        modelMap.addAttribute("problem", problem);
         return "problems/getProblem";
     }
 

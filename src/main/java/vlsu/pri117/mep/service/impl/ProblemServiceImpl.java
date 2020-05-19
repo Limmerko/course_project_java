@@ -2,6 +2,7 @@ package vlsu.pri117.mep.service.impl;
 
 import org.springframework.stereotype.Service;
 import vlsu.pri117.mep.model.Problem;
+import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.repository.ProblemRepository;
 import vlsu.pri117.mep.service.ProblemService;
 
@@ -13,13 +14,19 @@ public class ProblemServiceImpl implements ProblemService {
 
     private final ProblemRepository problemRepository;
 
-    public ProblemServiceImpl( ProblemRepository problemRepository1) {
-        this.problemRepository = problemRepository1;
+    public ProblemServiceImpl( ProblemRepository problemRepository) {
+        this.problemRepository = problemRepository;
     }
 
     @Override
     public Problem save(Problem problem) {
-        problem.setCreationDate(LocalDateTime.now());
+        if (problem.getId() == null){
+            problem.setCreationDate(LocalDateTime.now());
+            problem.setStatus(StatusProblem.UNDER_CONSIDERATION);
+        }
+        if (problem.getPhotos() != null) {
+            problem.setMainPhoto(problem.getPhotos().get(0).getUrl());
+        }
         return problemRepository.save(problem);
     }
 

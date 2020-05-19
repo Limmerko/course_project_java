@@ -6,6 +6,13 @@ public enum Roles {
     MODERATOR("Модератор"),
     NEWS_MODERATOR("Новостной модератор");
 
+    private String description;
+
     Roles(String description) {
+        this.description = description;
+    }
+
+    public String getDescription(){
+        return description;
     }
 }

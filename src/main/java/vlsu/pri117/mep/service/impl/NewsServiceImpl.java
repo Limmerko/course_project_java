@@ -21,7 +21,8 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public News save(News news) {
-        news.setCreationDate(LocalDateTime.now());
+        if (news.getId() == null)
+            news.setCreationDate(LocalDateTime.now());
         if (news.getPhotos() != null) {
             news.setMainPhoto(news.getPhotos().get(0).getUrl());
         }

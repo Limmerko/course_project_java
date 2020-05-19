@@ -6,6 +6,13 @@ public enum StatusProblem {
     UNDER_CONSIDERATION("На рассмотрении"),
     REJECTED("Отклонено");
 
+    private String description;
+
     StatusProblem(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

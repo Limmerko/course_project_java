@@ -1,5 +1,6 @@
 package vlsu.pri117.mep.service;
 
+import vlsu.pri117.mep.model.News;
 import vlsu.pri117.mep.model.Photo;
 import vlsu.pri117.mep.model.Problem;
 
@@ -15,4 +16,6 @@ public interface PhotoService {
     void delete(Long id);
 
     void addPhotosToProblem(Problem problem);
+
+    void addPhotosToNews(News news);
 }

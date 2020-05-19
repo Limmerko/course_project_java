@@ -84,7 +84,15 @@
                             </tr>
                             <tr scope="row">
                                 <td>${news.creationDate}</td>
-                                <td><input type="text" placeholder="Оставить комментарий"/></td>
+                                <td>
+                                    <form:form method="post" action="comments/new" modelAttribute="comment" enctype="multipart/form-data">
+                                        <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
+                                        <form:input hidden="true" class="form-control" id="news" path="news" type="text" value="${news.id}"/>
+                                        <button type="submit" title="Оставить комментарий">
+                                            Отправить
+                                        </button>
+                                    </form:form>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

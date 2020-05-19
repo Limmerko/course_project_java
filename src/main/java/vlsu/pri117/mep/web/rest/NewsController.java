@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import vlsu.pri117.mep.model.Comment;
 import vlsu.pri117.mep.model.News;
 import vlsu.pri117.mep.model.Photo;
+import vlsu.pri117.mep.model.User;
+import vlsu.pri117.mep.model.enums.Roles;
+import vlsu.pri117.mep.repository.NewsRepository;
+import vlsu.pri117.mep.repository.UserRepository;
 import vlsu.pri117.mep.service.NewsService;
 import vlsu.pri117.mep.service.PhotoService;
 
@@ -28,10 +33,13 @@ public class NewsController {
 
     private final PhotoService photoService;
 
-    public NewsController(NewsService newsService, Cloudinary cloudinary, PhotoService photoService) {
+    private final UserRepository userRepository;
+
+    public NewsController(NewsService newsService, Cloudinary cloudinary, PhotoService photoService, UserRepository userRepository) {
         this.newsService = newsService;
         this.cloudinary = cloudinary;
         this.photoService = photoService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/news")
@@ -80,6 +88,7 @@ public class NewsController {
         News news = newsService.findOne(id);
         news.getPhotos().remove(0);
         modelMap.addAttribute("news", news);
+        modelMap.addAttribute("comment", new Comment());
         return "news/getNews";
     }
 
@@ -88,5 +97,14 @@ public class NewsController {
         // тута сервис
         newsService.delete(id);
         return "страница";
+    }
+
+    @GetMapping("addUser")
+    public void addUser() {
+        User user = new User();
+        user.setLogin("Vlad");
+        user.setPassword("122232");
+        user.setRole(Roles.ADMIN);
+        userRepository.save(user);
     }
 }

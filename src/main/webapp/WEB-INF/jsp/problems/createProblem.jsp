@@ -47,7 +47,7 @@
                         <form:select path="category" class="categories">
                             <option selected disabled>Укажите категорию проблемы:</option>
                             <c:forEach var="categ" items="${categories}">
-                                <form:option value="${categ}">${categ}</form:option>
+                                <form:option value="${categ}">${categ.getDescription()}</form:option>
                             </c:forEach>
                         </form:select>
                         <em>Выберите категорию проблемы. Это важно, поскольку проблема поступит на рассмотрение соответствующему ведомству</em>

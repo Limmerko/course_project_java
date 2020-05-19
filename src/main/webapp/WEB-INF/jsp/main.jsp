@@ -25,12 +25,17 @@
 </head>
 <body>
 
-<select id="categories" class="categories" style="width: 500px; height: 40px">
-    <option selected disabled>Укажите категорию проблемы:</option>
-    <option value="road">Дорожные проблемы</option>
-    <option value="social">Социальная сфера</option>
-    <option value="urban">Городское хозяйство</option>
-</select>
+<form:form method ="GET">
+    <form:select path="category" class="categories">
+        <option selected disabled>Укажите категорию проблемы:</option>
+        <c:forEach var="categ" items="${categories}">
+            <form:option value="${categ}">${categ.getDescription()}</form:option>
+        </c:forEach>
+    </form:select>
+    <button class="glo" type="submit" onlclick="ZdesDoljenBitRedirect()">Отправить</button>
+</form:form>
+
+
 <div id="map" style="width: 95%; height: 950px;  margin: 0 auto"></div>
 
 

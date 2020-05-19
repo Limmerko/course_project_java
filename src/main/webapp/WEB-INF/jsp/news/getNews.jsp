@@ -52,13 +52,13 @@
                                 <td scope="col">
                                     <!--<img src="${news.mainPhoto}" width="250px" height="250px"> -->
                                     <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <cl:img src="${news.mainPhoto}" class="d-block w-100" alt="..."width="100" height="150" crop="fill">
+                                        <div class="carousel-inner" style="width: 200px; height: 200px;">
+                                            <div class="carousel-item active" style="margin-left: auto; margin-right: auto;">
+                                                <img src="${news.mainPhoto}" class="d-block" alt="..." style="width: 200px; height: auto">
                                             </div>
                                             <с:forEach var="photo" items="${news.photos}">
-                                                <div class="carousel-item">
-                                                    <img src="${photo.url}" class="d-block w-100" alt="..." width="200px" height="auto">
+                                                <div class="carousel-item" style="margin-left: auto; margin-right: auto;">
+                                                    <img src="${photo.url}" class="d-block" alt="..." style="width: 200px; height: auto">
                                                 </div>
                                             </с:forEach>
                                         </div>

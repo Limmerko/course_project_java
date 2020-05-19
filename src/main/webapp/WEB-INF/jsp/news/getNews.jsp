@@ -26,10 +26,10 @@
 
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>
-        <li><a href="">Главная</a></li>
-        <li><a href="">Проблемы</a></li>
-        <li><a href="" class="current">Новости</a></li>
-        <li><form action="reportProblem.html">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/problems">Проблемы</a></li>
+        <li><a href="/news" class="current">Новости</a></li>
+        <li><form action="/problems/new ">
             <button class="glo" type="submit">Сообщить о проблеме</button>
         </form></li>
     </ul>

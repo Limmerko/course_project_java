@@ -20,6 +20,9 @@ public class ProblemServiceImpl implements ProblemService {
     @Override
     public Problem save(Problem problem) {
         problem.setCreationDate(LocalDateTime.now());
+        if (problem.getPhotos() != null) {
+            problem.setMainPhoto(problem.getPhotos().get(0).getUrl());
+        }
         return problemRepository.save(problem);
     }
 

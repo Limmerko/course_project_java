@@ -3,86 +3,71 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="../../css/main-menu.css">
-    <link rel="stylesheet" href="../../css/table-style.css">
-    <link rel="stylesheet" href="../../css/buttonReportProblem.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <script src="../../../../node_modules/jquery/dist/jquery.js" type="text/javascript"></script>
-    <script src="../../../../node_modules/jquery.ui/ui/widget.js" type="text/javascript"></script>
-    <script src="../../../../node_modules/blueimp-load-image/js/load-image.all.min.js"></script>
-    <script src="../../../../node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"></script>
-    <script src="../../../../node_modules/blueimp-file-upload/js/jquery.iframe-transport.js" type="text/javascript"></script>
-    <script src="../../../../node_modules/blueimp-file-upload/js/jquery.fileupload.js" type="text/javascript"></script>
-    <script src="../../../../node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
-    <script src="../../../../node_modules/blueimp-file-upload/js/jquery.fileupload-image.js" type="text/javascript"></script>
-    <script src="../../../../node_modules/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
-    <script src="../../../../node_modules/cloudinary-jquery-file-upload/cloudinary-jquery-file-upload.js" type="text/javascript"></script>
+    <script defer src="../../../js/all.js"></script>
 
-    <script type = "text/javascript">
-        $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
-            $('.preview').html(
-                $.cloudinary.imageTag(data.result.public_id,
-                    { format: data.result.format, version: data.result.version,
-                        crop: 'scale', width: 200 }));
-            $('.image_public_id').val(data.result.public_id);
-            return true;});
-
-
-        $.cloudinary.config({
-            "cloud_name": "konoha",
-            "api_key": "545317982164621",
-            "private_cdn": false,
-            "cdn_subdomain": false
-        });
-
-        //валидация
-
-        $(document).ready(function() {
-            $('.cloudinary-fileupload').cloudinary_fileupload({
-                disableImageResize: false,
-                imageMaxWidth: 800,                   // 800 is an example value - no default
-                imageMaxHeight: 600,                  // 600 is an example value - no default
-                maxFileSize: 20000000,                // 20 MB is an example value - no default
-                loadImageMaxFileSize: 20000000,       // default is 10 MB
-                acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|ico)$/i
-            });
-        });
-
-
-    </script>
-
+    <link rel="stylesheet" href="../../../css/main-menu.css">
+    <link rel="stylesheet" href="../../../css/table-style.css">
+    <link rel="stylesheet" href="../../../css/buttonReportProblem.css">
+    <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
+    <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
+    <link href="${bootstrap}" rel="stylesheet" />
+    <link href="${startertemplate}" rel="stylesheet" />
 
     <title>Проблемы</title>
 
 
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>
-        <li><a href="">Главная</a></li>
-        <li><a href="" class="current">Проблемы</a></li>
-        <li><a href="">Новости</a></li>
-        <li><form action="reportProblem.html">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/problems" class="current">Проблемы</a></li>
+        <li><a href="/news">Новости</a></li>
+        <li><form action="/problems/new ">
             <button class="glo" type="submit">Сообщить о проблеме</button>
         </form></li>
     </ul>
 
-
-
 </head>
 <body>
-<h1></h1>
-    <c:forEach var="item" items="${problems}">
-        ${item}
-    </c:forEach>
-
-<h1>Загрузить фотку</h1>
-
-<input name="file" type="file" class="cloudinary-fileupload" data-cloudinary-field="image_upload"
-       data-from-data="" />
-
-<button type="submit" class="submit btn">Загрузить</button>
-
-
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<h1>Problems</h1>
+<div class="container px-lg-5">
+    <div class="row mx-lg-n5">
+        <c:forEach var="problem" items="${problems}">
+            <div class="col">
+                <form:form method = "GET" action = "/news/${problem.id}">
+                    <button type="submit">
+                        <table class="table">
+                            <tbody>
+                                <tr scope="row">
+                                    <td>${problem.address}</td>
+                                    <td rowspan="2" width="150px" height="150px">
+                                        <img src="${problem.mainPhoto}" width="150px" height="auto">
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr scope="row">
+                                        <td><i class="far fa-calendar-alt"></i> 13 мая 2020</td>
+                                        <td align="right"><i class="far fa-thumbs-up"></i>15  <i class="far fa-comment"></i>2</td>
+                                    </tr>
+                                </tfoot>
+                        </table>
+                    </button>
+                </form:form>
+            </div>
+        </c:forEach>
+    </div>
+</div>
 
 </body>
 </html>

@@ -1,34 +1,37 @@
 package vlsu.pri117.mep.web.rest;
 
 import com.cloudinary.Cloudinary;
-import com.cloudinary.Transformation;
-import com.cloudinary.utils.ObjectUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import vlsu.pri117.mep.model.Comment;
 import vlsu.pri117.mep.model.News;
-import vlsu.pri117.mep.model.Photo;
+import vlsu.pri117.mep.model.User;
+import vlsu.pri117.mep.model.enums.Roles;
+import vlsu.pri117.mep.repository.UserRepository;
+import vlsu.pri117.mep.service.CommentService;
 import vlsu.pri117.mep.service.NewsService;
 import vlsu.pri117.mep.service.PhotoService;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 public class NewsController {
 
     private final NewsService newsService;
 
+    private final Cloudinary cloudinary;
+
     private final PhotoService photoService;
 
-    public NewsController(NewsService newsService, PhotoService photoService) {
+    private final UserRepository userRepository;
+
+
+    public NewsController(NewsService newsService, Cloudinary cloudinary, PhotoService photoService, UserRepository userRepository, CommentService commentService, UserRepository userRepository1) {
         this.newsService = newsService;
+        this.cloudinary = cloudinary;
         this.photoService = photoService;
+        this.userRepository = userRepository1;
     }
 
     @GetMapping("/news")
@@ -60,6 +63,7 @@ public class NewsController {
         News news = newsService.findOne(id);
         news.getPhotos().remove(0);
         modelMap.addAttribute("news", news);
+        modelMap.addAttribute("newComment", new Comment());
         return "news/getNews";
     }
 
@@ -67,5 +71,14 @@ public class NewsController {
     public String deleteNews(@PathVariable Long id) {
         newsService.delete(id);
         return "страница";
+    }
+
+    @GetMapping("addUser")
+    public void addUser() {
+        User user = new User();
+        user.setLogin("Vlad");
+        user.setPassword("122232");
+        user.setRole(Roles.ADMIN);
+        userRepository.save(user);
     }
 }

@@ -55,7 +55,7 @@
                 </tr>
                 <tr>
                     <td align="center">
-                        <form:input path="description" type="comment" placeholder="Описание проблемы" style="height: 100px"/>
+                        <form:input path="description" type="textarea" placeholder="Описание проблемы" style="height: 100px"/>
                     </td>
                 </tr>
                 <tr>

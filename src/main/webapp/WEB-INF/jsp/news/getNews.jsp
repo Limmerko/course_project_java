@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/main-menu.css">
     <link rel="stylesheet" href="../css/table-style.css">
     <link rel="stylesheet" href="../css/buttonReportProblem.css">
+    <link rel="stylesheet" href="../css/carousel-style.css">
 
     <script defer src="../../../js/all.js"></script>
 
@@ -43,9 +44,10 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-<h1>Информация о новости</h1>
+<div class="format-text" align="center" style="color: #606060;"><h3>Информация о новости</h3></div>
+
 <div class="container px-lg-5">
-    <div class="row mx-lg-n5">-
+    <div class="row mx-lg-n5">
             <div class="col">
                         <table class="table table-striped table-bordered" >
                             <tbody>
@@ -53,13 +55,13 @@
                                 <td scope="col">
                                     <!--<img src="${news.mainPhoto}" width="250px" height="250px"> -->
                                     <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
-                                        <div class="carousel-inner" style="width: 200px; height: 200px;">
-                                            <div class="carousel-item active" style="margin-left: auto; margin-right: auto;">
-                                                <img src="${news.mainPhoto}" class="d-block" alt="..." style="width: 200px; height: auto">
+                                        <div class="carousel-inner" style="width: 500px; height: 300px;">
+                                            <div class="carousel-item active">
+                                                <img src="${news.mainPhoto}" class="car-photo w-auto h-100" alt="..." style="width: 400px; height: auto; margin: auto; position: center;">
                                             </div>
                                             <с:forEach var="photo" items="${news.photos}">
-                                                <div class="carousel-item" style="margin-left: auto; margin-right: auto;">
-                                                    <img src="${photo.url}" class="d-block" alt="..." style="width: 200px; height: auto">
+                                                <div class="carousel-item">
+                                                    <img src="${photo.url}" class="car-photo w-auto h-100" alt="..." style="width: 400px; height: auto; margin: auto; position: center;">
                                                 </div>
                                             </с:forEach>
                                         </div>

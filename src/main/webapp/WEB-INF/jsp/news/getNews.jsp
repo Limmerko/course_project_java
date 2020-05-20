@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="../css/table-style.css">
     <link rel="stylesheet" href="../css/buttonReportProblem.css">
 
+    <script defer src="../../../js/all.js"></script>
+
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
     <link href="${bootstrap}" rel="stylesheet" />
@@ -73,7 +75,12 @@
                                     </div>
                                 </td>
                                 <td rowspan="3" border="1">
-                                    КОММЕНТАРИИ
+                                    <div style="max-height: 300px; overflow-y: auto">
+                                        <c:forEach var="comment" items="${news.comments}">
+                                            <span class="badge badge-pill badge-primary">${comment.author.login}</span>
+                                            <p>${comment.text}</p>
+                                        </c:forEach>
+                                    </div>
                                 </td>
                             </tr>
                             <tr scope="row">
@@ -85,12 +92,15 @@
                             <tr scope="row">
                                 <td>${news.creationDate}</td>
                                 <td>
-                                    <form:form method="post" action="comments/new" modelAttribute="comment" enctype="multipart/form-data">
-                                        <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
+                                    <form:form method="post" action="comments/new" modelAttribute="newComment" enctype="multipart/form-data">
                                         <form:input hidden="true" class="form-control" id="news" path="news" type="text" value="${news.id}"/>
-                                        <button type="submit" title="Оставить комментарий">
-                                            Отправить
-                                        </button>
+                                        <div class="input-group">
+                                        <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
+
+                                            <button class="btn btn-primary" type="submit" title="Оставить комментарий">
+                                                <i class="far fa-paper-plane"></i>
+                                            </button>
+                                        </div>
                                     </form:form>
                                 </td>
                             </tr>

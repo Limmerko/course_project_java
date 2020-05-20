@@ -14,8 +14,8 @@ import vlsu.pri117.mep.model.News;
 import vlsu.pri117.mep.model.Photo;
 import vlsu.pri117.mep.model.User;
 import vlsu.pri117.mep.model.enums.Roles;
-import vlsu.pri117.mep.repository.NewsRepository;
 import vlsu.pri117.mep.repository.UserRepository;
+import vlsu.pri117.mep.service.CommentService;
 import vlsu.pri117.mep.service.NewsService;
 import vlsu.pri117.mep.service.PhotoService;
 
@@ -35,11 +35,14 @@ public class NewsController {
 
     private final UserRepository userRepository;
 
-    public NewsController(NewsService newsService, Cloudinary cloudinary, PhotoService photoService, UserRepository userRepository) {
+    private final CommentService commentService;
+
+    public NewsController(NewsService newsService, Cloudinary cloudinary, PhotoService photoService, UserRepository userRepository, CommentService commentService) {
         this.newsService = newsService;
         this.cloudinary = cloudinary;
         this.photoService = photoService;
         this.userRepository = userRepository;
+        this.commentService = commentService;
     }
 
     @GetMapping("/news")
@@ -88,7 +91,7 @@ public class NewsController {
         News news = newsService.findOne(id);
         news.getPhotos().remove(0);
         modelMap.addAttribute("news", news);
-        modelMap.addAttribute("comment", new Comment());
+        modelMap.addAttribute("newComment", new Comment());
         return "news/getNews";
     }
 

@@ -106,7 +106,7 @@ public class Comment {
                 "id=" + id +
                 ", text='" + text + '\'' +
                 ", author=" + author +
-                ", news=" + news +
+                ", news=" + news.toString() +
                 ", problem=" + problem +
                 ", creationDate=" + creationDate +
                 '}';

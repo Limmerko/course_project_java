@@ -31,13 +31,11 @@ public class ProblemController {
 
     private final ProblemService problemService;
     private final PhotoService photoService;
-    private final Cloudinary cloudinary;
 
 
-    public ProblemController(ProblemService problemService, PhotoService photoService, Cloudinary cloudinary) {
+    public ProblemController(ProblemService problemService, PhotoService photoService) {
         this.problemService = problemService;
         this.photoService = photoService;
-        this.cloudinary = cloudinary;
     }
 
 

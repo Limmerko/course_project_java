@@ -17,7 +17,7 @@
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме</button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="fas fa-info"></i></button>
         </form></li>
     </ul>
 
@@ -55,12 +55,12 @@
                 </tr>
                 <tr>
                     <td align="center">
-                        <form:input path="description" type="textarea" placeholder="Описание проблемы" style="height: 100px"/>
+                        <form:input class="form-control" rows="3"  path="description" type="textarea" placeholder="Описание проблемы" style="height: 100px"/>
                     </td>
                 </tr>
                 <tr>
 
-                    <td align="center" style="height: 50px;">
+                    <td align="center" style=" height: 50px;">
                         <form:input path="files" type="file" multiple="multiple" accept="image/*,image/jpeg" />
                     </td>
                 </tr>

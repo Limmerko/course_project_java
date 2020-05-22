@@ -14,7 +14,7 @@
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме</button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="fas fa-info"></i></button>
         </form></li>
     </ul>
 

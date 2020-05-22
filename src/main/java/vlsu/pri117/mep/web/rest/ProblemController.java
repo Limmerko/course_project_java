@@ -86,7 +86,9 @@ public class ProblemController {
     @GetMapping("/problems/{id}")
     public String getProblem(@PathVariable Long id, ModelMap modelMap){
         Problem problem = problemService.findOne(id);
-        problem.getPhotos().remove(0);
+        if (problem.getPhotos().size() > 0) {
+            problem.getPhotos().remove(0);
+        }
         modelMap.addAttribute("problem", problem);
         modelMap.addAttribute("newComment", new Comment());
         return "problems/getProblem";

@@ -61,7 +61,9 @@ public class NewsController {
     @GetMapping("/news/{id}")
     public String getNews(@PathVariable Long id, ModelMap modelMap) {
         News news = newsService.findOne(id);
-        news.getPhotos().remove(0);
+        if (news.getPhotos().size() > 0) {
+            news.getPhotos().remove(0);
+        }
         modelMap.addAttribute("news", news);
         modelMap.addAttribute("newComment", new Comment());
         return "news/getNews";

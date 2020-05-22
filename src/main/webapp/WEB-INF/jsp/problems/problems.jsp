@@ -16,11 +16,15 @@
     <link rel="stylesheet" href="../../../css/main-menu.css">
     <link rel="stylesheet" href="../../../css/table-style.css">
     <link rel="stylesheet" href="../../../css/buttonReportProblem.css">
-    <link rel="stylesheet" href="../../../css/address-problem.css">
+
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
+
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/address-problem.js"></script>
+
+
 
     <title>Проблемы</title>
 

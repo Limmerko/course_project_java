@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="../css/main-menu.css">
     <link rel="stylesheet" href="../css/table-style.css">
     <link rel="stylesheet" href="../css/buttonReportProblem.css">
+    <link rel="stylesheet" href="../css/carousel-style.css">
+
+    <script defer src="../../../js/all.js"></script>
 
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
@@ -51,13 +54,13 @@
                 <tr scope="row">
                     <td scope="col">
                         <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
-                            <div class="carousel-inner" style="width: 200px; height: 200px;">
-                                <div class="carousel-item active" style="margin-left: auto; margin-right: auto;">
-                                    <img src="${problem.mainPhoto}" class="d-block" alt="..." style="width: 200px; height: auto">
+                            <div class="carousel-inner" style="width: 500px; height: 300px;">
+                                <div class="carousel-item active">
+                                    <img src="${problem.mainPhoto}" class="car-photo w-auto h-100" alt="..." style="width: 400px; height: auto; margin: auto; position: center;">
                                 </div>
                                 <с:forEach var="photo" items="${problem.photos}">
-                                    <div class="carousel-item" style="margin-left: auto; margin-right: auto;">
-                                        <img src="${photo.url}" class="d-block" alt="..." style="width: 200px; height: auto">
+                                    <div class="carousel-item">
+                                        <img src="${photo.url}" class="car-photo w-auto h-100" alt="..." style="width: 400px; height: auto; margin: auto; position: center;">
                                     </div>
                                 </с:forEach>
                             </div>
@@ -72,7 +75,12 @@
                         </div>
                     </td>
                     <td rowspan="3" border="1">
-                        КОММЕНТАРИИ
+                        <div style="max-height: 300px; overflow-y: auto">
+                            <c:forEach var="comment" items="${problem.comments}">
+                                <span class="badge badge-pill badge-primary">${comment.author.login}</span>
+                                <p>${comment.text}</p>
+                            </c:forEach>
+                        </div>
                     </td>
                 </tr>
                 <tr scope="row">
@@ -86,7 +94,17 @@
                 </tr>
                 <tr scope="row">
                     <td>${problem.creationDate}</td>
-                    <td><input type="text" placeholder="Оставить комментарий"/></td>
+                    <td>
+                        <form:form method="post" action="comments/new" modelAttribute="newComment" enctype="multipart/form-data">
+                            <form:input hidden="true" class="form-control" id="problem" path="problem" type="text" value="${problem.id}"/>
+                            <div class="input-group">
+                                <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
+                                <button class="btn btn-primary" type="submit" title="Оставить комментарий">
+                                    <i class="far fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form:form>
+                    </td>
                 </tr>
                 </tbody>
             </table>

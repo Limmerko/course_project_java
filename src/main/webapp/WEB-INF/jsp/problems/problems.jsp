@@ -54,14 +54,14 @@
                                     <td><div type="text" id="prob-coords" value="${problem.address}">${problem.address}</div>
                                         <div id="addressProbs" name="addressProbs"></div></td>
                                     <td rowspan="2" width="150px" height="150px">
-                                        <img src="${problem.mainPhoto}" width="150px" height="auto">
+                                        <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">
                                     </td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr scope="row">
                                         <td><i class="far fa-calendar-alt"></i> 13 мая 2020</td>
-                                        <td align="right"><i class="far fa-thumbs-up"></i>15  <i class="far fa-comment"></i>2</td>
+                                        <td align="right"><i class="far fa-arrow-alt-circle-up"></i></i>15  <i class="far fa-comment"></i>2</td>
                                     </tr>
                                 </tfoot>
                         </table>

@@ -5,6 +5,8 @@
 <head>
     <link rel="stylesheet" href="css/main-menu.css">
     <link rel="stylesheet" href="css/buttonReportProblem.css">
+
+
     <title>Главная</title>
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
@@ -35,8 +37,8 @@
     </form:select>
 </form:form>
 --%>
-<select name="categories" id="categories" class="categories">
-    <option value=""></option>
+<select name="categories" id="categories" class="categories" style="margin: 0px 45px 0px 45px;">
+    <option value="">Укажите категорию проблемы:</option>
     <c:forEach items="${categories}" var="category">
         <option value="${category}">
             <c:out value="${category.description}"></c:out>

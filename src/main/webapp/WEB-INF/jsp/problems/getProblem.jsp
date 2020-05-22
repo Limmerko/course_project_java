@@ -44,7 +44,7 @@
 <span class="format-text" align="center" style="color: #606060;"><h3>Информация о проблеме</h3></span>
 
 <div class="container px-lg-5">
-    <div class="row mx-lg-n5">-
+    <div class="row mx-lg-n5">
         <div class="col">
             <table class="table table-striped table-bordered" >
                 <tbody>

@@ -43,7 +43,7 @@
 
 <p class="h4">
 <form action="/news/new ">
-    <button class="btn btn-primary">
+    <button class="btn btn-primary" style="position: relative; margin-right: 60px">
         <i class="fas fa-plus"></i>
         <span>
           Создать новость
@@ -52,13 +52,13 @@
 </form>
 </p>
 <br>
-<div class="container px-lg-5">
+<div class="container px-xl-5">
     <div class="row mx-lg-n5">
         <c:forEach var="oneNews" items="${news}">
             <div class="col">
                 <form:form method = "GET" action = "/news/${oneNews.id}">
-                    <button type="submit">
-                        <table class="table">
+                    <button type="submit" height="300px">
+                        <table class="table" style="">
                             <tbody>
                                 <tr scope="row">
                                     <td>${oneNews.title}</td>

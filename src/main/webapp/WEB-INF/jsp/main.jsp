@@ -37,7 +37,7 @@
     </form:select>
 </form:form>
 --%>
-<select name="categories" id="categories" class="categories" style="margin: 0px 45px 0px 45px;">
+<select name="categories" id="categories" class="categories" style="margin: 0px 93px 0px 93px;">
     <option value="">Укажите категорию проблемы:</option>
     <c:forEach items="${categories}" var="category">
         <option value="${category}">
@@ -46,6 +46,8 @@
     </c:forEach>
 </select>
 
+
+<p>
 
 
 <div id="map" style="width: 90%; height: 800px;  margin: 0 auto"></div>

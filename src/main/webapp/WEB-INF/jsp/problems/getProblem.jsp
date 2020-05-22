@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="с" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -33,7 +34,7 @@
         <li><a href="/problems" class="current">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме</button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="fas fa-info"></i></button>
         </form></li>
     </ul>
 
@@ -93,13 +94,16 @@
                     <td>${problem.category.description}</td>
                 </tr>
                 <tr scope="row">
-                    <td>${problem.creationDate}</td>
+                    <td>
+                        <fmt:parseDate value="${ problem.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                        <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" />
+                    </td>
                     <td>
                         <form:form method="post" action="comments/new" modelAttribute="newComment" enctype="multipart/form-data">
                             <form:input hidden="true" class="form-control" id="problem" path="problem" type="text" value="${problem.id}"/>
                             <div class="input-group">
                                 <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
-                                <button class="btn btn-primary" type="submit" title="Оставить комментарий">
+                                <button class="btn btn-outline-primary" type="submit" title="Оставить комментарий">
                                     <i class="far fa-paper-plane"></i>
                                 </button>
                             </div>

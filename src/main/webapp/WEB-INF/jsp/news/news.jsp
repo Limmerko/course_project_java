@@ -1,7 +1,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -30,7 +31,7 @@
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news" class="current">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме</button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="fas fa-info"></i></button>
         </form></li>
     </ul>
 
@@ -43,7 +44,7 @@
 
 <p class="h4">
 <form action="/news/new ">
-    <button class="btn btn-primary">
+    <button class="btn btn-outline-primary">
         <i class="fas fa-plus"></i>
         <span>
           Создать новость
@@ -69,8 +70,11 @@
                             </tbody>
                             <tfoot>
                                 <tr scope="row">
-                                    <td><i class="far fa-calendar-alt"></i> 13 мая 2020</td>
-                                    <td align="right"><i class="far fa-arrow-alt-circle-up"></i>15  <i class="far fa-comment"></i>2</td>
+                                    <td><i class="far fa-calendar-alt"></i>
+                                        <fmt:parseDate value="${ oneNews.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                                        <fmt:formatDate dateStyle="MEDIUM" value="${ parsedDateTime }" />
+                                    </td>
+                                    <td align="right"><i class="far fa-arrow-alt-circle-up"></i>15   <i class="far fa-comment"></i> ${fn:length(oneNews.comments)}</td>
                                 </tr>
                             </tfoot>
                         </table>

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="с" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -33,7 +34,7 @@
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news" class="current">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме</button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="fas fa-info"></i></button>
         </form></li>
     </ul>
 
@@ -90,13 +91,17 @@
                                 <td>${news.description}</td>
                             </tr>
                             <tr scope="row">
-                                <td>${news.creationDate}</td>
+                                <%--<fmt:formatDate value="${news.creationDate}" pattern="MM/dd/yyyy"/>--%>
+                                <td>
+                                    <fmt:parseDate value="${ news.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                                    <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" />
+                                </td>
                                 <td>
                                     <form:form method="post" action="comments/new" modelAttribute="newComment" enctype="multipart/form-data">
                                         <form:input hidden="true" class="form-control" id="news" path="news" type="text" value="${news.id}"/>
                                         <div class="input-group">
                                         <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
-                                            <button class="btn btn-primary" type="submit" title="Оставить комментарий">
+                                            <button class="btn btn-outline-primary" type="submit" title="Оставить комментарий">
                                                 <i class="far fa-paper-plane"></i>
                                             </button>
                                         </div>

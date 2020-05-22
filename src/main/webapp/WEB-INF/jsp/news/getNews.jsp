@@ -97,7 +97,6 @@
                                         <form:input hidden="true" class="form-control" id="news" path="news" type="text" value="${news.id}"/>
                                         <div class="input-group">
                                         <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
-
                                             <button class="btn btn-primary" type="submit" title="Оставить комментарий">
                                                 <i class="far fa-paper-plane"></i>
                                             </button>

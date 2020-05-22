@@ -8,6 +8,10 @@ import vlsu.pri117.mep.service.NewsService;
 import vlsu.pri117.mep.service.ProblemService;
 import vlsu.pri117.mep.service.impl.NewsServiceImpl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 @Controller
 public class RouteController {
@@ -22,42 +26,13 @@ public class RouteController {
 
     @GetMapping("/")
     public String index(ModelMap modelMap) {
-        modelMap.addAttribute("categories",
-                CategoriesProblem.values());
+
+        List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
+                (Arrays.asList(CategoriesProblem.values()));
+        modelMap.addAttribute("categories", categoriesProblems);
         modelMap.addAttribute("problems", problemService.findAll());
         return "main";
     }
 
-    @GetMapping("/boot")
-    public String boot() {
-        // тута сервис
-        return "boot";
-    }
-
-    // перенесен в NewsController
-    /*@GetMapping("/news")
-    public String news() {
-        // тута сервис
-        return "news";
-    }*/
-
-    @GetMapping("/problem-info")
-    public String problemInfo() {
-        // тута сервис
-        return "problemInfo";
-    }
-
-    /*@GetMapping("/problems")
-    public String problems() {
-        // тута сервис
-        return "problems";
-    }*/
-
-    // перенесен в ProblemsController
-    @GetMapping("/report-problem")
-    public String reportProblem() {
-        // тута сервис
-        return "reportProblem";
-    }
 
 }

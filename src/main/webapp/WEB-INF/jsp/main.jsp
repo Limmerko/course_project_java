@@ -25,20 +25,28 @@
 </head>
 <body>
 
-<form:form method ="GET">
-    <form:select path="category" class="categories">
+<%--
+<form:form method ="GET" modelAttribute="categories">
+    <form:select path="categories" class="">
         <option selected disabled>Укажите категорию проблемы:</option>
         <c:forEach var="categ" items="${categories}">
-            <form:option value="${categ}">${categ.getDescription()}</form:option>
+            <form:option value="${categ}">${categ.description()}</form:option>
         </c:forEach>
     </form:select>
-    <button class="glo" type="submit" onlclick="ZdesDoljenBitRedirect()">Отправить</button>
 </form:form>
+--%>
+<select name="categories" id="categories" class="categories">
+    <option value=""></option>
+    <c:forEach items="${categories}" var="category">
+        <option value="${category}">
+            <c:out value="${category.description}"></c:out>
+        </option>
+    </c:forEach>
+</select>
 
 
-<div id="map" style="width: 95%; height: 950px;  margin: 0 auto"></div>
 
-
+<div id="map" style="width: 90%; height: 800px;  margin: 0 auto"></div>
 
 </body>
 </html>

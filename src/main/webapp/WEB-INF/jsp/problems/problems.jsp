@@ -51,7 +51,7 @@
                                 <tr scope="row">
                                     <td>${problem.address}</td>
                                     <td rowspan="2" width="150px" height="150px">
-                                        <img src="${problem.mainPhoto}" width="150px" height="auto">
+                                        <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">
                                     </td>
                                 </tr>
                                 </tbody>

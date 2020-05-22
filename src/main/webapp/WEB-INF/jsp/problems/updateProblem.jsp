@@ -22,7 +22,54 @@
 
 </head>
 <body>
-<h1>Update problem</h1>
-
-</body>
+<form:form method="post" modelAttribute="problemNew" enctype="multipart/form-data">
+<div>
+    <table class="reportProblems" align="center">
+        <tr>
+            <td align="center" style="font-size: 24px">
+                <b>Сообщить о проблеме</b>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
+                <input type="text" id="myInput" value="${problem.address} />
+                <form:hidden path="address" name="myInputBD" id="myInputBD" value="${problem.address}"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <form:select path="category" class="categories">
+                    <form:option value="${problem.category}">${problem.category.getDescription()}</form:option>>
+                    <c:forEach var="categ" items="${categories}">
+                        <form:option value="${categ}">${categ.getDescription()}</form:option>
+                    </c:forEach>
+                </form:select>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <form:input class="form-control" rows="3"  path="description" value="${problem.description}" type="textarea" placeholder="Описание проблемы" style="height: 100px"/>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <form:select path="status" class="categories">
+                    <form:option value="${problem.status}">${problem.status.getDescription()}</form:option>
+                    <c:forEach var="status" items="${statuses}">
+                        <form:option value="${status}">${status.getDescription()}</form:option>
+                    </c:forEach>
+                </form:select>
+            </td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td>
+                <button class="glo" type="submit" onlclick="ZdesDoljenBitRedirect()">Отправить</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</form:form>
 </html>

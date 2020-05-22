@@ -73,12 +73,12 @@ public class Problem {
         this.address = address;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDateTime getResolveDate() {
         return resolveDate;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.resolveDate = date;
+    public void setResolveDate(LocalDateTime resolveDate) {
+        this.resolveDate = resolveDate;
     }
 
     public String getDescription() {

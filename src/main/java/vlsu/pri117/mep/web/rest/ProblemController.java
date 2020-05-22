@@ -40,7 +40,6 @@ public class ProblemController {
         this.photoService = photoService;
     }
 
-
     @PostMapping("/problems/new")
     public RedirectView createProblem(@ModelAttribute("problem") Problem problem){
         problem = problemService.save(problem);

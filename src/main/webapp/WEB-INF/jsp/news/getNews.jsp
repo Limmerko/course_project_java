@@ -57,11 +57,11 @@
                                     <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
                                         <div class="carousel-inner" style="width: 500px; height: 300px;">
                                             <div class="carousel-item active">
-                                                <img src="${news.mainPhoto}" class="car-photo w-auto h-100" alt="..." style="width: 400px; height: auto; margin: auto; position: center;">
+                                                <img src="${news.mainPhoto}" class="center-block w-auto h-100" alt="..." style="width: 100%; height: auto; margin: 0 auto">
                                             </div>
                                             <с:forEach var="photo" items="${news.photos}">
                                                 <div class="carousel-item">
-                                                    <img src="${photo.url}" class="car-photo w-auto h-100" alt="..." style="width: 400px; height: auto; margin: auto; position: center;">
+                                                    <img src="${photo.url}" class="center-block w-auto h-100" alt="..." style="width: 100%; height: auto; margin: 0 auto">
                                                 </div>
                                             </с:forEach>
                                         </div>

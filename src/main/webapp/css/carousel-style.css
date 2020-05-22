@@ -3,4 +3,7 @@
     filter: invert(100%);
 }
 
-
+.carousel-inner > .item > img{
+    margin:auto;
+    width:100%
+}

@@ -79,10 +79,10 @@
                     <td>${problem.description}</td>
                 </tr>
                 <tr scope="row">
-                    <td>${problem.status.getDescription()}</td>
+                    <td>${problem.status.description}</td>
                 </tr>
                 <tr scope="row">
-                    <td>${problem.category.getDescription()}</td>
+                    <td>${problem.category.description}</td>
                 </tr>
                 <tr scope="row">
                     <td>${problem.creationDate}</td>

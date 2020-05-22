@@ -13,4 +13,6 @@ public enum CategoriesProblem {
     public String getDescription() {
         return description;
     }
+
+
 }

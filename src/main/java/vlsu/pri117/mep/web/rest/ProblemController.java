@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import vlsu.pri117.mep.model.Comment;
 import vlsu.pri117.mep.model.Photo;
 import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
@@ -88,6 +89,7 @@ public class ProblemController {
         Problem problem = problemService.findOne(id);
         problem.getPhotos().remove(0);
         modelMap.addAttribute("problem", problem);
+        modelMap.addAttribute("newComment", new Comment());
         return "problems/getProblem";
     }
 

@@ -53,7 +53,6 @@
                             <tbody>
                             <tr scope="row">
                                 <td scope="col">
-                                    <!--<img src="${news.mainPhoto}" width="250px" height="250px"> -->
                                     <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
                                         <div class="carousel-inner" style="width: 500px; height: 300px;">
                                             <div class="carousel-item active">

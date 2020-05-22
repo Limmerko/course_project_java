@@ -58,7 +58,7 @@
                                 <tfoot>
                                     <tr scope="row">
                                         <td><i class="far fa-calendar-alt"></i> 13 мая 2020</td>
-                                        <td align="right"><i class="far fa-thumbs-up"></i>15  <i class="far fa-comment"></i>2</td>
+                                        <td align="right"><i class="fas fa-level-up-alt"></i></i>15  <i class="far fa-comment"></i>2</td>
                                     </tr>
                                 </tfoot>
                         </table>

@@ -40,8 +40,18 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<h1>News</h1>
 
+<p class="h4">
+<form action="/news/new ">
+    <button class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        <span>
+          Создать новость
+        </span>
+    </button>
+</form>
+</p>
+<br>
 <div class="container px-lg-5">
     <div class="row mx-lg-n5">
         <c:forEach var="oneNews" items="${news}">
@@ -53,21 +63,20 @@
                                 <tr scope="row">
                                     <td>${oneNews.title}</td>
                                     <td rowspan="2" width="150px" height="150px">
-                                        <img src="${oneNews.mainPhoto}" width="150px" height="auto">
+                                        <img src="${oneNews.mainPhoto}" class="rounded" width="150px" height="auto">
                                     </td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr scope="row">
                                     <td><i class="far fa-calendar-alt"></i> 13 мая 2020</td>
-                                    <td align="right"><i class="far fa-thumbs-up"></i>15  <i class="far fa-comment"></i>2</td>
+                                    <td align="right"><i class="fas fa-level-up-alt"></i>15  <i class="far fa-comment"></i>2</td>
                                 </tr>
                             </tfoot>
                         </table>
                     </button>
                 </form:form>
             </div>
-            <br/>
         </c:forEach>
     </div>
 </div>

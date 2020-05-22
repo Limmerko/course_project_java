@@ -25,4 +25,10 @@ public class CommentController {
         commentService.save(comment);
         return new RedirectView( "/news/" + comment.getNews().getId());
     }
+
+    @PostMapping("/problems/comments/new")
+    public RedirectView createCommentProblems(@ModelAttribute("comment") Comment comment) {
+        commentService.save(comment);
+        return new RedirectView( "/problems/" + comment.getProblem().getId());
+    }
 }

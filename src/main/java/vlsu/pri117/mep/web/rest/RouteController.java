@@ -1,9 +1,11 @@
 package vlsu.pri117.mep.web.rest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import vlsu.pri117.mep.model.News;
+import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.service.NewsService;
+import vlsu.pri117.mep.service.ProblemService;
 import vlsu.pri117.mep.service.impl.NewsServiceImpl;
 
 
@@ -11,14 +13,18 @@ import vlsu.pri117.mep.service.impl.NewsServiceImpl;
 public class RouteController {
 
     private final NewsService newsService;
+    private final ProblemService problemService;
 
-    public RouteController(NewsService newsService, NewsServiceImpl newsServiceimpl) {
+    public RouteController(NewsService newsService, NewsServiceImpl newsServiceimpl, ProblemService problemService) {
         this.newsService = newsService;
+        this.problemService = problemService;
     }
 
     @GetMapping("/")
-    public String index() {
-        // тута сервис
+    public String index(ModelMap modelMap) {
+        modelMap.addAttribute("categories",
+                CategoriesProblem.values());
+        modelMap.addAttribute("problems", problemService.findAll());
         return "main";
     }
 

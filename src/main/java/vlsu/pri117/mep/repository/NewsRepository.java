@@ -6,4 +6,5 @@ import vlsu.pri117.mep.model.News;
 
 @Repository
 public interface NewsRepository extends CrudRepository<News, Long> {
+
 }

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../../../css/main-menu.css">
     <link rel="stylesheet" href="../../../css/table-style.css">
     <link rel="stylesheet" href="../../../css/buttonReportProblem.css">
+    <link rel="stylesheet" href="../../../css/address-problem.css">
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
     <link href="${bootstrap}" rel="stylesheet" />
@@ -50,7 +51,8 @@
                         <table class="table">
                             <tbody>
                                 <tr scope="row">
-                                    <td>${problem.address}</td>
+                                    <td><div type="text" id="prob-coords" value="${problem.address}">${problem.address}</div>
+                                        <div id="addressProbs" name="addressProbs"></div></td>
                                     <td rowspan="2" width="150px" height="150px">
                                         <img src="${problem.mainPhoto}" width="150px" height="auto">
                                     </td>

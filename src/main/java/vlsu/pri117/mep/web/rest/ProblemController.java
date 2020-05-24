@@ -110,8 +110,9 @@ public class ProblemController {
         return "problems/updateProblem";
     }
 
+
     @PostMapping("/problems/edit/{id}")
-    public String updateProblem(@ModelAttribute("problemNew") Problem problemNew, ModelMap modelMap){
+    public String updateProblem(@ModelAttribute("problem") Problem problemNew, ModelMap modelMap){
         Problem problemOld = (Problem) modelMap.getAttribute("problem");
         problemOld.setAddress(problemNew.getAddress());
         problemOld.setStatus(problemNew.getStatus());

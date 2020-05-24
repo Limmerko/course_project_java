@@ -6,4 +6,6 @@ import vlsu.pri117.mep.model.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
+
+    User findByLogin(String login);
 }

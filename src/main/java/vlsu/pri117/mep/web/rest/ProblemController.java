@@ -14,6 +14,7 @@ import vlsu.pri117.mep.model.Comment;
 import vlsu.pri117.mep.model.Photo;
 import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
+import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
 
@@ -103,12 +104,21 @@ public class ProblemController {
     @GetMapping("/problems/edit/{id}")
     public String getProblemForUpdate(@PathVariable Long id, ModelMap modelMap){
         modelMap.addAttribute("problem", problemService.findOne(id));
+        modelMap.addAttribute("problemNew", new Problem());
+        modelMap.addAttribute("categories", CategoriesProblem.values());
+        modelMap.addAttribute("statuses", StatusProblem.values());
         return "problems/updateProblem";
     }
 
     @PostMapping("/problems/edit/{id}")
-    public String getProblemForUpdate(@ModelAttribute("problem") Problem problem){
-        problemService.save(problem);
-        return "problems/updateProblem";
+    public String updateProblem(@ModelAttribute("problemNew") Problem problemNew, ModelMap modelMap){
+        Problem problemOld = (Problem) modelMap.getAttribute("problem");
+        problemOld.setAddress(problemNew.getAddress());
+        problemOld.setStatus(problemNew.getStatus());
+        problemOld.setCategory(problemNew.getCategory());
+        problemOld.setDescription(problemNew.getDescription());
+        problemService.save(problemOld);
+
+        return "problems/problems";
     }
 }

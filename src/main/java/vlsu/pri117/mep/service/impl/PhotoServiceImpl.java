@@ -39,6 +39,8 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     public void addPhotosToProblem(Problem problem){
+        if (problem.getFiles().length == 0)
+            return;
         List<Photo> photos = new ArrayList<Photo>();
         try {
             for (MultipartFile file : problem.getFiles()) {
@@ -58,6 +60,8 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     public void addPhotosToNews(News news){
+        if (news.getFiles().length == 0)
+            return;
         List<Photo> photos = new ArrayList<Photo>();
         try {
             for (MultipartFile file : news.getFiles()) {

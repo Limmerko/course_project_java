@@ -22,7 +22,7 @@
 
 </head>
 <body>
-<form:form method="post" modelAttribute="problemNew" enctype="multipart/form-data">
+<form:form method="post" modelAttribute="problem" enctype="multipart/form-data">
 <div>
     <table class="reportProblems" align="center">
         <tr>
@@ -33,7 +33,7 @@
         <tr>
             <td align="center">
                 <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
-                <input type="text" id="myInput" value="${problem.address} />
+                <input type="text" id="myInput" value="${problem.address}"/>
                 <form:hidden path="address" name="myInputBD" id="myInputBD" value="${problem.address}"/>
             </td>
         </tr>

@@ -104,21 +104,19 @@ public class ProblemController {
     @GetMapping("/problems/edit/{id}")
     public String getProblemForUpdate(@PathVariable Long id, ModelMap modelMap){
         modelMap.addAttribute("problem", problemService.findOne(id));
-        modelMap.addAttribute("problemNew", new Problem());
         modelMap.addAttribute("categories", CategoriesProblem.values());
         modelMap.addAttribute("statuses", StatusProblem.values());
         return "problems/updateProblem";
     }
 
     @PostMapping("/problems/edit/{id}")
-    public String updateProblem(@ModelAttribute("problemNew") Problem problemNew, ModelMap modelMap){
-        Problem problemOld = (Problem) modelMap.getAttribute("problem");
-        problemOld.setAddress(problemNew.getAddress());
-        problemOld.setStatus(problemNew.getStatus());
-        problemOld.setCategory(problemNew.getCategory());
-        problemOld.setDescription(problemNew.getDescription());
-        problemService.save(problemOld);
-
-        return "problems/problems";
+    public RedirectView updateProblem(@ModelAttribute("problem") Problem newProblem){
+        Problem oldProblem = problemService.findOne(newProblem.getId());
+        oldProblem.setAddress(newProblem.getAddress());
+        oldProblem.setStatus(newProblem.getStatus());
+        oldProblem.setCategory(newProblem.getCategory());
+        oldProblem.setDescription(newProblem.getDescription());
+        problemService.save(oldProblem);
+        return new RedirectView( "/problems");
     }
 }

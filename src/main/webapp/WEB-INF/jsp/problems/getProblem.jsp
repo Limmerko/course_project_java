@@ -54,7 +54,7 @@
                 <tbody>
                 <tr scope="row">
                     <td scope="col">
-                        <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
+                        <div id="carouselPhotos" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner" style="width: 500px; height: 300px;">
                                 <div class="carousel-item active">
                                     <img src="${problem.mainPhoto}" class="car-photo w-auto h-100" alt="..." style="width: 400px; height: auto; margin: auto; position: center;">

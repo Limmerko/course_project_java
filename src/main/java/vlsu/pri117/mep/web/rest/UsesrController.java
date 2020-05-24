@@ -1,7 +1,6 @@
 package vlsu.pri117.mep.web.rest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +12,11 @@ import vlsu.pri117.mep.service.UserService;
 import javax.validation.Valid;
 
 @Controller
-public class RegistrationController {
+public class UsesrController {
 
     private final UserService userService;
 
-    public RegistrationController(UserService userService) {
+    public UsesrController(UserService userService) {
         this.userService = userService;
     }
 
@@ -43,4 +42,10 @@ public class RegistrationController {
         }
         return "redirect:/";
     }
+
+    /*@GetMapping("/login")
+    public String login(ModelMap modelMap) {
+        modelMap.addAttribute("userForm", new User());
+        return "users/login";
+    }*/
 }

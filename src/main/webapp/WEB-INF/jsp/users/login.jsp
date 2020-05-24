@@ -16,7 +16,7 @@
     <form method="post" action="/login">
         <h2>Вход в систему</h2>
         <div>
-            <input name="login" type="text" placeholder="Login"
+            <input name="username" type="text" placeholder="Login"
                    autofocus="true"/>
             <input name="password" type="password" placeholder="Password"/>
             <button type="submit">Log In</button>

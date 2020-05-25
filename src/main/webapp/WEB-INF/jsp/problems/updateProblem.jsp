@@ -33,7 +33,7 @@
         <tr>
             <td align="center">
                 <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
-                <input type="text" id="myInput" value="${problem.address} />
+                <input type="text" id="myInput" value="${problem.address}"/>
                 <form:hidden path="address" name="myInputBD" id="myInputBD" value="${problem.address}"/>
             </td>
         </tr>

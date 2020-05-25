@@ -14,5 +14,4 @@ public enum CategoriesProblem {
         return description;
     }
 
-
 }

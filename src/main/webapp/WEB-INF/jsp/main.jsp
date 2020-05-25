@@ -41,15 +41,19 @@
     <h4><a href="/news">Новости (только пользователь)</a></h4>
     <h4><a href="/admin">Пользователи (только админ)</a></h4>
 </div>
+<form>
+    <select id="category" class="categories" style="margin: 0px 93px 0px 93px;">
+        <option value="">Укажите категорию проблемы:</option>
+        <c:forEach items="${categories}" var="category">
+            <option value="${category}">
+                <c:out value="${category.description}"></c:out>
+            </option>
+        </c:forEach>
+    </select>
+    <button class="glo" type="submit">Фильтр</button>
+</form>
 
-<select name="categories" id="categories" class="categories" style="margin: 0px 93px 0px 93px;">
-    <option value="">Укажите категорию проблемы:</option>
-    <c:forEach items="${categories}" var="category">
-        <option value="${category}">
-            <c:out value="${category.description}"></c:out>
-        </option>
-    </c:forEach>
-</select>
+
 
 
 <p>

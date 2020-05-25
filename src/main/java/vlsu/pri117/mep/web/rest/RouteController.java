@@ -27,17 +27,9 @@ public class RouteController {
         this.problemService = problemService;
     }
 
-    @GetMapping("/")
-    public String index(ModelMap modelMap) {
-        List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
-                (Arrays.asList(CategoriesProblem.values()));
-        modelMap.addAttribute("categories", categoriesProblems);
-        modelMap.addAttribute("problems", problemService.findAll());
-        return "main";
-    }
 
-    @PostMapping("/")
-    public String index(@ModelAttribute("category") CategoriesProblem category, ModelMap modelMap) {
+    @GetMapping("/")
+    public String indexFilter(@RequestParam(defaultValue = "") CategoriesProblem category, ModelMap modelMap) {
         List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
                 (Arrays.asList(CategoriesProblem.values()));
         modelMap.addAttribute("categories", categoriesProblems);

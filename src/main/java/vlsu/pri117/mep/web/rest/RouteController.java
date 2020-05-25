@@ -3,6 +3,9 @@ package vlsu.pri117.mep.web.rest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.service.NewsService;
 import vlsu.pri117.mep.service.ProblemService;
@@ -26,7 +29,6 @@ public class RouteController {
 
     @GetMapping("/")
     public String index(ModelMap modelMap) {
-
         List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
                 (Arrays.asList(CategoriesProblem.values()));
         modelMap.addAttribute("categories", categoriesProblems);
@@ -34,5 +36,13 @@ public class RouteController {
         return "main";
     }
 
+    @PostMapping("/")
+    public String index(@ModelAttribute("category") CategoriesProblem category, ModelMap modelMap) {
+        List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
+                (Arrays.asList(CategoriesProblem.values()));
+        modelMap.addAttribute("categories", categoriesProblems);
+        modelMap.addAttribute("problems", problemService.findByCategory(category));
+        return "main";
+    }
 
 }

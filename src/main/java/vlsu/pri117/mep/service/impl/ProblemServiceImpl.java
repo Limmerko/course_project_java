@@ -2,6 +2,7 @@ package vlsu.pri117.mep.service.impl;
 
 import org.springframework.stereotype.Service;
 import vlsu.pri117.mep.model.Problem;
+import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.repository.ProblemRepository;
 import vlsu.pri117.mep.service.ProblemService;
@@ -43,5 +44,10 @@ public class ProblemServiceImpl implements ProblemService {
     @Override
     public void delete(Long id) {
         problemRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Problem> findByCategory(CategoriesProblem category) {
+        return problemRepository.findByCategory(category);
     }
 }

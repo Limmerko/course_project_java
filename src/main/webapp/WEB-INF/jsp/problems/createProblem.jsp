@@ -6,9 +6,9 @@
     <title>Сообщить о проблеме</title>
 
     <!-- Загрузка стилей -->
-    <link rel="stylesheet" href="../../css/main-menu.css">
-    <link rel="stylesheet" href="../../css/table-style.css">
-    <link rel="stylesheet" href="../../css/buttonReportProblem.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main-menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
 
     <!-- Шапка сайта -->
     <ul class="menu-main">
@@ -23,7 +23,7 @@
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/placemark.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/placemark.js"></script>
 
 </head>
 <body>

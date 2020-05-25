@@ -14,20 +14,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <script defer src="../../../js/all.js"></script>
+    <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
 
-    <link rel="stylesheet" href="../../../css/main-menu.css">
-    <link rel="stylesheet" href="../../../css/table-style.css">
-    <link rel="stylesheet" href="../../../css/buttonReportProblem.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main-menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
 
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/address-problem.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/address-problem.js"></script>
 
 
 

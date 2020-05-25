@@ -1,19 +1,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
-    <link rel="stylesheet" href="css/main-menu.css">
-    <link rel="stylesheet" href="css/buttonReportProblem.css">
-
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main-menu.css" >
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
 
     <title>Главная</title>
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ya-map.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ya-map.js"></script>
 
 
     <ul class="menu-main">

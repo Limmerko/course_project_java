@@ -64,7 +64,7 @@
             <div class="col" >
                 <form:form method = "GET" action = "/news/${oneNews.id}">
                     <button type="submit" height="300px">
-                        <table class="table" style="">
+                        <table class="table" style="height: 250px">
                             <tbody>
                                 <tr scope="row">
                                     <td>${oneNews.title}</td>

@@ -104,11 +104,11 @@ public class ProblemController {
     @GetMapping("/problems/edit/{id}")
     public String getProblemForUpdate(@PathVariable Long id, ModelMap modelMap){
         modelMap.addAttribute("problem", problemService.findOne(id));
-        modelMap.addAttribute("problemNew", new Problem());
         modelMap.addAttribute("categories", CategoriesProblem.values());
         modelMap.addAttribute("statuses", StatusProblem.values());
         return "problems/updateProblem";
     }
+
 
     @PostMapping("/problems/edit/{id}")
     public String updateProblem(@ModelAttribute("problemNew") Problem problemNew, ModelMap modelMap){

@@ -9,6 +9,7 @@ public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name = "comment_id")
     private Long id;
 
     private String text;

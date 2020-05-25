@@ -41,7 +41,7 @@
     </sec:authorize>
 </div>
 <form>
-    <select id="category" class="categories" style="margin: 0px 93px 0px 93px;">
+    <select id="category" name="category" class="categories" style="margin: 0px 93px 0px 93px;">
         <option value="">Укажите категорию проблемы:</option>
         <c:forEach items="${categories}" var="category">
             <option value="${category}">

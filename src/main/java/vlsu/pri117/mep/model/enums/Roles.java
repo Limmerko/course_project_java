@@ -1,10 +1,10 @@
 package vlsu.pri117.mep.model.enums;
 
 public enum Roles {
-    USER("Пользователь"),
-    ADMIN("Администратор"),
-    MODERATOR("Модератор"),
-    NEWS_MODERATOR("Новостной модератор");
+    ROLE_ADMIN("Администратор"),
+    ROLE_USER("Пользователь"),
+    ROLE_MODERATOR("Модератор"),
+    ROLE_NEWS_MODERATOR("Новостной модератор");
 
     private String description;
 

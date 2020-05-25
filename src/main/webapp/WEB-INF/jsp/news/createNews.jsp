@@ -4,9 +4,11 @@
 <html>
 <head>
 
-    <link rel="stylesheet" href="../css/main-menu.css">
-    <link rel="stylesheet" href="../css/table-style.css">
-    <link rel="stylesheet" href="../css/buttonReportProblem.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main-menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
+
+    <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
 
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>
@@ -14,7 +16,7 @@
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме <i class="fas fa-info"></i></button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
         </form></li>
     </ul>
 

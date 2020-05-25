@@ -14,12 +14,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../css/main-menu.css">
-    <link rel="stylesheet" href="../css/table-style.css">
-    <link rel="stylesheet" href="../css/buttonReportProblem.css">
-    <link rel="stylesheet" href="../css/carousel-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main-menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/carousel-style.css">
 
-    <script defer src="../../../js/all.js"></script>
+    <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
 
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
@@ -34,7 +34,7 @@
         <li><a href="/problems" class="current">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме <i class="fas fa-info"></i></button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
         </form></li>
     </ul>
 
@@ -54,7 +54,7 @@
                 <tbody>
                 <tr scope="row">
                     <td scope="col">
-                        <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
+                        <div id="carouselPhotos" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner" style="width: 500px; height: 300px;">
                                 <div class="carousel-item active">
                                     <img src="${problem.mainPhoto}" class="car-photo w-auto h-100" alt="..." style="width: 400px; height: auto; margin: auto; position: center;">

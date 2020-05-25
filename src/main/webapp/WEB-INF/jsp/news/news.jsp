@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <script defer src="../../../js/all.js"></script>
+    <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
 
-    <link rel="stylesheet" href="../../../css/main-menu.css">
-    <link rel="stylesheet" href="../../../css/table-style.css">
-    <link rel="stylesheet" href="../../../css/buttonReportProblem.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main-menu.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
     <link href="${bootstrap}" rel="stylesheet" />
@@ -31,7 +31,7 @@
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news" class="current">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме <i class="fas fa-info"></i></button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
         </form></li>
     </ul>
 
@@ -42,9 +42,11 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+
+<div class="col text-center">
 <p class="h4">
 <form action="/news/new ">
-    <button class="btn btn-outline-primary" style="position: relative; margin-right: 60px">
+    <button class="btn btn-outline-primary">
         <i class="fas fa-plus"></i>
         <span>
           Создать новость
@@ -52,14 +54,17 @@
     </button>
 </form>
 </p>
+</div>
+
+
 <br>
-<div class="container px-xl-5">
-    <div class="row mx-lg-n5">
+<div class="container px-xl-6">
+    <div class="row mx-lg-6" style="margin-bottom: 10px">
         <c:forEach var="oneNews" items="${news}">
-            <div class="col">
+            <div class="col" >
                 <form:form method = "GET" action = "/news/${oneNews.id}">
                     <button type="submit" height="300px">
-                        <table class="table" style="">
+                        <table class="table" style="height: 250px">
                             <tbody>
                                 <tr scope="row">
                                     <td>${oneNews.title}</td>

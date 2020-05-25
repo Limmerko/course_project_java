@@ -38,7 +38,9 @@ public class UserServiceImpl implements UserService {
             System.out.println("Такой пользователь уже существует");
             return null;
         }
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        if (user.getRoles() == null) {
+            user.setRoles(Collections.singleton(new Role(2L, "ROLE_USER")));
+        }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }

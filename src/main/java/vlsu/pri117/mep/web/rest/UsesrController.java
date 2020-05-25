@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import vlsu.pri117.mep.model.User;
+import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.service.UserService;
 
 import javax.validation.Valid;

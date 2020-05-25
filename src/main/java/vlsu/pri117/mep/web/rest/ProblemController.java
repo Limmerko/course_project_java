@@ -79,8 +79,7 @@ public class ProblemController {
 
     @GetMapping("/problems/new")
     public ModelAndView createProblem(ModelMap modelMap){
-        modelMap.addAttribute("categories",
-                CategoriesProblem.values());
+        modelMap.addAttribute("categories", CategoriesProblem.values());
         return new ModelAndView("problems/createProblem", "problem", new Problem());
     }
 

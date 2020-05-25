@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <script defer src="../../../js/all.js"></script>
+    <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main-menu.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
@@ -31,7 +31,7 @@
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news" class="current">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме <i class="fas fa-info"></i></button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
         </form></li>
     </ul>
 

@@ -1,6 +1,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <html>
 <head>
     <link rel="stylesheet" href="css/main-menu.css">
@@ -27,16 +29,19 @@
 </head>
 <body>
 
-<%--
-<form:form method ="GET" modelAttribute="categories">
-    <form:select path="categories" class="">
-        <option selected disabled>Укажите категорию проблемы:</option>
-        <c:forEach var="categ" items="${categories}">
-            <form:option value="${categ}">${categ.description()}</form:option>
-        </c:forEach>
-    </form:select>
-</form:form>
---%>
+<div>
+    <h3>${pageContext.request.userPrincipal.name}</h3>
+    <sec:authorize access="!isAuthenticated()">
+        <h4><a href="/login">Войти</a></h4>
+        <h4><a href="/registration">Зарегистрироваться</a></h4>
+    </sec:authorize>
+    <sec:authorize access="isAuthenticated()">
+        <h4><a href="/logout">Выйти</a></h4>
+    </sec:authorize>
+    <h4><a href="/news">Новости (только пользователь)</a></h4>
+    <h4><a href="/admin">Пользователи (только админ)</a></h4>
+</div>
+
 <select name="categories" id="categories" class="categories" style="margin: 0px 93px 0px 93px;">
     <option value="">Укажите категорию проблемы:</option>
     <c:forEach items="${categories}" var="category">

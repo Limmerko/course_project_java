@@ -38,7 +38,7 @@
             </td>
         </tr>
         <tr>
-            <td align="center">
+           <td align="center">
                 <form:select path="category" class="categories">
                     <form:option value="${problem.category}">${problem.category.getDescription()}</form:option>>
                     <c:forEach var="categ" items="${categories}">

@@ -74,13 +74,4 @@ public class NewsController {
         newsService.delete(id);
         return "страница";
     }
-
-    @GetMapping("addUser")
-    public void addUser() {
-        User user = new User();
-        user.setLogin("Vlad");
-        user.setPassword("122232");
-        user.setRole(Roles.ADMIN);
-        userRepository.save(user);
-    }
 }

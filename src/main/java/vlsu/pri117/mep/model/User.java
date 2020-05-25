@@ -1,27 +1,44 @@
 package vlsu.pri117.mep.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import vlsu.pri117.mep.model.enums.Roles;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "my_users")
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
+
     private String login;
+
     @JsonIgnore
     private String password;
-    @Enumerated(EnumType.STRING)
-    private Roles role;
+
+    @Transient
+    private String passwordConfirm;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
+    /*@Enumerated(EnumType.STRING)
+    private Roles role;*/
 /*    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Request> requests;*/
+
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Problem> problems;
+
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments;
 
@@ -52,22 +69,6 @@ public class User {
         this.password = password;
     }
 
-    public Roles getRole() {
-        return role;
-    }
-
-    public void setRole(Roles role) {
-        this.role = role;
-    }
-
-/*    public List<Request> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
-    }*/
-
     public List<Problem> getProblems() {
         return problems;
     }
@@ -84,25 +85,69 @@ public class User {
         this.comments = comments;
     }
 
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
+    }
+
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
-        if (!id.equals(user.id)) return false;
-        if (!login.equals(user.login)) return false;
-        return role == user.role;
-
+        return Objects.equals(id, user.id) &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(passwordConfirm, user.passwordConfirm) &&
+                Objects.equals(roles, user.roles) &&
+                Objects.equals(problems, user.problems) &&
+                Objects.equals(comments, user.comments);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + login.hashCode();
-        result = 31 * result + role.hashCode();
-        return result;
+        return Objects.hash(id, login, password, passwordConfirm, roles, problems, comments);
     }
 
     @Override
@@ -110,8 +155,9 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                /*", password='" + password + '\'' +*/  //ha ha, very smart
-                ", role=" + role +
+                ", password='" + password + '\'' +
+                ", passwordConfirm='" + passwordConfirm + '\'' +
+                ", roles=" + roles +
                 ", problems=" + problems +
                 ", comments=" + comments +
                 '}';

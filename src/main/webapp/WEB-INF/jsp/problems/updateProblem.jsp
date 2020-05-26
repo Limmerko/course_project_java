@@ -17,7 +17,7 @@
         <li><a href="/problems" class="current">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
+            <button class="glo" type="submit">Изменить проблему <i class="far fa-bell"></i></button>
         </form></li>
         <li>
             <div>
@@ -44,9 +44,10 @@
     <table class="reportProblems" align="center">
         <tr>
             <td align="center" style="font-size: 24px">
-                <b>Сообщить о проблеме</b>
+                <b>Изменить проблему</b>
             </td>
         </tr>
+        <form:hidden path="id" value="${problem.id}"/>
         <tr>
             <td align="center">
                 <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
@@ -83,7 +84,7 @@
         </tr>
         <tr>
             <td>
-                <button class="glo" type="submit" onlclick="ZdesDoljenBitRedirect()">Отправить</button>
+                <button class="glo" type="submit" >Отправить</button>
             </td>
         </tr>
     </table>

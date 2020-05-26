@@ -28,7 +28,7 @@
 }
 
 .menu-main a, .menu-main a:visited {color: #9d999d;}
-.menu-main a.current, .menu-main a:hover{color: #4D92FE;}
+.menu-main a.current, .menu-main a:hover{color: #007bff;}
 .menu-main a:before,
 .menu-main a:after {
   content: "";
@@ -38,7 +38,7 @@
   right: 50%;
   bottom: -5px;
   left: 50%;
-  background: #4D92FE;
+  background: #007bff;
   transition: .8s;
 }
 .menu-main a:hover:before, .menu-main .current:before {left: 0;}
@@ -56,7 +56,7 @@
 .nazvanie {
   text-decoration: none;
   font-family: 'Ubuntu Condensed', sans-serif;
-  color: #4D92FE;
+  color: #007bff;
   letter-spacing: 2px;
   position: relative;
   padding-bottom: 20px;

@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
+    </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/placemark.js"></script>
     <title>Проблемы</title>
 
     <ul class="menu-main">

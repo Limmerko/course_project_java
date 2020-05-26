@@ -67,6 +67,7 @@
         </c:forEach>
     </table>
     <a href="/">Главная</a>
+    <a href="/admin/problems">Проблемы</a>
 </div>
 </body>
 </html>

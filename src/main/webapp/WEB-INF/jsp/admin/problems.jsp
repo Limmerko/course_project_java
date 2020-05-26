@@ -54,11 +54,11 @@
             <h4><a href="/registration">Зарегистрироваться</a></h4>
             </sec:authorize>
         </li><li>
-            <sec:authorize access="isAuthenticated()">
-                <h4><a href="/logout">Выйти</a></h4>
-            </sec:authorize>
-            </div>
-        </li>
+        <sec:authorize access="isAuthenticated()">
+            <h4><a href="/logout">Выйти</a></h4>
+        </sec:authorize>
+        </div>
+    </li>
     </ul>
 
 </head>
@@ -72,11 +72,11 @@
         <div class="form-group">
             <div class="row-cols-sm-4">
                 <tr><td>
-                    <select id="category" name="category" class="categories">
-                        <option value="">Укажите категорию проблемы</option>
-                        <c:forEach items="${categories}" var="category">
-                            <option value="${category}">
-                                <c:out value="${category.description}"></c:out>
+                    <select id="status" name="status" class="categories">
+                        <option value="">Статус проблемы:</option>
+                        <c:forEach items="${statuses}" var="status">
+                            <option value="${status}">
+                                <c:out value="${status.description}"></c:out>
                             </option>
                         </c:forEach>
                     </select>
@@ -98,27 +98,27 @@
                     <button type="submit">
                         <table class="table">
                             <tbody>
-                                <tr scope="row">
-                                    <td>
-                                        <div id="map" style="width: 100px; height: 100px;  margin: 0 auto"></div>
-                                        <input type="text" id="myInput" value="${problem.address}"/>
-                                        <div id="myAddress" name="myAddress"></div>
+                            <tr scope="row">
+                                <td>
+                                    <div id="map" style="width: 100px; height: 100px;  margin: 0 auto"></div>
+                                    <input type="text" id="myInput" value="${problem.address}"/>
+                                    <div id="myAddress" name="myAddress"></div>
 
-                                    </td>
-                                    <td rowspan="2" width="150px" height="150px">
-                                        <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">
-                                    </td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr scope="row">
-                                        <td><i class="far fa-calendar-alt"></i>
-                                            <fmt:parseDate value="${ problem.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
-                                            <fmt:formatDate dateStyle="MEDIUM" value="${ parsedDateTime }" />
-                                        </td>
-                                        <td align="right"><i class="far fa-arrow-alt-circle-up"></i></i>15  <i class="far fa-comment"></i> ${fn:length(problem.comments)}</td>
-                                    </tr>
-                                </tfoot>
+                                </td>
+                                <td rowspan="2" width="150px" height="150px">
+                                    <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr scope="row">
+                                <td><i class="far fa-calendar-alt"></i>
+                                    <fmt:parseDate value="${ problem.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                                    <fmt:formatDate dateStyle="MEDIUM" value="${ parsedDateTime }" />
+                                </td>
+                                <td align="right"><i class="far fa-arrow-alt-circle-up"></i></i>15  <i class="far fa-comment"></i> ${fn:length(problem.comments)}</td>
+                            </tr>
+                            </tfoot>
                         </table>
                     </button>
                 </form:form>

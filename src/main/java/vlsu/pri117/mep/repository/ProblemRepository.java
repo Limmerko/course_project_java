@@ -12,5 +12,8 @@ public interface ProblemRepository extends CrudRepository<Problem, Long> {
     //@Query("SELECT pr FROM #{#entityName} pr WHERE pr.category = category AND pr.status != status ")
     List<Problem> findByCategoryAndStatusNotAndStatusNot(CategoriesProblem category, StatusProblem status, StatusProblem status1);
     List<Problem> findByStatusNot(StatusProblem status);
+
+    List<Problem> findByStatus(StatusProblem status);
+
     List<Problem> findProblemsByStatusOrStatus(StatusProblem status, StatusProblem status1);
 }

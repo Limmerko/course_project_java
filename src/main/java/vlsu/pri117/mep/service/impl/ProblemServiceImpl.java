@@ -57,6 +57,11 @@ public class ProblemServiceImpl implements ProblemService {
     }
 
     @Override
+    public List<Problem> findByStatus(StatusProblem status) {
+        return problemRepository.findByStatus(status);
+    }
+
+    @Override
     public List<Problem> findProblemsByStatusOrStatus(StatusProblem status, StatusProblem status1) {
         return problemRepository.findProblemsByStatusOrStatus(status, status1);
     }

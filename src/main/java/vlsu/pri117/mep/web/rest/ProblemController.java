@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -48,35 +49,6 @@ public class ProblemController {
         return new RedirectView( "/problems/" + problem.getId());
     }
 
-/*    @PostMapping("/problems/new")
-    public RedirectView createProblem(@ModelAttribute("problem") Problem problem) throws IOException {
-        problem = problemService.save(problem);
-        List<Photo> photos = new ArrayList<>();
-        int i = 0;
-        for( MultipartFile file : problem.getFiles()){
-            InputStream in = new ByteArrayInputStream(file.getBytes());
-            BufferedImage image = ImageIO.read(in);
-            image = image.getSubimage( 0, 0, 200, 300);
-            String dir = "D:/University/JavaProjects/course_project_java/src/main/webapp/photos/problems/" + problem.getId();
-            File dirFile = new File(dir);
-            dirFile.mkdirs();
-            File outfile = new File(dir + "/" +i + ".png");
-            try {
-                ImageIO.write(image, "png", outfile);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Photo photo = new Photo();
-            photo.setUrl(outfile.getPath());
-            photo.setProblem(problem);
-            photos.add(photoService.save(photo));
-            i++;
-        }
-        problemService.save(problem);
-        return new RedirectView( "/problems/" +problemService.save(problem).getId());
-    }*/
-
-
     @GetMapping("/problems/new")
     public ModelAndView createProblem(ModelMap modelMap){
         modelMap.addAttribute("categories", CategoriesProblem.values());
@@ -95,8 +67,19 @@ public class ProblemController {
     }
 
     @GetMapping("/problems")
-    public String getProblems(ModelMap modelMap){
-        modelMap.addAttribute("problems", problemService.findAll());
+    public String getProblems(@RequestParam(value = "category",defaultValue = "", required = false) String category, ModelMap modelMap){
+        List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
+                (Arrays.asList(CategoriesProblem.values()));
+
+        modelMap.addAttribute("categories", categoriesProblems);
+        if (!category.isEmpty()){
+            CategoriesProblem cat = CategoriesProblem.valueOf(category);
+            String str = "Отображаются проблемы в категории: " + cat.getDescription();
+            modelMap.addAttribute("str", str);
+            modelMap.addAttribute("problems", problemService.findByCategoryAndStatusNotAndStatusNot(cat, StatusProblem.UNDER_CONSIDERATION, StatusProblem.REJECTED));
+        }
+        else
+            modelMap.addAttribute("problems", problemService.findProblemsByStatusOrStatus(StatusProblem.NOT_RESOLVED, StatusProblem.RESOLVED));
         return "problems/problems";
     }
 

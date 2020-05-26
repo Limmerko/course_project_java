@@ -19,5 +19,7 @@ public interface ProblemService {
 
     List<Problem> findByStatusNot(StatusProblem status);
 
+    List<Problem> findByStatus(StatusProblem status);
+
     List<Problem> findProblemsByStatusOrStatus(StatusProblem status, StatusProblem status1);
 }

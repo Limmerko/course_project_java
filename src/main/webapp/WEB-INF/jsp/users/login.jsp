@@ -33,6 +33,21 @@
         <li><form action="/problems/new ">
             <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
         </form></li>
+        <li>
+            <div>
+                <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
+                <sec:authorize access="!isAuthenticated()">
+                <h4><a href="/login" class="current">Войти</a></h4>
+        </li>
+        <li>
+            <h4><a href="/registration">Зарегистрироваться</a></h4>
+            </sec:authorize>
+        </li><li>
+            <sec:authorize access="isAuthenticated()">
+                <h4><a href="/logout">Выйти</a></h4>
+            </sec:authorize>
+            </div>
+        </li>
     </ul>
 
 </head>
@@ -43,7 +58,7 @@
 </sec:authorize>
 
 <div class="form-group" align="center">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
     <form method="post" action="/login">
         <span class="format-text" align="center" style="color: #606060;"><h4>Вход в систему</h4></span>
         <div>

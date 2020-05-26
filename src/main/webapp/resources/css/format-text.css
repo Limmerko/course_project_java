@@ -3,6 +3,11 @@
     font-size: 200%;
 }
 
+.format-text-username{
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+
 
 .text-size {
     white-space: nowrap; /* Отменяем перенос текста */

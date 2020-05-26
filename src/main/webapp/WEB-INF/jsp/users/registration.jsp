@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -35,6 +36,21 @@
         <li><form action="/problems/new ">
             <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
         </form></li>
+        <li>
+            <div>
+                <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
+                <sec:authorize access="!isAuthenticated()">
+                <h4><a href="/login">Войти</a></h4>
+        </li>
+        <li>
+            <h4><a href="/registration" class="current">Зарегистрироваться</a></h4>
+            </sec:authorize>
+        </li><li>
+            <sec:authorize access="isAuthenticated()">
+                <h4><a href="/logout">Выйти</a></h4>
+            </sec:authorize>
+            </div>
+        </li>
     </ul>
 
 
@@ -42,7 +58,7 @@
 
 <body>
 <div class="form-group" align="center">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
     <form:form method="post" modelAttribute="userForm">
         <span class="format-text" align="center" style="color: #606060;"><h4>Регистрация</h4></span>
         <div>

@@ -100,10 +100,8 @@
                             <tbody>
                             <tr scope="row">
                                 <td>
-                                    <div id="map" style="width: 100px; height: 100px;  margin: 0 auto"></div>
-                                    <input type="text" id="myInput" value="${problem.address}"/>
-                                    <div id="myAddress" name="myAddress"></div>
-
+                                    <input hidden type="text" name="problemsCoords" value="${problem.address}"/>
+                                    <label name="problemsAddress"></label>
                                 </td>
                                 <td rowspan="2" width="150px" height="150px">
                                     <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">
@@ -126,6 +124,8 @@
         </c:forEach>
     </div>
 </div>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/getAddressFromCoords.js"></script>
 
 </body>
 </html>

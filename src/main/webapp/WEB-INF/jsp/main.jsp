@@ -21,8 +21,6 @@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
 
-
-
     <ul class="menu-main">
         <li class="nazvanie"><a href="/" class="current">KonohaLIVE</a></li>
         <li><a href="/problems">Проблемы</a></li>

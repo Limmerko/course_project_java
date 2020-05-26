@@ -32,9 +32,14 @@ public class RouteController {
     public String indexFilter(@RequestParam(value = "category",defaultValue = "", required = false) String category, ModelMap modelMap) {
         List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
                 (Arrays.asList(CategoriesProblem.values()));
+
         modelMap.addAttribute("categories", categoriesProblems);
-        if (!category.isEmpty())
-            modelMap.addAttribute("problems", problemService.findByCategory(CategoriesProblem.valueOf(category)));
+        if (!category.isEmpty()){
+            CategoriesProblem cat = CategoriesProblem.valueOf(category);
+            String str = "Отображаются проблемы в категории: " + cat.getDescription();
+            modelMap.addAttribute("str", str);
+            modelMap.addAttribute("problems", problemService.findByCategory(cat));
+        }
         else
             modelMap.addAttribute("problems", problemService.findAll());
         return "main";

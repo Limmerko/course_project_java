@@ -26,11 +26,11 @@ public class AdminController {
     }
 
     @PostMapping("/admin/delete")
-    public String deleteUser(@RequestParam(required = true, defaultValue = "") Long id,
+    public String deleteUser(@RequestParam(required = true, defaultValue = "") Long userId,
                              @RequestParam(required = true, defaultValue = "") String action,
                              ModelMap modelMap) {
         if (action.equals("delete")) {
-            userService.delete(id);
+            userService.delete(userId);
         }
         return "redirect:/admin";
     }

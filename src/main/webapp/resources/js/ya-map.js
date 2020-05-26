@@ -12,7 +12,7 @@ function init() {
         searchControlProvider: 'yandex#search'
     });
 
-    for (let i=0; i< problemsCoords.length; i++) {
+    for (let i=0; i < problemsCoords.length; i++) {
         let details = "/problems/" + problemsId[i].value;
         console.log(details);
         // Создаем геообъект с типом геометрии "Точка".

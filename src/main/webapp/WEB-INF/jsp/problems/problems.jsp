@@ -28,7 +28,7 @@
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/address-problem.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/getAddressFromCoords.js"></script>
 
 
 
@@ -61,10 +61,10 @@
                             <tbody>
                                 <tr scope="row">
                                     <td>
-                                        <div id="map"></div>
+                                        <div id="map" style="width: 100px; height: 100px;  margin: 0 auto"></div>
                                         <input type="text" id="myInput" value="${problem.address}"/>
                                         <div id="myAddress" name="myAddress"></div>
-                                        <script type="text/javascript" src="${pageContext.request.contextPath}/js/getAddressFromCoords.js"></script>
+
                                     </td>
                                     <td rowspan="2" width="150px" height="150px">
                                         <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">

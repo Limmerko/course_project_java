@@ -15,7 +15,7 @@
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ya-map.js"></script>
+
 
 
     <ul class="menu-main">
@@ -24,12 +24,17 @@
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></i></button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
         </form></li>
     </ul>
 
 </head>
 <body>
+
+<c:forEach items="${problems}" var="problem">
+    <input hidden type="text" name="promlemsCoords" value="${problem.address}"/>
+</c:forEach>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ya-map.js"></script>
 
 <div>
     <h3>${pageContext.request.userPrincipal.name}</h3>
@@ -52,13 +57,7 @@
     </select>
     <button class="glo" type="submit">Фильтр</button>
 </form>
-
-
-
-
 <p>
-
-
 <div id="map" style="width: 90%; height: 800px;  margin: 0 auto"></div>
 
 </body>

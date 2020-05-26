@@ -46,8 +46,10 @@
                 <td>${user.username}</td>
                 <td>${user.password}</td>
                 <td>
+                        <%--текущие роли--%>
+                        <c:forEach items="${user.roles}" var="role">${role.name}</c:forEach></option>
                         <form:select path="roles">
-                            <option selected><c:forEach items="${user.roles}" var="role">${role.name}</c:forEach></option>
+                            <option value="">Выберите роль:</option>
                             <c:forEach var="role" items="${roles}">
                                 <form:option value="${role}">${role}</form:option>
                             </c:forEach>

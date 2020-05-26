@@ -6,10 +6,6 @@
 
 <html>
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -26,9 +22,6 @@
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
-
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/getAddressFromCoords.js"></script>
-
 
 
     <title>Проблемы</title>
@@ -60,10 +53,8 @@
                             <tbody>
                                 <tr scope="row">
                                     <td>
-                                        <div id="map" style="width: 100px; height: 100px;  margin: 0 auto"></div>
-                                        <input type="text" id="myInput" value="${problem.address}"/>
-                                        <div id="myAddress" name="myAddress"></div>
-
+                                        <input hidden type="text" name="problemsCoords" value="${problem.address}"/>
+                                        <label name="problemsAddress"></label>
                                     </td>
                                     <td rowspan="2" width="150px" height="150px">
                                         <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">
@@ -86,6 +77,8 @@
         </c:forEach>
     </div>
 </div>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/getAddressFromCoords.js"></script>
 
 </body>
 </html>

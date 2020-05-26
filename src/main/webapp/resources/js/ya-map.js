@@ -11,7 +11,7 @@ function init() {
         searchControlProvider: 'yandex#search'
     });
 
-    for (let i=0; i< problemsCoords.length; i++) {
+    for (let i=0; i < problemsCoords.length; i++) {
         // Создаем геообъект с типом геометрии "Точка".
         myGeoObject = new ymaps.GeoObject({
             // Описание геометрии.

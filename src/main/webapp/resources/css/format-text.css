@@ -1,6 +1,6 @@
 .format-text{
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-    font-size: 250%;
+    font-size: 200%;
 }
 
 
@@ -13,4 +13,8 @@
 .text-size:hover {
     background: #f0f0f0; /* Цвет фона */
     white-space: normal; /* Обычный перенос текста */
+}
+
+.format-text-label {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 }

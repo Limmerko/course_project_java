@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main-menu.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
 
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>

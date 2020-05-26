@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/carousel-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
 
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
 
@@ -26,7 +27,7 @@
     <link href="${bootstrap}" rel="stylesheet" />
     <link href="${startertemplate}" rel="stylesheet" />
 
-    <title>Новости</title>
+    <title>Проблемы</title>
 
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>

@@ -63,7 +63,7 @@
                 <tr>
 
                     <td align="center" style=" height: 50px;">
-                        <form:input path="files" type="file" multiple="multiple" accept="image/*,image/jpeg" />
+                        <form:input class="form-control" path="files" type="file" multiple="multiple" accept="image/*,image/jpeg" />
                     </td>
                 </tr>
                 <tr>

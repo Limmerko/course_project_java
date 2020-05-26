@@ -14,8 +14,6 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/format-text.css">
 
-
-
     <title>Главная</title>
 
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>

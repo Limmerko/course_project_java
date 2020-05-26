@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
+    </script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/placemark.js"></script>
     <title>Проблемы</title>
 
     <ul class="menu-main">
@@ -51,7 +54,7 @@
         <tr>
             <td align="center">
                 <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
-                <input type="text" id="myInput" value="${problem.address}"/>
+                <input type="text" id="myInput" value="${problem.address}" readonly/>
                 <form:hidden path="address" name="myInputBD" id="myInputBD" value="${problem.address}"/>
             </td>
         </tr>

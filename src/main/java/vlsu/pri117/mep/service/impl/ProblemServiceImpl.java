@@ -47,7 +47,17 @@ public class ProblemServiceImpl implements ProblemService {
     }
 
     @Override
-    public List<Problem> findByCategory(CategoriesProblem category) {
-        return problemRepository.findByCategory(category);
+    public List<Problem> findByCategoryAndStatusNotAndStatusNot(CategoriesProblem category, StatusProblem status, StatusProblem status1) {
+        return problemRepository.findByCategoryAndStatusNotAndStatusNot(category, status, status1);
+    }
+
+    @Override
+    public List<Problem> findByStatusNot(StatusProblem status) {
+        return problemRepository.findByStatusNot(status);
+    }
+
+    @Override
+    public List<Problem> findProblemsByStatusOrStatus(StatusProblem status, StatusProblem status1) {
+        return problemRepository.findProblemsByStatusOrStatus(status, status1);
     }
 }

@@ -2,6 +2,7 @@ package vlsu.pri117.mep.service;
 
 import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
+import vlsu.pri117.mep.model.enums.StatusProblem;
 
 import java.util.List;
 
@@ -14,5 +15,9 @@ public interface ProblemService {
 
     void delete(Long id);
 
-    List<Problem> findByCategory(CategoriesProblem category);
+    List<Problem> findByCategoryAndStatusNotAndStatusNot(CategoriesProblem category, StatusProblem status, StatusProblem status1);
+
+    List<Problem> findByStatusNot(StatusProblem status);
+
+    List<Problem> findProblemsByStatusOrStatus(StatusProblem status, StatusProblem status1);
 }

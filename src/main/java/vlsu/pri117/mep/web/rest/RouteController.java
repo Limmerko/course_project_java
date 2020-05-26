@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
+import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.service.NewsService;
 import vlsu.pri117.mep.service.ProblemService;
 import vlsu.pri117.mep.service.impl.NewsServiceImpl;
@@ -38,10 +39,10 @@ public class RouteController {
             CategoriesProblem cat = CategoriesProblem.valueOf(category);
             String str = "Отображаются проблемы в категории: " + cat.getDescription();
             modelMap.addAttribute("str", str);
-            modelMap.addAttribute("problems", problemService.findByCategory(cat));
+            modelMap.addAttribute("problems", problemService.findByCategoryAndStatusNotAndStatusNot(cat, StatusProblem.UNDER_CONSIDERATION, StatusProblem.REJECTED));
         }
         else
-            modelMap.addAttribute("problems", problemService.findAll());
+            modelMap.addAttribute("problems", problemService.findProblemsByStatusOrStatus(StatusProblem.NOT_RESOLVED, StatusProblem.RESOLVED));
         return "main";
     }
 

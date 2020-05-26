@@ -57,6 +57,7 @@
     </select>
     <button class="glo" type="submit">Фильтр</button>
 </form>
+<label>${str}</label>
 <p>
 <div id="map" style="width: 90%; height: 800px;  margin: 0 auto"></div>
 

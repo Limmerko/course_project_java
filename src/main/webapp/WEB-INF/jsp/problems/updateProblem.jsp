@@ -15,8 +15,7 @@
     <title>Проблемы</title>
 
     <ul class="menu-main">
-        <li class="nazvanie">KonohaLIVE</li>
-        <li><a href="/">Главная</a></li>
+        <li class="nazvanie"><a href="/">KonohaLIVE</a></li>
         <li><a href="/problems" class="current">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
@@ -54,7 +53,7 @@
         <tr>
             <td align="center">
                 <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
-                <input type="text" id="myInput" value="${problem.address}"/>
+                <input class="form-control" type="text" id="myInputEdit" value="${problem.address}" readonly/>
                 <form:hidden path="address" name="myInputBD" id="myInputBD" value="${problem.address}"/>
             </td>
         </tr>

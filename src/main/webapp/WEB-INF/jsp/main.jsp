@@ -24,8 +24,7 @@
 
 
     <ul class="menu-main">
-        <li class="nazvanie">KonohaLIVE</li>
-        <li><a href="/" class="current">Главная</a></li>
+        <li class="nazvanie"><a href="/" class="current">KonohaLIVE</a></li>
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
@@ -57,7 +56,6 @@
     <input hidden type="text" name="problemsId" value="${problem.id}"/>
 </c:forEach>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ya-map.js"></script>
-
 
 
 <form>

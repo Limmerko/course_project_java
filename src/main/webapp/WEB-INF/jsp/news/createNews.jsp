@@ -13,8 +13,7 @@
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
 
     <ul class="menu-main">
-        <li class="nazvanie">KonohaLIVE</li>
-        <li><a href="/">Главная</a></li>
+        <li class="nazvanie"><a href="/">KonohaLIVE</a></li>
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news" class="current">Новости</a></li>
         <li><form action="/problems/new ">

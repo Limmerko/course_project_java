@@ -43,7 +43,7 @@ public class KonohaApp {
     public void addAdmin(ApplicationReadyEvent applicationReadyEvent) {
         User user = new User();
         user.setLogin("admin");
-        user.setPassword("admin");
+        user.setPassword(bCryptPasswordEncoder.encode("admin"));
         User userFomDB = userRepository.findByLogin(user.getLogin());
         if (userFomDB != null) {
             return;

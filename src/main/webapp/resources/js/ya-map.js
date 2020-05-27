@@ -5,6 +5,7 @@ var problemsId = document.getElementsByName('problemsId');
 var problemsStatus = document.getElementsByName('problemsStatus');
 var problemsPhoto = document.getElementsByName('problemsPhoto');
 var problemsDate = document.getElementsByName('problemsDate');
+var problemsCategory = document.getElementsByName('problemsCategory');
 
 var options = { year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -29,6 +30,7 @@ function init() {
             properties: {
                 balloonContent: '<div><p><img src='+problemsPhoto[i].value+' style=" width="100px;" height="100px" "/></p></div>' +
                                 '<div><p>Статус: '+problemsStatus[i].value+'</p></div>' +
+                                '<div><p>Категория: '+problemsCategory[i].value+'</p></div>' +
                                 '<div><p>Отправлено: '+now.toLocaleDateString("ru-RU", options)+'</p></div>' +
                                 '<div><p><a href="'+details+'">Подробнее</a></p></div>'
             }

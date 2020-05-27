@@ -61,7 +61,7 @@
                 </tr>
                 <tr>
                     <td align="center">
-                        <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
+                        <div id="map" style="width: 90%; height: 300px; margin: 10px auto; border: 3px solid #bfbfbf"></div>
                         <input type="text" id="myInput" placeholder="Укажите точку на карте" readonly/>
                         <form:hidden path="address" name="myInputBD" id="myInputBD"/>
                     </td>

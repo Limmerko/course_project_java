@@ -9,9 +9,6 @@ var problemsDate = document.getElementsByName('problemsDate');
 
 var options = { year: 'numeric', month: 'long', day: 'numeric' };
 
-console.log(today.toLocaleDateString("en-US")); // 9/17/2016
-console.log(today.toLocaleDateString("en-US", options));
-
 function init() {
     myMap = new ymaps.Map('map', {
         center: [56.14656449, 40.40288382],

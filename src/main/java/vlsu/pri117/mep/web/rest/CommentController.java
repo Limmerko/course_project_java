@@ -30,8 +30,9 @@ public class CommentController {
     }
 
     @PostMapping("/problems/comments/new")
-    public RedirectView createCommentProblems(@ModelAttribute("comment") Comment comment) {
-
+    public RedirectView createCommentProblems(@ModelAttribute("comment") Comment comment,
+                                              @RequestParam(value = "authorLogin",defaultValue = "", required = false) String authorLogin) {
+        comment.setAuthor(userService.findByLogin(authorLogin));
         commentService.save(comment);
         return new RedirectView( "/problems/" + comment.getProblem().getId());
     }

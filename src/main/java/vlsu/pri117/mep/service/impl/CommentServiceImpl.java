@@ -24,7 +24,6 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment save(Comment comment) {
         comment.setCreationDate(LocalDateTime.now());
-        comment.setAuthor(userService.findOne(1L));
         return commentRepository.save(comment);
     }
 

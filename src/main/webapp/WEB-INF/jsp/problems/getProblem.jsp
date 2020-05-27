@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/carousel-style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/upvote.js"></script>
 
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
@@ -63,7 +65,6 @@
 
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -123,6 +124,7 @@
                     <td>
                         <form:form method="post" action="comments/new" modelAttribute="newComment" enctype="multipart/form-data">
                             <form:input hidden="true" class="form-control" id="problem" path="problem" type="text" value="${problem.id}"/>
+                            <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
                             <div class="input-group">
                                 <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
                                 <button class="btn btn-outline-primary" type="submit" title="Оставить комментарий">
@@ -137,6 +139,9 @@
         </div>
         <br/>
     </div>
+    <p id="countOfVOtes">${problem.countOfVotes}</p>
+    <p id="countOfVOtes1"></p>
+    <button id="upvoteButton" onclick="upvoteProblem(${problem.id}, '${pageContext.request.userPrincipal.name}')" >Like</button>
 </div>
 </body>
 </html>

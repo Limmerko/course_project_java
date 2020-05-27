@@ -1,6 +1,7 @@
 package vlsu.pri117.mep.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.web.multipart.MultipartFile;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.Roles;
@@ -33,9 +34,9 @@ public class Problem {
     @Transient
     private MultipartFile[] files;
 
-    private Long countOfVotes;
+    private Long countOfVotes = 0L;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "votedProblems")
     private List<User> votedUsers;
 
     @Enumerated(EnumType.STRING)
@@ -61,6 +62,9 @@ public class Problem {
     public Problem() {
     }
 
+    public void incrementCountOfVotes(){
+        countOfVotes++;
+    }
     public Long getId() {
         return id;
     }

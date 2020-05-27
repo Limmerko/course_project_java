@@ -1,45 +1,35 @@
 package vlsu.pri117.mep.web.rest;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import vlsu.pri117.mep.model.Comment;
-import vlsu.pri117.mep.model.Photo;
 import vlsu.pri117.mep.model.Problem;
+import vlsu.pri117.mep.model.User;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
+import vlsu.pri117.mep.service.UserService;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class ProblemController {
 
     private final ProblemService problemService;
     private final PhotoService photoService;
+    private final UserService userService;
 
 
-    public ProblemController(ProblemService problemService, PhotoService photoService) {
+    public ProblemController(ProblemService problemService, PhotoService photoService, UserService userService) {
         this.problemService = problemService;
         this.photoService = photoService;
+        this.userService = userService;
     }
 
     @PostMapping("/problems/new")
@@ -104,5 +94,5 @@ public class ProblemController {
         return new RedirectView( "/admin/problems");
     }
 
-    public
+
 }

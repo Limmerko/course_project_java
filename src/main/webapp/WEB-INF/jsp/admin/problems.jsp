@@ -37,7 +37,7 @@
 
 
     <ul class="menu-main">
-        <li class="nazvanie">KonohaLIVE</li>
+        <li class="nazvanie"><a href="/">KonohaLIVE</a></li>
         <li><a href="/">Главная</a></li>
         <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
@@ -48,21 +48,21 @@
             <div>
                 <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
                 <sec:authorize access="!isAuthenticated()">
-                <h4><a href="/login">Войти</a></h4>
+                <h4><a href="/login">Войти <i class="fas fa-user"></i></a></h4>
+            </div>
         </li>
         <li>
-            <h4><a href="/registration">Зарегистрироваться</a></h4>
-            </sec:authorize>
-        </li>
-        <li>
+            <div>
+                <h4><a href="/registration">Зарегистрироваться <i class="fas fa-user-plus"></i></a></h4>
+                </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <h4><a href="/logout">Выйти</a></h4>
+                <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
                 </sec:authorize>
         </li>
         <li>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <h4><a href="/admin" class="current">Администрирование <i class="fas fa-crown"></i></a></h4>
-                </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <h4><a href="/admin"class="current">Администрирование <i class="fas fa-crown"></i></a></h4>
+            </sec:authorize>
             </div>
         </li>
     </ul>
@@ -102,7 +102,7 @@
             <div class="col">
                 <form:form method = "GET" action = "/problems/${problem.id}">
                     <button type="submit">
-                        <table class="table">
+                        <table class="table" style="height: 250px">
                             <tbody>
                             <tr scope="row">
                                 <td>

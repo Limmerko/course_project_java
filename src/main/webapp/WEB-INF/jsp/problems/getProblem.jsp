@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/carousel-style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/upvote.js"></script>
 
     <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
     <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
@@ -121,6 +123,16 @@
                         <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" />
                     </td>
                     <td>
+                        <form:form method="post" action="comments/new" modelAttribute="newComment" enctype="multipart/form-data">
+                            <form:input hidden="true" class="form-control" id="problem" path="problem" type="text" value="${problem.id}"/>
+                            <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
+                            <div class="input-group">
+                                <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
+                                <button class="btn btn-outline-primary" type="submit" title="Оставить комментарий">
+                                    <i class="far fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form:form>
                         <sec:authorize access="isAuthenticated()">
                             <form:form method="post" action="comments/new" modelAttribute="newComment" enctype="multipart/form-data">
                                 <form:input hidden="true" class="form-control" id="problem" path="problem" type="text" value="${problem.id}"/>
@@ -148,6 +160,9 @@
         </div>
         <br/>
     </div>
+    <p id="countOfVOtes">${problem.countOfVotes}</p>
+    <p id="countOfVOtes1"></p>
+    <button id="upvoteButton" onclick="upvoteProblem(${problem.id}, '${pageContext.request.userPrincipal.name}')" >Like</button>
 </div>
 </body>
 </html>

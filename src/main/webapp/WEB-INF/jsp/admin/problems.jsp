@@ -130,7 +130,7 @@
                                     <fmt:parseDate value="${ problem.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
                                     <fmt:formatDate dateStyle="MEDIUM" value="${ parsedDateTime }" />
                                 </td>
-                                <td align="right"><i class="far fa-arrow-alt-circle-up"></i></i>15  <i class="far fa-comment"></i> ${fn:length(problem.comments)}</td>
+                                <td align="right"><i class="far fa-arrow-alt-circle-up"></i></i>${problem.countOfVotes}  <i class="far fa-comment"></i> ${fn:length(problem.comments)}</td>
                             </tr>
                             </tfoot>
                         </table>

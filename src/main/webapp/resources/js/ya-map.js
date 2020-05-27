@@ -1,6 +1,5 @@
 ymaps.ready(init);
 
-
 var problemsCoords = document.getElementsByName('problemsCoords');
 var problemsId = document.getElementsByName('problemsId');
 var problemsStatus = document.getElementsByName('problemsStatus');

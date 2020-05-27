@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/placemark.js"></script>
-    <title>Изменение проблемы</title>
+
+    <title>Проблемы</title>
 
     <ul class="menu-main">
         <li class="nazvanie"><a href="/">KonohaLIVE</a></li>
@@ -47,6 +47,14 @@
 
 </head>
 <body>
+
+<form>
+<input hidden type="text" name="problemInputEdit" value="${problem.address}"/>
+<input hidden type="text" name="problemInputAddressEdit" value="${problem.address}"/>
+</form>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/problems-edit.js"></script>
+
+
 <form:form method="post" modelAttribute="problem" enctype="multipart/form-data">
 <div>
     <table class="reportProblems" align="center">
@@ -59,7 +67,7 @@
         <tr>
             <td align="center">
                 <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
-                <input class="form-control" type="text" id="myInputEdit" value="${problem.address}" readonly/>
+                <input class="form-control" type="text" id="problemInput" value="${problem.address}" readonly/>
                 <form:hidden path="address" name="myInputBD" id="myInputBD" value="${problem.address}"/>
             </td>
         </tr>

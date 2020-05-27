@@ -100,7 +100,7 @@
     <div class="row mx-lg-n5">
         <c:forEach var="problem" items="${problems}">
             <div class="col">
-                <form:form method = "GET" action = "/problems/${problem.id}">
+                <form:form method = "GET" action = "/problems/edit/${problem.id}">
                     <button type="submit">
                         <table class="table" style="height: 250px">
                             <tbody>

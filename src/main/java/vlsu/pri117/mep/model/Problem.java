@@ -8,6 +8,7 @@ import vlsu.pri117.mep.model.enums.StatusProblem;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -33,6 +34,9 @@ public class Problem {
     private MultipartFile[] files;
 
     private Long countOfVotes;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<User> votedUsers;
 
     @Enumerated(EnumType.STRING)
     private CategoriesProblem category;
@@ -171,7 +175,9 @@ public class Problem {
                 Objects.equals(resolveDate, problem.resolveDate) &&
                 Objects.equals(description, problem.description) &&
                 Objects.equals(mainPhoto, problem.mainPhoto) &&
+                Arrays.equals(files, problem.files) &&
                 Objects.equals(countOfVotes, problem.countOfVotes) &&
+                Objects.equals(votedUsers, problem.votedUsers) &&
                 category == problem.category &&
                 Objects.equals(author, problem.author) &&
                 status == problem.status &&
@@ -182,7 +188,9 @@ public class Problem {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, address, resolveDate, description, mainPhoto, countOfVotes, category, author, status, comments, creationDate, photos);
+        int result = Objects.hash(id, address, resolveDate, description, mainPhoto, countOfVotes, votedUsers, category, author, status, comments, creationDate, photos);
+        result = 31 * result + Arrays.hashCode(files);
+        return result;
     }
 
     @Override
@@ -201,5 +209,13 @@ public class Problem {
                 ", creationDate=" + creationDate +
                 ", photos=" + photos +
                 '}';
+    }
+
+    public List<User> getVotedUsers() {
+        return votedUsers;
+    }
+
+    public void setVotedUsers(List<User> votedUsers) {
+        this.votedUsers = votedUsers;
     }
 }

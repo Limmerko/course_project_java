@@ -12,14 +12,14 @@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/placemark.js"></script>
-    <title>Проблемы</title>
+    <title>Изменение проблемы</title>
 
     <ul class="menu-main">
         <li class="nazvanie"><a href="/">KonohaLIVE</a></li>
         <li><a href="/problems" class="current">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
-            <button class="glo" type="submit">Изменить проблему <i class="far fa-bell"></i></button>
+            <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
         </form></li>
         <li>
             <div>

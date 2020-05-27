@@ -31,6 +31,8 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Problem> votedProblems;
     /*@Enumerated(EnumType.STRING)
     private Roles role;*/
 /*    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -141,13 +143,14 @@ public class User implements UserDetails {
                 Objects.equals(password, user.password) &&
                 Objects.equals(passwordConfirm, user.passwordConfirm) &&
                 Objects.equals(roles, user.roles) &&
+                Objects.equals(votedProblems, user.votedProblems) &&
                 Objects.equals(problems, user.problems) &&
                 Objects.equals(comments, user.comments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, passwordConfirm, roles, problems, comments);
+        return Objects.hash(id, login, password, passwordConfirm, roles, votedProblems, problems, comments);
     }
 
     @Override
@@ -161,5 +164,13 @@ public class User implements UserDetails {
                 ", problems=" + problems +
                 ", comments=" + comments +
                 '}';
+    }
+
+    public List<Problem> getVotedProblems() {
+        return votedProblems;
+    }
+
+    public void setVotedProblems(List<Problem> votedProblems) {
+        this.votedProblems = votedProblems;
     }
 }

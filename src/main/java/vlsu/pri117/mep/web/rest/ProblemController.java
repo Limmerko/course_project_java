@@ -101,6 +101,8 @@ public class ProblemController {
         problemOld.setDescription(problemNew.getDescription());
         problemService.save(problemOld);
 
-        return new RedirectView( "/problems/");
+        return new RedirectView( "/admin/problems");
     }
+
+    public
 }

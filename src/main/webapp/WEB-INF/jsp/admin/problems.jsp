@@ -39,7 +39,7 @@
     <ul class="menu-main">
         <li class="nazvanie">KonohaLIVE</li>
         <li><a href="/">Главная</a></li>
-        <li><a href="/problems" class="current">Проблемы</a></li>
+        <li><a href="/problems">Проблемы</a></li>
         <li><a href="/news">Новости</a></li>
         <li><form action="/problems/new ">
             <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
@@ -53,12 +53,20 @@
         <li>
             <h4><a href="/registration">Зарегистрироваться</a></h4>
             </sec:authorize>
-        </li><li>
-        <sec:authorize access="isAuthenticated()">
-            <h4><a href="/logout">Выйти</a></h4>
-        </sec:authorize>
-        </div>
-    </li>
+        </li>
+        <li>
+                <sec:authorize access="isAuthenticated()">
+                    <h4><a href="/logout">Выйти</a></h4>
+                </sec:authorize>
+            </div>
+        </li>
+        <li>
+            <div>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <h4><a href="/admin" class="current">Администрирование <i class="fas fa-crown"></i></a></h4>
+                </sec:authorize>
+            </div>
+        </li>
     </ul>
 
 </head>

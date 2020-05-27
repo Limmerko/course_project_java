@@ -39,16 +39,18 @@
             <div>
                 <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
                 <sec:authorize access="!isAuthenticated()">
-                <h4><a href="/login">Войти</a></h4>
+                <h4><a href="/login">Войти <i class="fas fa-user"></i></a></h4>
+            </div>
         </li>
         <li>
-            <h4><a href="/registration" class="current">Зарегистрироваться</a></h4>
-            </sec:authorize>
-        </li><li>
-            <sec:authorize access="isAuthenticated()">
-                <h4><a href="/logout">Выйти</a></h4>
-            </sec:authorize>
+            <div>
+                <h4><a href="/registration">Зарегистрироваться <i class="fas fa-user-plus"></i></a></h4>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
+                </sec:authorize>
             </div>
+
         </li>
     </ul>
 

@@ -3,6 +3,10 @@ ymaps.ready(init);
 
 var problemsCoords = document.getElementsByName('problemsCoords');
 var problemsId = document.getElementsByName('problemsId');
+var problemsStatus = document.getElementsByName('problemsStatus');
+var problemsPhoto = document.getElementsByName('problemsPhoto');
+var problemsDate = document.getElementsByName('problemsDate');
+
 
 function init() {
     myMap = new ymaps.Map('map', {
@@ -14,7 +18,10 @@ function init() {
 
     for (let i=0; i < problemsCoords.length; i++) {
         let details = "/problems/" + problemsId[i].value;
+        let now = new Date(problemsDate[i].value);
         console.log(details);
+        console.log(problemsStatus);
+        console.log("Date: " + now);
         // Создаем геообъект с типом геометрии "Точка".
         myGeoObject = new ymaps.GeoObject({
             // Описание геометрии.
@@ -23,7 +30,10 @@ function init() {
                 coordinates: problemsCoords[i].value.split(",")
             },
             properties: {
-                balloonContent: '<div><p><a href="'+details+'">Подробнее</a></p></div>'
+                balloonContent: '<div><p><img src='+problemsPhoto[i].value+'/></p></div>' +
+                                '<div><p>Статус: '+problemsStatus[i].value+'</p></div>' +
+                                '<div><p>Отправлено: '+now[i]+'</p></div>' +
+                                '<div><p><a href="'+details+'">Подробнее</a></p></div>'
             }
         });
         myMap.geoObjects.add(myGeoObject);

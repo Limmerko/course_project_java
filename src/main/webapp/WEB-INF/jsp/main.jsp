@@ -6,6 +6,9 @@
 
 <html>
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -29,29 +32,31 @@
             <button class="glo" type="submit">Сообщить о проблеме <i class="far fa-bell"></i></button>
         </form></li>
         <li>
-                <div>
+            <div>
                 <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
                 <sec:authorize access="!isAuthenticated()">
-                    <h4><a href="/login">Войти</a></h4>
-                </div>
+                    <h4><a href="/login">Войти <i class="fas fa-user"></i></a></h4>
+            </div>
         </li>
         <li>
             <div>
-            <h4><a href="/registration">Зарегистрироваться</a></h4>
+            <h4><a href="/registration">Зарегистрироваться <i class="fas fa-user-plus"></i></a></h4>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
-                <h4><a href="/logout">Выйти</a></h4>
+                <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
             </sec:authorize>
             </div>
         </li>
     </ul>
-
 </head>
 <body>
 
 <c:forEach items="${problems}" var="problem">
     <input hidden type="text" name="problemsCoords" value="${problem.address}"/>
     <input hidden type="text" name="problemsId" value="${problem.id}"/>
+    <input hidden type="text" name="problemsStatus" value="${problem.status.description}"/>
+    <input hidden type="text" name="problemsPhoto" value="${problem.mainPhoto}"/>
+    <input hidden type="text" name="problemsDate" value="${problem.creationDate}"/>
 </c:forEach>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ya-map.js"></script>
 

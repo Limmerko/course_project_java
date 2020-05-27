@@ -41,16 +41,18 @@
             <div>
                 <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
                 <sec:authorize access="!isAuthenticated()">
-                <h4><a href="/login">Войти</a></h4>
+                <h4><a href="/login">Войти <i class="fas fa-user"></i></a></h4>
+            </div>
         </li>
         <li>
-            <h4><a href="/registration">Зарегистрироваться</a></h4>
-            </sec:authorize>
-        </li><li>
-            <sec:authorize access="isAuthenticated()">
-                <h4><a href="/logout">Выйти</a></h4>
-            </sec:authorize>
+            <div>
+                <h4><a href="/registration">Зарегистрироваться <i class="fas fa-user-plus"></i></a></h4>
+                </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
+                    <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
+                </sec:authorize>
             </div>
+
         </li>
     </ul>
 
@@ -71,13 +73,13 @@
                             <tr scope="row">
                                 <td scope="col">
                                     <div id="carouselPhotos" class="carousel slide" data-ride="carousel" >
-                                        <div class="carousel-inner" style="width: 500px; height: 300px;">
-                                            <div class="carousel-item active">
-                                                <img src="${news.mainPhoto}" class="center-block w-auto h-100" alt="..." style="width: 100%; height: auto; margin: 0 auto">
+                                        <div class="carousel-inner text-center" style="width: 500px; height: 300px;">
+                                            <div class="carousel-item active text-center">
+                                                <img src="${news.mainPhoto}" class="center-block w-auto h-100" alt="..." style="width: 100%; height: auto;">
                                             </div>
                                             <с:forEach var="photo" items="${news.photos}">
                                                 <div class="carousel-item">
-                                                    <img src="${photo.url}" class="center-block w-auto h-100" alt="..." style="width: 100%; height: auto; margin: 0 auto">
+                                                    <img src="${photo.url}" class="center-block w-auto h-100" alt="..." style="width: 100%; height: auto;">
                                                 </div>
                                             </с:forEach>
                                         </div>

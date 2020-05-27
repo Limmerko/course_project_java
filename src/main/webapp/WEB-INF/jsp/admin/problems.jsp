@@ -58,10 +58,8 @@
                 <sec:authorize access="isAuthenticated()">
                     <h4><a href="/logout">Выйти</a></h4>
                 </sec:authorize>
-            </div>
         </li>
         <li>
-            <div>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <h4><a href="/admin" class="current">Администрирование <i class="fas fa-crown"></i></a></h4>
                 </sec:authorize>

@@ -47,6 +47,13 @@
             </sec:authorize>
             </div>
         </li>
+        <li>
+            <div>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <h4><a href="/admin">Администрирование <i class="fas fa-crown"></i></a></h4>
+                </sec:authorize>
+            </div>
+        </li>
     </ul>
 </head>
 <body>

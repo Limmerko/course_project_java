@@ -37,8 +37,14 @@
                     <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
                 </sec:authorize>
             </div>
-
-    </li>
+        </li>
+        <li>
+            <div>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <h4><a href="/admin">Администрирование <i class="fas fa-crown"></i></a></h4>
+                </sec:authorize>
+            </div>
+        </li>
     </ul>
 
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">

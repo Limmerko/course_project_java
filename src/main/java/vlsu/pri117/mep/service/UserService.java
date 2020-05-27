@@ -13,4 +13,6 @@ public interface UserService extends UserDetailsService {
     User findOne(Long id);
 
     void delete(Long id);
+
+    User findByLogin(String login);
 }

@@ -7,7 +7,6 @@ var problemsStatus = document.getElementsByName('problemsStatus');
 var problemsPhoto = document.getElementsByName('problemsPhoto');
 var problemsDate = document.getElementsByName('problemsDate');
 
-
 function init() {
     myMap = new ymaps.Map('map', {
         center: [56.14656449, 40.40288382],
@@ -30,9 +29,9 @@ function init() {
                 coordinates: problemsCoords[i].value.split(",")
             },
             properties: {
-                balloonContent: '<div><p><img src='+problemsPhoto[i].value+'/></p></div>' +
+                balloonContent: '<div><p><img src='+problemsPhoto[i].value+' style=" width="100px;" height="100px" "/></p></div>' +
                                 '<div><p>Статус: '+problemsStatus[i].value+'</p></div>' +
-                                '<div><p>Отправлено: '+now[i]+'</p></div>' +
+                                '<div><p>Отправлено: '+now+'</p></div>' +
                                 '<div><p><a href="'+details+'">Подробнее</a></p></div>'
             }
         });

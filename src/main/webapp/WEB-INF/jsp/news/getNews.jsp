@@ -119,6 +119,7 @@
                                     <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" />
                                 </td>
                                 <td>
+                                    <sec:authorize access="isAuthenticated()">
                                         <form:form method="post" action="comments/new" modelAttribute="newComment" enctype="multipart/form-data">
                                             <form:input hidden="true" class="form-control" id="news" path="news" type="text" value="${news.id}"/>
                                             <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
@@ -129,6 +130,15 @@
                                                 </button>
                                             </div>
                                         </form:form>
+                                    </sec:authorize>
+                                    <sec:authorize access="!isAuthenticated()">
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" placeholder="Авторизуйтесь"/>
+                                            <button class="btn btn-outline-primary" disabled type="submit" title="Оставить комментарий">
+                                                <i class="far fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </sec:authorize>
                                 </td>
                             </tr>
                             </tbody>

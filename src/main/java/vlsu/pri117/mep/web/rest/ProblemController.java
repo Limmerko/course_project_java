@@ -103,6 +103,4 @@ public class ProblemController {
 
         return new RedirectView( "/admin/problems");
     }
-
-    public
 }

@@ -97,12 +97,27 @@
                         <table class="table" style="height: 250px">
                             <tbody>
                                 <tr scope="row">
-                                    <td>
-                                        <input hidden type="text" name="problemsCoords" value="${problem.address}"/>
+                                    <td height="100px">
+                                        <label hidden name="problemsCoords">${problem.address}</label>
                                         <label name="problemsAddress"></label>
                                     </td>
-                                    <td rowspan="2" width="150px" height="150px">
+                                    <td rowspan="3" width="150px" height="150px">
                                         <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">
+                                    </td>
+                                </tr>
+                                <tr  scope="row">
+                                    <td height="25px">
+                                        <label name="problemsCategory">${problem.category.description}</label>
+                                    </td>
+                                </tr>
+                                <tr  scope="row">
+                                    <td height="25px">
+                                        <c:if test="${problem.status == 'RESOLVED'}">
+                                            <span class="badge badge-pill badge-success" style="font-size: 15px">${problem.status.description}</span>
+                                        </c:if>
+                                        <c:if test="${problem.status == 'NOT_RESOLVED'}">
+                                            <span class="badge badge-pill badge-warning" style="font-size: 15px">${problem.status.description}</span>
+                                        </c:if>
                                     </td>
                                 </tr>
                                 </tbody>

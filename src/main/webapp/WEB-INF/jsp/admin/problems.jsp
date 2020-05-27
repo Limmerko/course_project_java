@@ -105,12 +105,22 @@
                         <table class="table" style="height: 250px">
                             <tbody>
                             <tr scope="row">
-                                <td>
-                                    <input hidden type="text" name="problemsCoords" value="${problem.address}"/>
+                                <td height="100px">
+                                    <label hidden name="problemsCoords">${problem.address}</label>
                                     <label name="problemsAddress"></label>
                                 </td>
-                                <td rowspan="2" width="150px" height="150px">
+                                <td rowspan="3" width="150px" height="150px">
                                     <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">
+                                </td>
+                            </tr>
+                            <tr  scope="row">
+                                <td height="25px">
+                                    <label name="problemsCategory">${problem.category.description}</label>
+                                </td>
+                            </tr>
+                            <tr  scope="row">
+                                <td height="25px">
+                                    <label name="problemsStatus">${problem.status.description}</label>
                                 </td>
                             </tr>
                             </tbody>

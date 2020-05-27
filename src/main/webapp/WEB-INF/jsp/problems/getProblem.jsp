@@ -68,10 +68,10 @@
 <div class="container px-xl-2">
     <div class="row mx-lg-n5">
         <div class="col">
-            <table class="table table-striped table-bordered" >
+            <table class="table table-striped table-bordered" style="width: 800px; margin: auto">
                 <tbody>
                 <tr scope="row">
-                    <td scope="col">
+                    <td scope="col" style="width: 500px">
                         <div id="carouselPhotos" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner text-center" style="width: 500px; height: 300px; text-align: center">
                                 <div class="carousel-item active text-center" style="align-content: center;">
@@ -93,7 +93,7 @@
                             </a>
                         </div>
                     </td>
-                    <td rowspan="3" border="1">
+                    <td rowspan="3" border="1" style="width: 300px">
                         <div style="max-height: 300px; overflow-y: auto">
                             <c:forEach var="comment" items="${problem.comments}">
                                 <span class="badge badge-pill badge-primary">${comment.author.login}</span>

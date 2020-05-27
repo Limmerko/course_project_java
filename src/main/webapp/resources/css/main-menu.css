@@ -24,7 +24,7 @@
   font-size: 17px;
   text-transform: uppercase;
   display: inline-block;
-  transition: color .2s;
+  transition: color .1s;
 }
 
 .menu-main a, .menu-main a:visited {color: #9d999d;}
@@ -39,7 +39,7 @@
   bottom: -5px;
   left: 50%;
   background: #007bff;
-  transition: .8s;
+  transition: .3s;
 }
 .menu-main a:hover:before, .menu-main .current:before {left: 0;}
 .menu-main a:hover:after, .menu-main .current:after {right: 0;}   

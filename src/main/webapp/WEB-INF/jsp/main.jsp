@@ -62,12 +62,13 @@
     <input hidden type="text" name="problemsStatus" value="${problem.status.description}"/>
     <input hidden type="text" name="problemsPhoto" value="${problem.mainPhoto}"/>
     <input hidden type="text" name="problemsDate" value="${problem.creationDate}"/>
+    <input hidden type="text" name="problemsCategory" value="${problem.category.getDescription()}"/>
 </c:forEach>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ya-map.js"></script>
 
 
 <form>
-<table>
+<table style="margin-left: 70px">
 <div class="form-group">
     <div class="row-cols-sm-4">
         <tr><td>
@@ -92,7 +93,7 @@
 
 
 <p>
-<div id="map" style="width: 90%; height: 600px;  margin: 0 auto"></div>
+<div id="map" style="width: 90%; height: 600px;  margin: 0 auto; border: 3px solid #bfbfbf"></div>
 
 </body>
 </html>

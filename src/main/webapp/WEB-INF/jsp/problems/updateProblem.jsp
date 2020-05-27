@@ -61,14 +61,12 @@
         <tr>
             <td align="center" style="font-size: 24px">
                 <b>Изменить проблему</b>
-                <br>
-                <label style="font-size: 70%">Чтобы изменить адрес проблемы, перетащите метку</label>
             </td>
         </tr>
         <form:hidden path="id" value="${problem.id}"/>
         <tr>
             <td align="center">
-                <div id="map" style="width: 90%; height: 300px; margin: 10px auto"></div>
+                <div id="map" style="width: 90%; height: 300px; margin: 10px auto; border: 3px solid #bfbfbf"></div>
                 <input class="form-control" type="text" id="problemInput" value="${problem.address}" readonly/>
                 <form:hidden path="address" name="myInputBD" id="myInputBD" value="${problem.address}"/>
             </td>

@@ -12,6 +12,7 @@ import vlsu.pri117.mep.service.NewsService;
 import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +39,13 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public void addPhotosToProblem(Problem problem){
-        if (problem.getFiles().length == 0)
+    public void addPhotosToProblem(Problem problem, List<byte[]> files){
+        if (files.size() == 0)
             return;
         List<Photo> photos = new ArrayList<Photo>();
         try {
-            for (MultipartFile file : problem.getFiles()) {
-                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+            for (byte[] file : files) {
+                Map uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
                 Photo photo = new Photo();
                 photo.setUrl((String)uploadResult.get("url"));
                 photo.setProblem(problem);

@@ -4,6 +4,11 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
+    <script>
+        function pageRedirect() {
+            window.location.replace("/problems");
+        }
+    </script>
     <title>Сообщить о проблеме</title>
 
     <!-- Загрузка стилей -->
@@ -90,7 +95,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <button class="glo" type="submit" onlclick="ZdesDoljenBitRedirect()">Отправить</button>
+                        <button id="createBtn" class="glo" type="submit" onclick="pageRedirect()">Отправить</button>
                     </td>
                 </tr>
             </table>

@@ -4,6 +4,7 @@ import vlsu.pri117.mep.model.News;
 import vlsu.pri117.mep.model.Photo;
 import vlsu.pri117.mep.model.Problem;
 
+import java.io.File;
 import java.util.List;
 
 public interface PhotoService {
@@ -15,7 +16,7 @@ public interface PhotoService {
 
     void delete(Long id);
 
-    void addPhotosToProblem(Problem problem);
+    void addPhotosToProblem(Problem problem, List<byte[]> files);
 
     void addPhotosToNews(News news);
 }

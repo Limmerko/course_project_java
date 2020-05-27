@@ -3,17 +3,19 @@ package vlsu.pri117.mep.web.rest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import vlsu.pri117.mep.model.Comment;
 import vlsu.pri117.mep.model.Problem;
-import vlsu.pri117.mep.model.User;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
-import vlsu.pri117.mep.service.UserService;
+import vlsu.pri117.mep.service.impl.AsyncService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,20 +25,31 @@ public class ProblemController {
 
     private final ProblemService problemService;
     private final PhotoService photoService;
-    private final UserService userService;
+    private final AsyncService asyncService;
 
 
-    public ProblemController(ProblemService problemService, PhotoService photoService, UserService userService) {
+
+    public ProblemController(ProblemService problemService, PhotoService photoService, AsyncService asyncService) {
         this.problemService = problemService;
         this.photoService = photoService;
-        this.userService = userService;
+        this.asyncService = asyncService;
     }
+
+
 
     @PostMapping("/problems/new")
     public RedirectView createProblem(@ModelAttribute("problem") Problem problem){
-        problem = problemService.save(problem);
-        photoService.addPhotosToProblem(problem);
-        return new RedirectView( "/problems/" + problem.getId());
+        MultipartFile[] files = problem.getFiles();
+        List<byte[]> filesToUpload = new ArrayList<>();
+        for (int i = 0; i < files.length; i++){
+            try {
+                filesToUpload.add(files[i].getBytes());
+            } catch (IOException e) {
+                System.out.println();
+            }
+        }
+        asyncService.saveAsync(problem, filesToUpload);
+        return new RedirectView( "/problems");
     }
 
     @GetMapping("/problems/new")

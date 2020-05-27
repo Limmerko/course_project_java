@@ -1,10 +1,12 @@
 package vlsu.pri117.mep.service.impl;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.repository.ProblemRepository;
+import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
 
 import java.time.LocalDateTime;
@@ -15,7 +17,7 @@ public class ProblemServiceImpl implements ProblemService {
 
     private final ProblemRepository problemRepository;
 
-    public ProblemServiceImpl( ProblemRepository problemRepository) {
+    public ProblemServiceImpl(ProblemRepository problemRepository) {
         this.problemRepository = problemRepository;
     }
 

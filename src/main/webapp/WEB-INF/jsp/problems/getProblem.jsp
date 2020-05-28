@@ -121,12 +121,21 @@
                     <td>
                         <fmt:parseDate value="${problem.creationDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
                         <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime}" />
-                        <div style="display: inline-block;">
-                            <p id="countOfVOtes">${problem.countOfVotes}</p>
-                            <p id="countOfVOtes1"></p>
-                            <button id="upvoteButton"
-                                    class="btn btn-outline-primary"
-                                    onclick="upvoteProblem(${problem.id}, '${pageContext.request.userPrincipal.name}')" ><i class="far fa-arrow-alt-circle-up"></i></button>
+                        <div style="display: inline-block;  float: right;">
+                            <p id="countOfVOtes" style="display: inline-block; margin-right: 10px">${problem.countOfVotes}</p>
+                            <sec:authorize access="isAuthenticated()">
+                                <button id="upvoteButton"
+                                        class="btn btn-outline-primary"
+                                        onclick="upvoteProblem(${problem.id}, '${pageContext.request.userPrincipal.name}')">
+                                    <i class="far fa-arrow-alt-circle-up"></i>
+                                </button>
+                            </sec:authorize>
+                            <sec:authorize access="!isAuthenticated()">
+                                <button id="upvoteButton" disabled
+                                        class="btn btn-outline-primary">
+                                    <i class="far fa-arrow-alt-circle-up"></i>
+                                </button>
+                            </sec:authorize>
                         </div>
                     </td>
                     <td>

@@ -13,7 +13,6 @@ function upvoteProblem(idProblem, login) {
                 $('#countOfVOtes').text(result)
                 return;
             }
-            $('#countOfVOtes1').text("УЖЕ ЛАЙКНУЛ ДОЛБАЕБ")
         }
     });
 }

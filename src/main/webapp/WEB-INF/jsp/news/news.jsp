@@ -101,7 +101,7 @@
                                         <fmt:parseDate value="${ oneNews.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
                                         <fmt:formatDate dateStyle="MEDIUM" value="${ parsedDateTime }" />
                                     </td>
-                                    <td align="right"><i class="far fa-arrow-alt-circle-up"></i>15   <i class="far fa-comment"></i> ${fn:length(oneNews.comments)}</td>
+                                    <td align="right"><i class="far fa-comment"></i> ${fn:length(oneNews.comments)}</td>
                                 </tr>
                             </tfoot>
                         </table>

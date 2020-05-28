@@ -12,6 +12,12 @@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
+
     <title>Проблемы</title>
 
     <ul class="menu-main">
@@ -53,6 +59,9 @@
 <input hidden type="text" name="problemInputAddressEdit" value="${problem.address}"/>
 </form>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/problems-edit.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 
 <form:form method="post" modelAttribute="problem" enctype="multipart/form-data">
@@ -97,7 +106,22 @@
             </td>
         </tr>
         <tr>
-            <!-- PHOTOS -->
+            <td align="center">
+                <c:forEach var="photo" items="${problem.photos}">
+                    <div>
+                        <img src="${photo.url}" class="rounded" width="150px" height="auto">
+                        <form action="/admin/problems/edit/photo/main" method="post" style="display: inline-block;">
+                            <input hidden value="${photo.id}" name="photoId">
+                            <input hidden value="${problem.id}" name="problemId">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-image"></i></button>
+                        </form>
+                        <form action="/admin/problems/edit/photo/delete" method="post" style="display: inline-block;">
+                            <input hidden value="${photo.id}" name="photoId">
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                        </form>
+                    </div>
+                </c:forEach>
+            </td>
         </tr>
         <tr>
             <td>

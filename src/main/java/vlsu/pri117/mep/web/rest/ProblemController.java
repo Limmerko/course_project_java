@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import vlsu.pri117.mep.model.Comment;
+import vlsu.pri117.mep.model.Photo;
 import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
@@ -77,7 +78,7 @@ public class ProblemController {
         return "problems/problems";
     }
 
-    @GetMapping("/problems/edit/{id}")
+    @GetMapping("admin/problems/edit/{id}")
     public String getProblemForUpdate(@PathVariable Long id, ModelMap modelMap){
         modelMap.addAttribute("problem", problemService.findOne(id));
         modelMap.addAttribute("categories", CategoriesProblem.values());
@@ -86,7 +87,7 @@ public class ProblemController {
     }
 
 
-    @PostMapping("/problems/edit/{id}")
+    @PostMapping("admin/problems/edit/{id}")
     public RedirectView updateProblem(@ModelAttribute("problem") Problem problemNew, ModelMap modelMap){
         Problem problemOld = problemService.findOne(problemNew.getId());
         problemOld.setAddress(problemNew.getAddress());
@@ -98,5 +99,18 @@ public class ProblemController {
         return new RedirectView( "/admin/problems");
     }
 
+    @PostMapping("admin/problems/edit/photo/delete")
+    public String deletePhotoInProblem(@RequestParam(required = true, defaultValue = "") Long photoId) {
+        photoService.delete(photoId);
+        return "redirect:/admin";
+    }
 
+    @PostMapping("admin/problems/edit/photo/main")
+    public String setMainPhotoInProblem(@RequestParam(required = true, defaultValue = "") Long photoId,
+                                        @RequestParam(required = true, defaultValue = "") Long problemId) {
+        Problem problem = problemService.findOne(problemId);
+        problem.setMainPhoto(photoService.findOne(photoId).getUrl());
+        problemService.save(problem);
+        return "redirect:/admin";
+    }
 }

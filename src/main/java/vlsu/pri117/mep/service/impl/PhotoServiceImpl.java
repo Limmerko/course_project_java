@@ -81,16 +81,16 @@ public class PhotoServiceImpl implements PhotoService {
     }
     @Override
     public List<Photo> findAll() {
-        return null;
+        return (List<Photo>)photoRepository.findAll();
     }
 
     @Override
     public Photo findOne(Long id) {
-        return null;
+        return photoRepository.findById(id).get();
     }
 
     @Override
     public void delete(Long id) {
-
+        photoRepository.delete(this.findOne(id));
     }
 }

@@ -56,7 +56,7 @@
                                 <option  value="${role}">${role}</option>
                             </c:forEach>
                         </select>
-                            <button type="submit" class="btn btn-danger">Изменить</button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-pen"></i> Изменить</button>
                         </form>
                 </td>
                 <td>

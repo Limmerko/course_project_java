@@ -65,7 +65,6 @@
 
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -74,10 +73,10 @@
 <div class="container px-xl-2">
     <div class="row mx-lg-n5">
         <div class="col">
-            <table class="table table-striped table-bordered" style="width: 800px; margin: auto">
+            <table class="table table-striped table-bordered" style="min-width: 600px; width: 950px; margin: auto">
                 <tbody>
                 <tr scope="row">
-                    <td scope="col" style="width: 500px">
+                    <td scope="col" style="min-width: 400px; width: 500px">
                         <div id="carouselPhotos" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner text-center" style="width: 500px; height: 300px; text-align: center">
                                 <div class="carousel-item active text-center" style="align-content: center;">
@@ -99,7 +98,7 @@
                             </a>
                         </div>
                     </td>
-                    <td rowspan="3" border="1" style="width: 300px">
+                    <td rowspan="4" border="1" style="min-width: 100px; width: 450px">
                         <div style="max-height: 300px; overflow-y: auto">
                             <c:forEach var="comment" items="${problem.comments}">
                                 <span class="badge badge-pill badge-primary">${comment.author.login}</span>
@@ -119,8 +118,15 @@
                 </tr>
                 <tr scope="row">
                     <td>
-                        <fmt:parseDate value="${ problem.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
-                        <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" />
+                        <fmt:parseDate value="${problem.creationDate}" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                        <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parsedDateTime}" />
+                        <div style="display: inline-block;">
+                            <p id="countOfVOtes">${problem.countOfVotes}</p>
+                            <p id="countOfVOtes1"></p>
+                            <button id="upvoteButton"
+                                    class="btn btn-outline-primary"
+                                    onclick="upvoteProblem(${problem.id}, '${pageContext.request.userPrincipal.name}')" ><i class="far fa-arrow-alt-circle-up"></i></button>
+                        </div>
                     </td>
                     <td>
                         <sec:authorize access="isAuthenticated()">
@@ -150,9 +156,7 @@
         </div>
         <br/>
     </div>
-    <p id="countOfVOtes">${problem.countOfVotes}</p>
-    <p id="countOfVOtes1"></p>
-    <button id="upvoteButton" onclick="upvoteProblem(${problem.id}, '${pageContext.request.userPrincipal.name}')" >Like</button>
+
 </div>
 </body>
 </html>

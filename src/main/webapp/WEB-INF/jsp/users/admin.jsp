@@ -48,13 +48,16 @@
                 <td>
                         <%--текущие роли--%>
                         <c:forEach items="${user.roles}" var="role">${role.name}</c:forEach></option>
-                        <form:select path="roles">
+                        <form action="${pageContext.request.contextPath}/admin/roles" method="post">
+                            <input type="hidden" name="userId" value="${user.id}"/>
+                        <select name="role">
                             <option value="">Выберите роль:</option>
                             <c:forEach var="role" items="${roles}">
-                                <form:option value="${role}">${role}</form:option>
+                                <option  value="${role}">${role}</option>
                             </c:forEach>
-                            <button type="submit">Изменить</button>
-                        </form:select>
+                        </select>
+                            <button type="submit" class="btn btn-danger">Изменить</button>
+                        </form>
                 </td>
                 <td>
                     <form action="${pageContext.request.contextPath}/admin/delete" method="post">

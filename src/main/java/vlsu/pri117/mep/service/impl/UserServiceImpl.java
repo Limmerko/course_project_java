@@ -6,6 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import vlsu.pri117.mep.model.Role;
 import vlsu.pri117.mep.model.User;
+import vlsu.pri117.mep.model.enums.Roles;
 import vlsu.pri117.mep.repository.RoleRepository;
 import vlsu.pri117.mep.repository.UserRepository;
 import vlsu.pri117.mep.service.UserService;
@@ -33,15 +34,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-        User userFomDB = userRepository.findByLogin(user.getLogin());
-        if (userFomDB != null) {
-            System.out.println("Такой пользователь уже существует");
-            return null;
-        }
         if (user.getRoles() == null) {
-            user.setRoles(Collections.singleton(new Role(2L, "ROLE_USER")));
+            user.setRoles(Collections.singleton(new Role(2L, Roles.ROLE_USER.name())));
         }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User changeRole(Long userId, Roles role) {
+        User user = userRepository.findById(userId).get();
+        user.getRoles().add(new Role((long)role.getId(), role.name()));
         return userRepository.save(user);
     }
 

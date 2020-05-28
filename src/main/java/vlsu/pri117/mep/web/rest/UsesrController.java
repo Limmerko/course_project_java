@@ -37,10 +37,11 @@ public class UsesrController {
             modelMap.addAttribute("passwordError", "Пароли не совпадают");
             return "users/registration";
         }
-        if (userService.save(userForm) == null) {
+        if (userService.findByLogin(userForm.getLogin()) != null) {
             modelMap.addAttribute("usernameError", "Пользователь с таким именем уже существует");
             return "users/registration";
         }
+        userService.save(userForm);
         return "redirect:/";
     }
 

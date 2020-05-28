@@ -5,15 +5,15 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import vlsu.pri117.mep.model.Role;
+import vlsu.pri117.mep.model.User;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.Roles;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.service.ProblemService;
 import vlsu.pri117.mep.service.UserService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class AdminController {
@@ -47,6 +47,13 @@ public class AdminController {
     public String gtUser(@PathVariable("id") Long id, ModelMap modelMap) {
         // я не знаю зачем этот метод. В сервис я его тоже не добавлял
     }*/
+
+    @PostMapping("/admin/roles")
+    public String changeRole(@RequestParam(required = true, defaultValue = "") Long userId,
+                             @RequestParam(required = true, defaultValue = "") Roles role) {
+        userService.changeRole(userId, role);
+        return "redirect:/admin";
+    }
 
     @GetMapping("/admin/problems")
     public String getProblems(@RequestParam(value = "status",defaultValue = "", required = false) String status, ModelMap modelMap){

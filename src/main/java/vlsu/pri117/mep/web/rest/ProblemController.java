@@ -14,7 +14,6 @@ import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
 import vlsu.pri117.mep.service.impl.AsyncService;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,16 +38,8 @@ public class ProblemController {
 
     @PostMapping("/problems/new")
     public RedirectView createProblem(@ModelAttribute("problem") Problem problem){
-        MultipartFile[] files = problem.getFiles();
-        List<byte[]> filesToUpload = new ArrayList<>();
-        for (int i = 0; i < files.length; i++){
-            try {
-                filesToUpload.add(files[i].getBytes());
-            } catch (IOException e) {
-                System.out.println();
-            }
-        }
-        asyncService.saveAsync(problem, filesToUpload);
+        List<byte[]> filesToUpload = asyncService.convertFilesToBytes(problem.getFiles());
+        asyncService.saveProblemAsync(problem, filesToUpload);
         return new RedirectView( "/problems");
     }
 

@@ -23,7 +23,9 @@ public class NewsServiceImpl implements NewsService {
     public News save(News news) {
         if (news.getId() == null)
             news.setCreationDate(LocalDateTime.now());
-        if (news.getPhotos() != null) {
+        if (news.getMainPhoto() == null &&
+            news.getPhotos() != null &&
+            news.getPhotos().size() != 0) {
             news.setMainPhoto(news.getPhotos().get(0).getUrl());
         }
         return newsRepository.save(news);

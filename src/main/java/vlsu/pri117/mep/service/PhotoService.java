@@ -18,5 +18,5 @@ public interface PhotoService {
 
     void addPhotosToProblem(Problem problem, List<byte[]> files);
 
-    void addPhotosToNews(News news);
+    void addPhotosToNews(News news, List<byte[]> files);
 }

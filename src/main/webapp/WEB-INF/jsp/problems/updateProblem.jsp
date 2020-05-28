@@ -97,6 +97,7 @@
             </td>
         </tr>
         <tr>
+            <!-- PHOTOS -->
         </tr>
         <tr>
             <td>

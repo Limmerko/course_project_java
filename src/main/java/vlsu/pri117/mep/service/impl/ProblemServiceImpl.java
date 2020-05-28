@@ -27,7 +27,9 @@ public class ProblemServiceImpl implements ProblemService {
             problem.setCreationDate(LocalDateTime.now());
             problem.setStatus(StatusProblem.UNDER_CONSIDERATION);
         }
-        if (problem.getPhotos() != null) {
+        if (problem.getMainPhoto() == null &&
+            problem.getPhotos() != null &&
+            problem.getPhotos().size() != 0) {
             problem.setMainPhoto(problem.getPhotos().get(0).getUrl());
         }
         return problemRepository.save(problem);

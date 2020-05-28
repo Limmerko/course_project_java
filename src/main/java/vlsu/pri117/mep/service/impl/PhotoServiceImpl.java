@@ -60,13 +60,13 @@ public class PhotoServiceImpl implements PhotoService {
     }
 
     @Override
-    public void addPhotosToNews(News news){
-        if (news.getFiles().length == 0)
+    public void addPhotosToNews(News news, List<byte[]> files){
+        if (files.size() == 0)
             return;
         List<Photo> photos = new ArrayList<Photo>();
         try {
-            for (MultipartFile file : news.getFiles()) {
-                Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+            for (var file : files) {
+                Map uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
                 Photo photo = new Photo();
                 photo.setUrl((String)uploadResult.get("url"));
                 photo.setNews(news);

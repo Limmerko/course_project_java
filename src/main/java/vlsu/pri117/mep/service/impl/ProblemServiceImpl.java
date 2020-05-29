@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import vlsu.pri117.mep.model.Problem;
+import vlsu.pri117.mep.model.User;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.repository.ProblemRepository;
@@ -80,5 +81,10 @@ public class ProblemServiceImpl implements ProblemService {
     public List<Problem> findProblemsByStatusOrStatus(StatusProblem status, StatusProblem status1) {
         log.info("Request to find one problem with status = " + status + " or status = " + status1);
         return problemRepository.findProblemsByStatusOrStatus(status, status1);
+    }
+
+    @Override
+    public List<Problem> findProblemsByAuthor(User user) {
+        return problemRepository.findProblemsByAuthor(user);
     }
 }

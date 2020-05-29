@@ -3,22 +3,18 @@ package vlsu.pri117.mep.web.rest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import vlsu.pri117.mep.model.Comment;
-import vlsu.pri117.mep.model.Photo;
 import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
+import vlsu.pri117.mep.service.UserService;
 import vlsu.pri117.mep.service.impl.AsyncService;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ProblemController {
@@ -26,22 +22,29 @@ public class ProblemController {
     private final ProblemService problemService;
     private final PhotoService photoService;
     private final AsyncService asyncService;
+    private final UserService userService;
 
 
 
-    public ProblemController(ProblemService problemService, PhotoService photoService, AsyncService asyncService) {
+    public ProblemController(ProblemService problemService, PhotoService photoService, AsyncService asyncService, UserService userService) {
         this.problemService = problemService;
         this.photoService = photoService;
         this.asyncService = asyncService;
+        this.userService = userService;
     }
 
 
 
     @PostMapping("/problems/new")
-    public RedirectView createProblem(@ModelAttribute("problem") Problem problem){
+    public String createProblem(@ModelAttribute("problem") Problem problem,
+                                      @RequestParam(value = "authorLogin", defaultValue ="", required = false) String login){
+        if(!login.isEmpty()){
+            var user = userService.findByLogin(login);
+            problem.setAuthor(user);
+        }
         List<byte[]> filesToUpload = asyncService.convertFilesToBytes(problem.getFiles());
         asyncService.saveProblemAsync(problem, filesToUpload);
-        return new RedirectView( "/problems");
+        return "/problems/thankyouForm";
     }
 
     @GetMapping("/problems/new")
@@ -62,7 +65,9 @@ public class ProblemController {
     }
 
     @GetMapping("/problems")
-    public String getProblems(@RequestParam(value = "category",defaultValue = "", required = false) String category, ModelMap modelMap){
+    public String getProblems(@RequestParam(defaultValue = "", required = false) String category,
+                              @RequestParam(defaultValue="false",required = false) Boolean votesFilter,
+                              ModelMap modelMap){
         List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
                 (Arrays.asList(CategoriesProblem.values()));
 
@@ -71,10 +76,27 @@ public class ProblemController {
             CategoriesProblem cat = CategoriesProblem.valueOf(category);
             String str = "Отображаются проблемы в категории: " + cat.getDescription();
             modelMap.addAttribute("str", str);
-            modelMap.addAttribute("problems", problemService.findByCategoryAndStatusNotAndStatusNot(cat, StatusProblem.UNDER_CONSIDERATION, StatusProblem.REJECTED));
+            var problems =problemService.findByCategoryAndStatusNotAndStatusNot(cat,
+                    StatusProblem.UNDER_CONSIDERATION,
+                    StatusProblem.REJECTED);
+            if (votesFilter)
+                Collections.sort(problems, Collections.reverseOrder());
+            modelMap.addAttribute("problems", problems);
         }
-        else
-            modelMap.addAttribute("problems", problemService.findProblemsByStatusOrStatus(StatusProblem.NOT_RESOLVED, StatusProblem.RESOLVED));
+        else{
+            var problems = problemService.findProblemsByStatusOrStatus(StatusProblem.NOT_RESOLVED, StatusProblem.RESOLVED);
+            if (votesFilter)
+                Collections.sort(problems, Collections.reverseOrder());
+            modelMap.addAttribute("problems", problems);
+        }
+        return "problems/problems";
+    }
+
+    @PostMapping("/problems/usersProblems")
+    public String getUsersProblems(@RequestParam(value = "authorLogin", required = true) String login,
+                                   ModelMap modelMap){
+        var user = userService.findByLogin(login);
+        modelMap.addAttribute("problems", problemService.findProblemsByAuthor(user));
         return "problems/problems";
     }
 

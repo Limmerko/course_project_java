@@ -3,6 +3,7 @@ package vlsu.pri117.mep.repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import vlsu.pri117.mep.model.Problem;
+import vlsu.pri117.mep.model.User;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 
@@ -16,4 +17,6 @@ public interface ProblemRepository extends CrudRepository<Problem, Long> {
     List<Problem> findByStatus(StatusProblem status);
 
     List<Problem> findProblemsByStatusOrStatus(StatusProblem status, StatusProblem status1);
+
+    List<Problem> findProblemsByAuthor(User user);
 }

@@ -13,11 +13,11 @@ import vlsu.pri117.mep.service.UserService;
 import javax.validation.Valid;
 
 @Controller
-public class UsesrController {
+public class UserController {
 
     private final UserService userService;
 
-    public UsesrController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 

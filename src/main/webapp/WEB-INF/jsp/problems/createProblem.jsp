@@ -95,9 +95,10 @@
                 </tr>
                 <tr>
                     <td align="center" style=" height: 50px;">
-                        <form:input class="form-control" path="files" type="file" multiple="multiple" accept="image/*,image/jpeg" />
+                        <form:input class="form-control" path="files" type="file" maxlength="5" multiple="multiple" accept="image/*,image/jpeg" />
                     </td>
                 </tr>
+                <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
                 <tr>
                     <td>
                         <button id="createBtn" class="glo" type="submit">Отправить</button>

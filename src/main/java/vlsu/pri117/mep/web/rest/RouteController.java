@@ -30,7 +30,8 @@ public class RouteController {
 
 
     @GetMapping("/")
-    public String indexFilter(@RequestParam(value = "category",defaultValue = "", required = false) String category, ModelMap modelMap) {
+    public String indexFilter(@RequestParam(value = "category",defaultValue = "", required = false) String category,
+                              ModelMap modelMap) {
         List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
                 (Arrays.asList(CategoriesProblem.values()));
 

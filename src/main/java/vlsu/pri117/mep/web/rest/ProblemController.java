@@ -78,7 +78,7 @@ public class ProblemController {
         return "problems/problems";
     }
 
-    @GetMapping("admin/problems/edit/{id}")
+    @GetMapping("/problems/edit/{id}")
     public String getProblemForUpdate(@PathVariable Long id, ModelMap modelMap){
         modelMap.addAttribute("problem", problemService.findOne(id));
         modelMap.addAttribute("categories", CategoriesProblem.values());
@@ -87,7 +87,7 @@ public class ProblemController {
     }
 
 
-    @PostMapping("admin/problems/edit/{id}")
+    @PostMapping("/problems/edit/{id}")
     public RedirectView updateProblem(@ModelAttribute("problem") Problem problemNew, ModelMap modelMap){
         Problem problemOld = problemService.findOne(problemNew.getId());
         problemOld.setAddress(problemNew.getAddress());
@@ -99,18 +99,21 @@ public class ProblemController {
         return new RedirectView( "/admin/problems");
     }
 
-    @PostMapping("admin/problems/edit/photo/delete")
-    public String deletePhotoInProblem(@RequestParam(required = true, defaultValue = "") Long photoId) {
+    @PostMapping("/problems/edit/photo/delete")
+    public String deletePhotoInProblem(@RequestParam(required = true, defaultValue = "") Long photoId,
+                                       @RequestParam(required = true, defaultValue = "") Long problemId) {
         photoService.delete(photoId);
-        return "redirect:/admin";
+        String redirect = "/problems/edit/" + problemId;
+        return "redirect:" + redirect;
     }
 
-    @PostMapping("admin/problems/edit/photo/main")
+    @PostMapping("/problems/edit/photo/main")
     public String setMainPhotoInProblem(@RequestParam(required = true, defaultValue = "") Long photoId,
                                         @RequestParam(required = true, defaultValue = "") Long problemId) {
         Problem problem = problemService.findOne(problemId);
         problem.setMainPhoto(photoService.findOne(photoId).getUrl());
         problemService.save(problem);
-        return "redirect:/admin";
+        String redirect = "/problems/edit/" + problemId;
+        return "redirect:" + redirect;
     }
 }

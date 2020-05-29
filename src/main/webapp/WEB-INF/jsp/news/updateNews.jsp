@@ -80,6 +80,24 @@
                     <label for="description">Описание</label>
                     <form:input class="form-control" id="description" path="description" value="${news.description}" type="text" placeholder="Описание"/>
                 </div>
+
+                <div class="form-group">
+                    <c:forEach var="photo" items="${news.photos}">
+                        <div>
+                            <img src="${photo.url}" class="rounded" width="150px" height="auto">
+                            <form action="/admin/news/edit/photo/main" method="post" style="display: inline-block;">
+                                <input hidden value="${photo.id}" name="photoId">
+                                <input hidden value="${news.id}" name="newsId">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-image"></i></button>
+                            </form>
+                            <form action="/admin/news/edit/photo/delete" method="post" style="display: inline-block;">
+                                <input hidden value="${photo.id}" name="photoId">
+                                <input hidden value="${news.id}" name="newsId">
+                                <button type="submit" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                            </form>
+                        </div>
+                    </c:forEach>
+                </div>
                 <!-- PHOTOS -->
                 <button class="glo" data-toggle="tooltip"
                         data-placement="top" title="Изменить новость" type="submit">Отправить</button>

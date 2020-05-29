@@ -92,4 +92,22 @@ public class NewsController {
         newsService.delete(id);
         return "страница";
     }
+
+    @PostMapping("/news/edit/photo/delete")
+    public String deletePhotoInNews(@RequestParam(required = true, defaultValue = "") Long photoId,
+                                       @RequestParam(required = true, defaultValue = "") Long newsId) {
+        photoService.delete(photoId);
+        String redirect = "/news/edit/" + newsId;
+        return "redirect:" + redirect;
+    }
+
+    @PostMapping("/news/edit/photo/main")
+    public String setMainPhotoInNews(@RequestParam(required = true, defaultValue = "") Long photoId,
+                                        @RequestParam(required = true, defaultValue = "") Long newsId) {
+        News news = newsService.findOne(newsId);
+        news.setMainPhoto(photoService.findOne(photoId).getUrl());
+        newsService.save(news);
+        String redirect = "/news/edit/" + newsId;
+        return "redirect:" + redirect;
+    }
 }

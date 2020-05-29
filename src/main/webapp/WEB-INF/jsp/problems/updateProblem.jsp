@@ -120,6 +120,7 @@
                         </form>
                         <form action="/admin/problems/edit/photo/delete" method="post" style="display: inline-block;" data-toggle="tooltip" data-placement="bottom" title="Удалить фото">
                             <input hidden value="${photo.id}" name="photoId">
+                            <input hidden value="${problem.id}" name="problemId">
                             <button type="submit" class="btn btn-danger"><i class="fas fa-times"></i></button>
                         </form>
                     </div>

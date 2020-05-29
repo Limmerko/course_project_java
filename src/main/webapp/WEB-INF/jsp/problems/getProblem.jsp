@@ -106,7 +106,14 @@
                         <div style="max-height: 420px; overflow-y: auto">
                             <c:forEach var="comment" items="${problem.comments}">
                                 <span class="badge badge-pill badge-primary">${comment.author.login}</span>
+                                <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
+                                    <form action="/problems/deleteComment/${problem.id}">
+                                        <input hidden id="commentId" name="commentId" value="${comment.id}">
+                                        <button class="btn btn-outline-primary">Удалить</button>
+                                    </form>
+                                </sec:authorize>
                                 <p>${comment.text}</p>
+
                             </c:forEach>
                         </div>
                     </td>

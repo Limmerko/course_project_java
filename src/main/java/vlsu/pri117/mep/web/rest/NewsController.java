@@ -4,20 +4,16 @@ import com.cloudinary.Cloudinary;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import vlsu.pri117.mep.model.Comment;
 import vlsu.pri117.mep.model.News;
-import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.repository.UserRepository;
 import vlsu.pri117.mep.service.CommentService;
 import vlsu.pri117.mep.service.NewsService;
 import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.impl.AsyncService;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,14 +29,16 @@ public class NewsController {
     private final UserRepository userRepository;
 
     private final AsyncService asyncService;
+    private final CommentService commentService;
 
 
-    public NewsController(NewsService newsService, Cloudinary cloudinary, PhotoService photoService, UserRepository userRepository, CommentService commentService, UserRepository userRepository1, AsyncService asyncService) {
+    public NewsController(NewsService newsService, Cloudinary cloudinary, PhotoService photoService, UserRepository userRepository, CommentService commentService, UserRepository userRepository1, AsyncService asyncService, CommentService commentService1) {
         this.newsService = newsService;
         this.cloudinary = cloudinary;
         this.photoService = photoService;
         this.userRepository = userRepository1;
         this.asyncService = asyncService;
+        this.commentService = commentService1;
     }
 
     @GetMapping("/news")
@@ -111,6 +109,14 @@ public class NewsController {
         news.setMainPhoto(photoService.findOne(photoId).getUrl());
         newsService.save(news);
         String redirect = "/news/edit/" + newsId;
+        return "redirect:" + redirect;
+    }
+
+    @GetMapping("/news/deleteComment/{newsId}")
+    public String getDeleteComment(@PathVariable Long newsId,
+                                   @RequestParam(required = true) Long commentId){
+        commentService.delete(commentId);
+        String redirect = "/news/" + newsId;
         return "redirect:" + redirect;
     }
 }

@@ -9,6 +9,7 @@ import vlsu.pri117.mep.model.Comment;
 import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
+import vlsu.pri117.mep.service.CommentService;
 import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
 import vlsu.pri117.mep.service.UserService;
@@ -23,14 +24,16 @@ public class ProblemController {
     private final PhotoService photoService;
     private final AsyncService asyncService;
     private final UserService userService;
+    private final CommentService commentService;
 
 
 
-    public ProblemController(ProblemService problemService, PhotoService photoService, AsyncService asyncService, UserService userService) {
+    public ProblemController(ProblemService problemService, PhotoService photoService, AsyncService asyncService, UserService userService, CommentService commentService) {
         this.problemService = problemService;
         this.photoService = photoService;
         this.asyncService = asyncService;
         this.userService = userService;
+        this.commentService = commentService;
     }
 
 
@@ -108,6 +111,13 @@ public class ProblemController {
         return "problems/updateProblem";
     }
 
+    @GetMapping("/problems/deleteComment/{problemId}")
+    public String getDeleteComment(@PathVariable Long problemId,
+                                   @RequestParam(required = true) Long commentId){
+        commentService.delete(commentId);
+        String redirect = "/problems/" + problemId;
+        return "redirect:" + redirect;
+    }
 
     @PostMapping("/problems/edit/{id}")
     public RedirectView updateProblem(@ModelAttribute("problem") Problem problemNew, ModelMap modelMap){

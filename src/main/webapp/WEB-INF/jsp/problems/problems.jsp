@@ -93,25 +93,27 @@
         <c:forEach var="problem" items="${problems}">
             <div class="col">
                 <form:form method = "GET" action = "/problems/${problem.id}">
-                    <button type="submit">
-                        <table class="table" style="height: 250px">
+                    <button type="submit" style="border-radius: 10px 10px; border: #007bff; box-shadow: 0 0 5px #007bff;">
+                        <table class="table" style="height: 250px; width: 320px">
                             <tbody>
                                 <tr scope="row">
-                                    <td height="100px">
+                                    <td height="150px" colspan="2">
+                                        <div style="text-align: center;">
+                                            <img src="${problem.mainPhoto}" class="rounded"  width="auto" height="150px">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr scope="row">
+                                    <td colspan="2"style="height: 80px">
                                         <label hidden name="problemsCoords">${problem.address}</label>
                                         <label name="problemsAddress"></label>
-                                    </td>
-                                    <td rowspan="3" width="150px" height="150px">
-                                        <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">
                                     </td>
                                 </tr>
                                 <tr  scope="row">
                                     <td height="25px">
                                         <label name="problemsCategory">${problem.category.description}</label>
                                     </td>
-                                </tr>
-                                <tr  scope="row">
-                                    <td height="25px">
+                                    <td height="25px" align="right">
                                         <c:if test="${problem.status == 'RESOLVED'}">
                                             <span class="badge badge-pill badge-success" style="font-size: 15px">${problem.status.description}</span>
                                         </c:if>
@@ -127,7 +129,7 @@
                                             <fmt:parseDate value="${ problem.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
                                             <fmt:formatDate dateStyle="MEDIUM" value="${ parsedDateTime }" />
                                         </td>
-                                        <td align="right"><i class="far fa-arrow-alt-circle-up"></i></i>${problem.countOfVotes}  <i class="far fa-comment"></i> ${fn:length(problem.comments)}</td>
+                                        <td align="right"><i class="far fa-arrow-alt-circle-up"></i> ${problem.countOfVotes}    <i class="far fa-comment"></i> ${fn:length(problem.comments)}</td>
                                     </tr>
                                 </tfoot>
                         </table>

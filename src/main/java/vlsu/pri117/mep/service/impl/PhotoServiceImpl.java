@@ -32,6 +32,8 @@ public class PhotoServiceImpl implements PhotoService {
 
     private static final Logger log = LogManager.getLogger();
 
+    private final String defaultPhotoUrl = "http://res.cloudinary.com/konoha/image/upload/v1590765019/jsizyqj0yzbetg1dzyp2.png";
+
     public PhotoServiceImpl(PhotoRepository photoRepository,
                             ProblemService problemService,
                             NewsService newsService,
@@ -54,7 +56,7 @@ public class PhotoServiceImpl implements PhotoService {
         if (files == null) {
             List<Photo> defaultPhoto = new ArrayList<>();
             Photo photo = new Photo();
-            photo.setUrl("http://res.cloudinary.com/konoha/image/upload/v1590765019/jsizyqj0yzbetg1dzyp2.png");
+            photo.setUrl(defaultPhotoUrl);
             photo.setProblem(problem);
             defaultPhoto.add(save(photo));
             problem.setPhotos(defaultPhoto);
@@ -81,22 +83,29 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public void addPhotosToNews(News news, List<byte[]> files) {
         log.info("Request to add news to problem with id = " + news.getId());
-        if (files.size() == 0)
-            return;
-        List<Photo> photos = new ArrayList<Photo>();
-        try {
-            for (var file : files) {
-                Map uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
-                Photo photo = new Photo();
-                photo.setUrl((String)uploadResult.get("url"));
-                photo.setNews(news);
-                photos.add(save(photo));
+        if (files == null) {
+            List<Photo> defaultPhoto = new ArrayList<>();
+            Photo photo = new Photo();
+            photo.setUrl(defaultPhotoUrl);
+            photo.setNews(news);
+            defaultPhoto.add(save(photo));
+            news.setPhotos(defaultPhoto);
+        } else {
+            List<Photo> photos = new ArrayList<Photo>();
+            try {
+                for (var file : files) {
+                    Map uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+                    Photo photo = new Photo();
+                    photo.setUrl((String) uploadResult.get("url"));
+                    photo.setNews(news);
+                    photos.add(save(photo));
+                }
+                news.setPhotos(photos);
+            } catch (IOException e) {
+                log.error("Error to add news to problem with id = " + news.getId() +
+                        ". Message: " + e.getMessage());
+                System.out.println(e.getMessage());
             }
-            news.setPhotos(photos);
-        } catch (IOException e){
-            log.error("Error to add news to problem with id = " + news.getId() +
-                    ". Message: " +e.getMessage());
-            System.out.println(e.getMessage());
         }
         newsService.save(news);
     }

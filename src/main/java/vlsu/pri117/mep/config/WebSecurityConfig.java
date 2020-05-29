@@ -31,7 +31,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/admin/problems/**").hasAnyRole("MODERATOR","ADMIN")
                 .antMatchers("/problems/edit/**").hasAnyRole("ADMIN", "MODERATOR")
+                .antMatchers("/problems/deleteComment/**").hasAnyRole("ADMIN", "MODERATOR")
                 .antMatchers("/news/edit/**").hasAnyRole("ADMIN", "NEWS_MODERATOR", "MODERATOR")
+                .antMatchers("/news/deleteComment/**").hasAnyRole("ADMIN", "NEWS_MODERATOR", "MODERATOR")
                 //.antMatchers("/news").hasRole("USER")
                 // доступ разрешен всем пользователям
                 .antMatchers("/","/resources/**", "/news/**", "/problems/**").permitAll()

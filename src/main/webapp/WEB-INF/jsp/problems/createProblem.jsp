@@ -46,10 +46,12 @@
         </li>
         <li>
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
-                <h4><a href="/admin/problems">Администрирование <i class="fas fa-crown"></i></a></h4>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <h4><a href="/admin">Пользователи <i class="fas fa-users"></i></a></h4>
-                </sec:authorize>
+            <h4><a href="/admin/problems">Администрирование <i class="fas fa-crown"></i></a></h4>
+        </li>
+        <li>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <h4><a href="/admin">Пользователи <i class="fas fa-users"></i></a></h4>
+            </sec:authorize>
             </sec:authorize>
             </div>
         </li>
@@ -90,7 +92,7 @@
                 <tr>
                     <td align="center">
                         <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText" id="descText" path="description" type="textarea" placeholder="Описание проблемы" cssStyle="width: 90%; resize: none;"/>
-                        <div class="counter">Осталось символов: <span id="wordCounter">500</span></div>
+                        <div class="counter">Осталось символов: <span id="wordCounter">255</span></div>
                     </td>
                 </tr>
                 <tr>

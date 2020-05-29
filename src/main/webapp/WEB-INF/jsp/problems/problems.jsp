@@ -54,6 +54,8 @@
         <li>
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
                 <h4><a href="/admin/problems">Администрирование <i class="fas fa-crown"></i></a></h4>
+        </li>
+        <li>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <h4><a href="/admin">Пользователи <i class="fas fa-users"></i></a></h4>
                 </sec:authorize>
@@ -67,6 +69,16 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+<div style="text-align: center">
+<sec:authorize access="isAuthenticated()">
+    <form method="post" action="/problems/usersProblems">
+        <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
+        <button class="btn btn-primary" type="submit" style="height: 50px;">Мои проблемы</button>
+    </form>
+</sec:authorize>
+</div>
 
 <form action="/problems">
     <table style="margin: auto">
@@ -89,22 +101,15 @@
                             По кол-ву оцениваний
                         </option>
                     </select>
+                    <div style="margin: auto">${str}</div>
                 </td><td>
                     <button class="btn btn-primary" type="submit" style="height: 50px">Фильтр</button>
             </div>
-            </td>
-            <td>
-                <label>${str}</label>
             </td></tr>
         </div>
     </table>
 </form>
-<sec:authorize access="isAuthenticated()">
-    <form method="post" action="/problems/usersProblems">
-        <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
-        <button class="btn btn-primary" type="submit" style="height: 50px">Мои проблемы</button>
-    </form>
-</sec:authorize>
+
 <div class="container px-lg-5">
     <div class="row mx-lg-n3">
         <c:forEach var="problem" items="${problems}">

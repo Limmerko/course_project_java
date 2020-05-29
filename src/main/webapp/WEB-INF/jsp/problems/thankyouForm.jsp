@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
 
+    <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
 
     <title>Проблемы</title>
 
@@ -38,10 +39,12 @@
         </li>
         <li>
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
-                <h4><a href="/admin/problems">Администрирование <i class="fas fa-crown"></i></a></h4>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <h4><a href="/admin">Пользователи <i class="fas fa-users"></i></a></h4>
-                </sec:authorize>
+            <h4><a href="/admin/problems">Администрирование <i class="fas fa-crown"></i></a></h4>
+        </li>
+        <li>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <h4><a href="/admin">Пользователи <i class="fas fa-users"></i></a></h4>
+            </sec:authorize>
             </sec:authorize>
             </div>
         </li>
@@ -52,7 +55,11 @@
 <body>
 
 
-<h1>Спасибо, ваша заявка была отправлена</h1>
+<div class="ThxForm">Спасибо,
+    <p> ваша заявка была отправлена!
+    <p>
+    Наши модераторы ее проверят и скоро она появится на сайте
+</div>
 
 
 </body>

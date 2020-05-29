@@ -23,3 +23,17 @@
 .format-text-label {
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 }
+
+.ThxForm {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 200%;
+    text-align: center;
+    vertical-align: middle;
+    color: #606060;
+    top: 90%; /* Отступ в процентах от верхнего края окна */
+    left: 50%; /* Отступ в процентах от левого края окна */
+    width: 450px; /* Ширина блока */
+    height: 450px; /* Высота блока */
+    margin: auto;
+
+}

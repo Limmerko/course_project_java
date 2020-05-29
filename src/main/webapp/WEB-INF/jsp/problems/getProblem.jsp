@@ -57,10 +57,12 @@
         </li>
         <li>
             <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
-                <h4><a href="/admin/problems">Администрирование <i class="fas fa-crown"></i></a></h4>
-                <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <h4><a href="/admin">Пользователи <i class="fas fa-users"></i></a></h4>
-                </sec:authorize>
+            <h4><a href="/admin/problems">Администрирование <i class="fas fa-crown"></i></a></h4>
+        </li>
+        <li>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <h4><a href="/admin">Пользователи <i class="fas fa-users"></i></a></h4>
+            </sec:authorize>
             </sec:authorize>
             </div>
         </li>
@@ -102,8 +104,8 @@
                             </a>
                         </div>
                     </td>
-                    <td rowspan="4" border="1" style="width: 450px">
-                        <div style="height: 450px; overflow-y: auto">
+                    <td rowspan="4" border="1" style="width: 450px; max-height: 540px;">
+                        <div style="height: 450px; max-height: 530px; overflow-y: auto">
                             <c:forEach var="comment" items="${problem.comments}">
                                 <span class="badge badge-pill badge-primary">${comment.author.login}</span>
                                 <p>${comment.text}</p>

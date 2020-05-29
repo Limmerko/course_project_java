@@ -51,22 +51,29 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public void addPhotosToProblem(Problem problem, List<byte[]> files) {
         log.info("Request to add photo to problem with id = " + problem.getId());
-        if (files.size() == 0)
-            return;
-        List<Photo> photos = new ArrayList<Photo>();
-        try {
-            for (byte[] file : files) {
-                Map uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
-                Photo photo = new Photo();
-                photo.setUrl((String)uploadResult.get("url"));
-                photo.setProblem(problem);
-                photos.add(save(photo));
+        if (files == null) {
+            List<Photo> defaultPhoto = new ArrayList<>();
+            Photo photo = new Photo();
+            photo.setUrl("http://res.cloudinary.com/konoha/image/upload/v1590765019/jsizyqj0yzbetg1dzyp2.png");
+            photo.setProblem(problem);
+            defaultPhoto.add(save(photo));
+            problem.setPhotos(defaultPhoto);
+        } else {
+            List<Photo> photos = new ArrayList<Photo>();
+            try {
+                for (byte[] file : files) {
+                    Map uploadResult = cloudinary.uploader().upload(file, ObjectUtils.emptyMap());
+                    Photo photo = new Photo();
+                    photo.setUrl((String) uploadResult.get("url"));
+                    photo.setProblem(problem);
+                    photos.add(save(photo));
+                }
+                problem.setPhotos(photos);
+            } catch (IOException e) {
+                log.error("Error to add photo to problem with id = " + problem.getId() +
+                        ". Message: " + e.getMessage());
+                System.out.println(e.getMessage());
             }
-            problem.setPhotos(photos);
-        } catch (IOException e){
-            log.error("Error to add photo to problem with id = " + problem.getId()+
-                    ". Message: " +e.getMessage());
-            System.out.println(e.getMessage());
         }
         problemService.save(problem);
     }

@@ -48,6 +48,9 @@ public class AsyncService {
 
     public List<byte[]> convertFilesToBytes(MultipartFile[] files){
         log.info("Convert files to bytes");
+        if (files[0].isEmpty()) {
+            return null;
+        }
         List<byte[]> filesToUpload = new ArrayList<>();
         for (int i = 0; i < files.length; i++){
             try {

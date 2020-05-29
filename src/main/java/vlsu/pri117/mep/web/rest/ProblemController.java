@@ -78,7 +78,7 @@ public class ProblemController {
         return "problems/problems";
     }
 
-    @GetMapping("admin/problems/edit/{id}")
+    @GetMapping("/problems/edit/{id}")
     public String getProblemForUpdate(@PathVariable Long id, ModelMap modelMap){
         modelMap.addAttribute("problem", problemService.findOne(id));
         modelMap.addAttribute("categories", CategoriesProblem.values());
@@ -87,7 +87,7 @@ public class ProblemController {
     }
 
 
-    @PostMapping("admin/problems/edit/{id}")
+    @PostMapping("/problems/edit/{id}")
     public RedirectView updateProblem(@ModelAttribute("problem") Problem problemNew, ModelMap modelMap){
         Problem problemOld = problemService.findOne(problemNew.getId());
         problemOld.setAddress(problemNew.getAddress());

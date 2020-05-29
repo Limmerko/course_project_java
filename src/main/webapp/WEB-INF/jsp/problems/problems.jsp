@@ -40,15 +40,15 @@
             <div>
                 <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
                 <sec:authorize access="!isAuthenticated()">
-                <h4><a href="/login">Войти <i class="fas fa-user"></i></a></h4>
+                <h4><a href="/login">Вход <i class="fas fa-user"></i></a></h4>
             </div>
         </li>
         <li>
             <div>
-                <h4><a href="/registration">Зарегистрироваться <i class="fas fa-user-plus"></i></a></h4>
+                <h4><a href="/registration">Регистрация <i class="fas fa-user-plus"></i></a></h4>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
+                    <h4><a href="/logout">Выход <i class="fas fa-user-slash"></i></a></h4>
                 </sec:authorize>
         </li>
         <li>
@@ -106,9 +106,9 @@
     </form>
 </sec:authorize>
 <div class="container px-lg-5">
-    <div class="row mx-lg-n5">
+    <div class="row mx-lg-n3">
         <c:forEach var="problem" items="${problems}">
-            <div class="col">
+            <div class="col-6 col-md-4">
                 <form:form method = "GET" action = "/problems/${problem.id}">
                     <button type="submit" style="border-radius: 10px 10px; border: #007bff; box-shadow: 0 0 5px #007bff;">
                         <table class="table" style="height: 250px; width: 320px">
@@ -121,7 +121,7 @@
                                     </td>
                                 </tr>
                                 <tr scope="row">
-                                    <td colspan="2"style="height: 80px">
+                                    <td colspan="2" style="height: 80px">
                                         <label hidden name="problemsCoords">${problem.address}</label>
                                         <label name="problemsAddress"></label>
                                     </td>
@@ -137,6 +137,7 @@
                                         <c:if test="${problem.status == 'NOT_RESOLVED'}">
                                             <span class="badge badge-pill badge-warning" style="font-size: 15px">${problem.status.description}</span>
                                         </c:if>
+
                                     </td>
                                 </tr>
                                 </tbody>

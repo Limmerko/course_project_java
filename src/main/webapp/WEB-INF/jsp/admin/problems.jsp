@@ -48,15 +48,15 @@
             <div>
                 <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
                 <sec:authorize access="!isAuthenticated()">
-                <h4><a href="/login">Войти <i class="fas fa-user"></i></a></h4>
+                <h4><a href="/login">Вход <i class="fas fa-user"></i></a></h4>
             </div>
         </li>
         <li>
             <div>
-                <h4><a href="/registration">Зарегистрироваться <i class="fas fa-user-plus"></i></a></h4>
+                <h4><a href="/registration">Регистрация <i class="fas fa-user-plus"></i></a></h4>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
+                <h4><a href="/logout">Выход <i class="fas fa-user-slash"></i></a></h4>
                 </sec:authorize>
         </li>
         <li>
@@ -77,12 +77,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <form>
-    <table>
+    <table style="margin: auto">
         <div class="form-group">
             <div class="row-cols-sm-4">
                 <tr><td>
                     <select id="status" name="status" class="categories">
-                        <option value="">Статус проблемы:</option>
+                        <option value="">Статус проблемы</option>
                         <c:forEach items="${statuses}" var="status">
                             <option value="${status}">
                                 <c:out value="${status.description}"></c:out>
@@ -102,28 +102,41 @@
 <div class="container px-lg-5">
     <div class="row mx-lg-n5">
         <c:forEach var="problem" items="${problems}">
-            <div class="col">
+            <div class="col-6 col-md-4">
                 <form:form method = "GET" action = "/problems/edit/${problem.id}">
-                    <button type="submit">
-                        <table class="table" style="height: 250px">
+                    <button type="submit" style="border-radius: 10px 10px; border: #186246; box-shadow: 0 0 5px #186246;">
+                        <table class="table" style="height: 250px; width: 320px">
                             <tbody>
                             <tr scope="row">
-                                <td height="100px">
+                                <td height="150px" colspan="2">
+                                    <div style="text-align: center;">
+                                        <img src="${problem.mainPhoto}" class="rounded"  width="auto" height="150px">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr scope="row">
+                                <td colspan="2" style="height: 80px">
                                     <label hidden name="problemsCoords">${problem.address}</label>
                                     <label name="problemsAddress"></label>
-                                </td>
-                                <td rowspan="3" width="150px" height="150px">
-                                    <img src="${problem.mainPhoto}" class="rounded" width="150px" height="auto">
                                 </td>
                             </tr>
                             <tr  scope="row">
                                 <td height="25px">
                                     <label name="problemsCategory">${problem.category.description}</label>
                                 </td>
-                            </tr>
-                            <tr  scope="row">
-                                <td height="25px">
-                                    <label name="problemsStatus">${problem.status.description}</label>
+                                <td height="25px" align="right">
+                                    <c:if test="${problem.status == 'RESOLVED'}">
+                                        <span class="badge badge-pill badge-success" style="font-size: 15px">${problem.status.description}</span>
+                                    </c:if>
+                                    <c:if test="${problem.status == 'NOT_RESOLVED'}">
+                                        <span class="badge badge-pill badge-warning" style="font-size: 15px">${problem.status.description}</span>
+                                    </c:if>
+                                    <c:if test="${problem.status == 'UNDER_CONSIDERATION'}">
+                                        <span class="badge badge-pill badge-secondary" style="font-size: 15px">${problem.status.description}</span>
+                                    </c:if>
+                                    <c:if test="${problem.status == 'REJECTED'}">
+                                        <span class="badge badge-pill badge-danger" style="font-size: 15px">${problem.status.description}</span>
+                                    </c:if>
                                 </td>
                             </tr>
                             </tbody>

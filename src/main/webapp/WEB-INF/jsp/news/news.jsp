@@ -38,15 +38,15 @@
             <div>
                 <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
                 <sec:authorize access="!isAuthenticated()">
-                <h4><a href="/login">Войти <i class="fas fa-user"></i></a></h4>
+                <h4><a href="/login">Вход <i class="fas fa-user"></i></a></h4>
             </div>
         </li>
         <li>
             <div>
-                <h4><a href="/registration">Зарегистрироваться <i class="fas fa-user-plus"></i></a></h4>
+                <h4><a href="/registration">Регистрация <i class="fas fa-user-plus"></i></a></h4>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
+                    <h4><a href="/logout">Выход <i class="fas fa-user-slash"></i></a></h4>
                 </sec:authorize>
         </li>
         <li>
@@ -88,7 +88,7 @@
 <div class="container px-xl-6">
     <div class="row mx-lg-6" style="margin-bottom: 10px">
         <c:forEach var="oneNews" items="${news}">
-            <div class="col" >
+            <div class="col-6 col-md-4" >
                 <form:form method = "GET" action = "/news/${oneNews.id}">
                     <button type="submit" height="300px" style="border-radius: 10px 10px;">
                         <table class="table" style="height: 250px">

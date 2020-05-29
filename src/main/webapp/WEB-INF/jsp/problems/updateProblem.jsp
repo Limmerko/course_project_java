@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/word-limit.js"></script>
 
     <title>Проблемы</title>
 
@@ -31,15 +33,15 @@
             <div>
                 <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
                 <sec:authorize access="!isAuthenticated()">
-                <h4><a href="/login">Войти <i class="fas fa-user"></i></a></h4>
+                <h4><a href="/login">Вход <i class="fas fa-user"></i></a></h4>
             </div>
         </li>
         <li>
             <div>
-                <h4><a href="/registration">Зарегистрироваться <i class="fas fa-user-plus"></i></a></h4>
+                <h4><a href="/registration">Регистрация <i class="fas fa-user-plus"></i></a></h4>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
+                    <h4><a href="/logout">Выход <i class="fas fa-user-slash"></i></a></h4>
                 </sec:authorize>
         </li>
         <li>
@@ -79,7 +81,7 @@
         <tr>
             <td align="center">
                 <div id="map" style="width: 90%; height: 300px; margin: 10px auto; border: 3px solid #bfbfbf"></div>
-                <input class="form-control" type="text" id="problemInput" value="${problem.address}" readonly/>
+                <input class="form-control" type="text" id="problemInput" value="${problem.address}" disabled readonly/>
                 <form:hidden path="address" name="myInputBD" id="myInputBD" value="${problem.address}"/>
             </td>
         </tr>
@@ -95,7 +97,8 @@
         </tr>
         <tr>
             <td align="center">
-                <form:input class="form-control" rows="3"  path="description" value="${problem.description}" type="textarea" placeholder="Описание проблемы" style="height: 100px"/>
+                <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText" id="descText" path="description" value="${problem.description}" type="textarea" placeholder="Описание проблемы" cssStyle="width: 90%; resize: none;"/>
+                <div class="counter">Осталось символов: <span id="wordCounter"></span></div>
             </td>
         </tr>
         <tr>
@@ -113,15 +116,15 @@
                 <c:forEach var="photo" items="${problem.photos}">
                     <div>
                         <img src="${photo.url}" class="rounded" width="150px" height="auto">
-                        <form action="/admin/problems/edit/photo/main" method="post" style="display: inline-block;">
+                        <form action="/admin/problems/edit/photo/main" method="post" style="display: inline-block;" >
                             <input hidden value="${photo.id}" name="photoId">
                             <input hidden value="${problem.id}" name="problemId">
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-image"></i></button>
+                            <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Сделать главным"><i class="fas fa-image"></i></button>
                         </form>
                         <form action="/admin/problems/edit/photo/delete" method="post" style="display: inline-block;">
                             <input hidden value="${photo.id}" name="photoId">
                             <input hidden value="${problem.id}" name="problemId">
-                            <button type="submit" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                            <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Удалить фото"><i class="fas fa-times"></i></button>
                         </form>
                     </div>
                 </c:forEach>

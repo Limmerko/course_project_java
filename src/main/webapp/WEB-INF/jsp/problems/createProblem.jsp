@@ -4,11 +4,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <script>
-        function pageRedirect() {
-            window.location.replace("/problems");
-        }
-    </script>
     <title>Сообщить о проблеме</title>
 
     <!-- Загрузка стилей -->
@@ -17,7 +12,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/word-limit.js"></script>
+
 
     <!-- Шапка сайта -->
     <ul class="menu-main">
@@ -31,15 +33,15 @@
             <div>
                 <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
                 <sec:authorize access="!isAuthenticated()">
-                <h4><a href="/login">Войти <i class="fas fa-user"></i></a></h4>
+                <h4><a href="/login">Вход <i class="fas fa-user"></i></a></h4>
             </div>
         </li>
         <li>
             <div>
-                <h4><a href="/registration">Зарегистрироваться <i class="fas fa-user-plus"></i></a></h4>
+                <h4><a href="/registration">Регистрация <i class="fas fa-user-plus"></i></a></h4>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                    <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
+                    <h4><a href="/logout">Выход <i class="fas fa-user-slash"></i></a></h4>
                 </sec:authorize>
         </li>
         <li>
@@ -70,24 +72,25 @@
                 <tr>
                     <td align="center">
                         <div id="map" style="width: 90%; height: 300px; margin: 10px auto; border: 3px solid #bfbfbf"></div>
-                        <input type="text" id="myInput" placeholder="Укажите точку на карте" readonly/>
+                        <input class="form-control" type="text" id="myInput" placeholder="Укажите точку на карте" disabled readonly/>
                         <form:hidden path="address" name="myInputBD" id="myInputBD"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">
                         <form:select path="category" class="categories">
-                            <option selected disabled>Укажите категорию проблемы:</option>
+                            <option selected disabled>Укажите категорию проблемы</option>
                             <c:forEach var="categ" items="${categories}">
                                 <form:option value="${categ}">${categ.getDescription()}</form:option>
                             </c:forEach>
                         </form:select>
-                        <em>Выберите категорию проблемы. Это важно, поскольку проблема поступит на рассмотрение соответствующему ведомству</em>
+                        <div>Выберите категорию проблемы. Это важно, поскольку проблема поступит на рассмотрение соответствующему ведомству</div>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">
-                        <form:input class="form-control" rows="3"  path="description" type="textarea" placeholder="Описание проблемы" style="height: 100px"/>
+                        <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText" id="descText" path="description" type="textarea" placeholder="Описание проблемы" cssStyle="width: 90%; resize: none;"/>
+                        <div class="counter">Осталось символов: <span id="wordCounter">90</span></div>
                     </td>
                 </tr>
                 <tr>
@@ -98,7 +101,7 @@
                 <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
                 <tr>
                     <td>
-                        <button id="createBtn" class="glo" type="submit" onclick="pageRedirect()">Отправить</button>
+                        <button id="createBtn" class="glo" type="submit">Отправить</button>
                     </td>
                 </tr>
             </table>

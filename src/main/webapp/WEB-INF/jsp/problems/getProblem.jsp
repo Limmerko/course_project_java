@@ -103,7 +103,7 @@
                         </div>
                     </td>
                     <td rowspan="4" border="1" style="min-width: 100px; width: 450px">
-                        <div style="max-height: 300px; overflow-y: auto">
+                        <div style="max-height: 420px; overflow-y: auto">
                             <c:forEach var="comment" items="${problem.comments}">
                                 <span class="badge badge-pill badge-primary">${comment.author.login}</span>
                                 <p>${comment.text}</p>

@@ -47,16 +47,20 @@
                 <td>${user.password}</td>
                 <td>
                         <%--текущие роли--%>
-                        <c:forEach items="${user.roles}" var="role">${role.name}</c:forEach></option>
+                        <c:forEach items="${user.roles}" var="role">${role.name} </c:forEach>
                         <form action="${pageContext.request.contextPath}/admin/roles" method="post">
                             <input type="hidden" name="userId" value="${user.id}"/>
                         <select name="role">
                             <option value="">Выберите роль:</option>
                             <c:forEach var="role" items="${roles}">
-                                <option  value="${role}">${role}</option>
+                                <option  value="${role}">${role.description}</option>
                             </c:forEach>
                         </select>
                             <button type="submit" class="btn btn-primary"><i class="fas fa-pen"></i> Изменить</button>
+                        </form>
+                        <form action="${pageContext.request.contextPath}/admin/roles/clean" method="post">
+                            <input type="hidden" name="userId" value="${user.id}"/>
+                            <button type="submit" class="btn btn-warning"><i class="fas fa-eraser"></i></i> Убрать роли</button>
                         </form>
                 </td>
                 <td>

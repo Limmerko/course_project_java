@@ -55,6 +55,12 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    @PostMapping("/admin/roles/clean")
+    public String cleanRole(@RequestParam(required = true, defaultValue = "") Long userId) {
+        userService.changeRole(userId, Roles.ROLE_USER);
+        return "redirect:/admin";
+    }
+
     @GetMapping("/admin/problems")
     public String getProblems(@RequestParam(value = "status",defaultValue = "", required = false) String status, ModelMap modelMap){
         List<StatusProblem> statusesProblem = new ArrayList<StatusProblem>

@@ -36,7 +36,7 @@ public class ProblemController {
 
 
     @PostMapping("/problems/new")
-    public RedirectView createProblem(@ModelAttribute("problem") Problem problem,
+    public String createProblem(@ModelAttribute("problem") Problem problem,
                                       @RequestParam(value = "authorLogin", defaultValue ="", required = false) String login){
         if(!login.isEmpty()){
             var user = userService.findByLogin(login);
@@ -44,7 +44,7 @@ public class ProblemController {
         }
         List<byte[]> filesToUpload = asyncService.convertFilesToBytes(problem.getFiles());
         asyncService.saveProblemAsync(problem, filesToUpload);
-        return new RedirectView( "/problems");
+        return "/problems/thankyouForm";
     }
 
     @GetMapping("/problems/new")

@@ -95,9 +95,7 @@
                         <form:input class="form-control" path="files" type="file" maxlength="5" multiple="multiple" accept="image/*,image/jpeg" />
                     </td>
                 </tr>
-                <sec:authorize access="isAuthenticated()">
-                    <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
-                </sec:authorize>
+                <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
                 <tr>
                     <td>
                         <button id="createBtn" class="glo" type="submit" onclick="pageRedirect()">Отправить</button>

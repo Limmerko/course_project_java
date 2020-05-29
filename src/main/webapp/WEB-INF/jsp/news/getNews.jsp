@@ -135,7 +135,7 @@
                                             <form:input hidden="true" class="form-control" id="news" path="news" type="text" value="${news.id}"/>
                                             <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
                                             <div class="input-group">
-                                            <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
+                                            <form:input class="form-control" id="comment" path="text" maxlength="100" type="text" placeholder="Оставить комментарий"/>
                                                 <button class="btn btn-outline-primary" type="submit" title="Оставить комментарий">
                                                     <i class="far fa-paper-plane"></i>
                                                 </button>

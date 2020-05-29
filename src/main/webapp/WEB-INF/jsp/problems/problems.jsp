@@ -92,9 +92,9 @@
     </table>
 </form>
 <div class="container px-lg-5">
-    <div class="row mx-lg-n5">
+    <div class="row mx-lg-n3">
         <c:forEach var="problem" items="${problems}">
-            <div class="col">
+            <div class="col-6 col-md-4">
                 <form:form method = "GET" action = "/problems/${problem.id}">
                     <button type="submit" style="border-radius: 10px 10px; border: #007bff; box-shadow: 0 0 5px #007bff;">
                         <table class="table" style="height: 250px; width: 320px">

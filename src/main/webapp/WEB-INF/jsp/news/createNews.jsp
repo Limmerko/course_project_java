@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/word-limit.js"></script>
 
     <ul class="menu-main">
         <li class="nazvanie"><a href="/">KonohaLIVE</a></li>
@@ -61,7 +63,6 @@
 
 <span class="format-text" align="center" style="color: #606060;"><h3>Создать новость</h3></span>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -71,12 +72,15 @@
         <form:form method="post" action="/news/new" modelAttribute="news" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Заголовок</label>
-                <form:input class="form-control" id="title" path="title" type="text" placeholder="Заголовок"/>
+                <form:input class="form-control" id="title" path="title" maxlength="100" type="text" placeholder="Заголовок"/>
             </div>
 
             <div class="form-group">
                 <label for="description">Описание</label>
-             <form:input class="form-control" id="description" path="description" type="text" placeholder="Описание"/>
+                <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText"
+                               id="descText" path="description" type="textarea" placeholder="Описание проблемы"
+                               cssStyle="width: 90%; resize: none;"/>
+                <div class="counter">Осталось символов: <span id="wordCounter">255</span></div>
             </div>
 
             <div class="form-group">

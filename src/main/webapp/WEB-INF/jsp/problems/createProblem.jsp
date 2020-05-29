@@ -89,7 +89,9 @@
                 </tr>
                 <tr>
                     <td align="center">
-                        <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText" id="descText" path="description" type="textarea" placeholder="Описание проблемы" cssStyle="width: 90%; resize: none;"/>
+                        <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText"
+                                       id="descText" path="description" type="textarea" placeholder="Описание проблемы"
+                                       cssStyle="width: 90%; resize: none;"/>
                         <div class="counter">Осталось символов: <span id="wordCounter">90</span></div>
                     </td>
                 </tr>

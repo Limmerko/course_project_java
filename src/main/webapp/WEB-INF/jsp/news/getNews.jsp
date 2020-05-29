@@ -127,10 +127,10 @@
                                     <fmt:parseDate value="${ news.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
                                     <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" />
 
-                                    <sec:authorize access="hasRole('ROLE_NEWS_MODERATOR')">
-                                        <div align="right">
-                                            <form action="/news/edit/${news.id}" method="get" style="display: inline-block;">
-                                                <button class="btn btn-primary" type="submit" >Изменить новость</button>
+                                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR', 'ROLE_NEWS_MODERATOR')">
+                                        <div style="display: inline-block; float: right;">
+                                            <form action="/news/edit/${news.id}" method="get">
+                                                <button class="btn btn-primary" type="submit"><i class="fas fa-pen"></i> Изменить</button>
                                             </form>
                                         </div>
                                     </sec:authorize>
@@ -141,7 +141,7 @@
                                             <form:input hidden="true" class="form-control" id="news" path="news" type="text" value="${news.id}"/>
                                             <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
                                             <div class="input-group">
-                                            <form:input class="form-control" id="comment" path="text" type="text" placeholder="Оставить комментарий"/>
+                                            <form:input class="form-control" id="comment" path="text" maxlength="100" type="text" placeholder="Оставить комментарий"/>
                                                 <button class="btn btn-outline-primary" type="submit" title="Оставить комментарий">
                                                     <i class="far fa-paper-plane"></i>
                                                 </button>

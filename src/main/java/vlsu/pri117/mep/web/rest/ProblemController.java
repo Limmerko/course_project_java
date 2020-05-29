@@ -95,7 +95,7 @@ public class ProblemController {
         return "problems/problems";
     }
 
-    @PostMapping("/problems/usersProblems")
+    @PostMapping("/problems")
     public String getUsersProblems(@RequestParam(value = "authorLogin", required = true) String login,
                                    ModelMap modelMap){
         var user = userService.findByLogin(login);

@@ -100,7 +100,7 @@
     </table>
 </form>
 <sec:authorize access="isAuthenticated()">
-    <form method="post" action="/problems/usersProblems">
+    <form method="post" action="/problems">
         <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
         <button class="btn btn-primary" type="submit" style="height: 50px">Мои проблемы</button>
     </form>

@@ -137,7 +137,12 @@
                                         <c:if test="${problem.status == 'NOT_RESOLVED'}">
                                             <span class="badge badge-pill badge-warning" style="font-size: 15px">${problem.status.description}</span>
                                         </c:if>
-
+                                        <c:if test="${problem.status == 'UNDER_CONSIDERATION'}">
+                                            <span class="badge badge-pill badge-secondary" style="font-size: 15px">${problem.status.description}</span>
+                                        </c:if>
+                                        <c:if test="${problem.status == 'REJECTED'}">
+                                            <span class="badge badge-pill badge-danger" style="font-size: 15px">${problem.status.description}</span>
+                                        </c:if>
                                     </td>
                                 </tr>
                                 </tbody>

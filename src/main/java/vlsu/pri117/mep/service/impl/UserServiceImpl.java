@@ -50,6 +50,9 @@ public class UserServiceImpl implements UserService {
     public User changeRole(Long userId, Roles role) {
         log.info("Request to change role user with id = " + userId + " and role = " + role);
         User user = userRepository.findById(userId).get();
+        if (role == Roles.ROLE_USER) {
+            user.getRoles().clear();
+        }
         user.getRoles().add(new Role((long)role.getId(), role.name()));
         return userRepository.save(user);
     }

@@ -88,7 +88,7 @@
 <div class="container px-xl-6">
     <div class="row mx-lg-6" style="margin-bottom: 10px">
         <c:forEach var="oneNews" items="${news}">
-            <div class="col" >
+            <div class="col-6 col-md-4" >
                 <form:form method = "GET" action = "/news/${oneNews.id}">
                     <button type="submit" height="300px" style="border-radius: 10px 10px;">
                         <table class="table" style="height: 250px">

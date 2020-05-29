@@ -107,7 +107,7 @@
                                     </td>
                                 </tr>
                                 <tr scope="row">
-                                    <td colspan="2"style="height: 80px">
+                                    <td colspan="2" style="height: 80px">
                                         <label hidden name="problemsCoords">${problem.address}</label>
                                         <label name="problemsAddress"></label>
                                     </td>
@@ -123,6 +123,7 @@
                                         <c:if test="${problem.status == 'NOT_RESOLVED'}">
                                             <span class="badge badge-pill badge-warning" style="font-size: 15px">${problem.status.description}</span>
                                         </c:if>
+
                                     </td>
                                 </tr>
                                 </tbody>

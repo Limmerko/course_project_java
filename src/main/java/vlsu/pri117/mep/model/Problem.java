@@ -16,7 +16,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "problems")
-public class Problem {
+public class Problem implements Comparable<Problem>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "problem_id")
@@ -221,5 +221,12 @@ public class Problem {
 
     public void setVotedUsers(List<User> votedUsers) {
         this.votedUsers = votedUsers;
+    }
+
+    @Override
+    public int compareTo(Problem problem) {
+        if (getCountOfVotes() == null || problem.getCountOfVotes() == null)
+            return 0;
+        return getCountOfVotes().compareTo(problem.getCountOfVotes());
     }
 }

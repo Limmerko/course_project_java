@@ -16,9 +16,7 @@ import vlsu.pri117.mep.service.ProblemService;
 import vlsu.pri117.mep.service.impl.AsyncService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ProblemController {
@@ -62,7 +60,9 @@ public class ProblemController {
     }
 
     @GetMapping("/problems")
-    public String getProblems(@RequestParam(value = "category",defaultValue = "", required = false) String category, ModelMap modelMap){
+    public String getProblems(@RequestParam(defaultValue = "", required = false) String category,
+                              @RequestParam(defaultValue="false",required = false) Boolean votesFilter,
+                              ModelMap modelMap){
         List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
                 (Arrays.asList(CategoriesProblem.values()));
 
@@ -71,10 +71,19 @@ public class ProblemController {
             CategoriesProblem cat = CategoriesProblem.valueOf(category);
             String str = "Отображаются проблемы в категории: " + cat.getDescription();
             modelMap.addAttribute("str", str);
-            modelMap.addAttribute("problems", problemService.findByCategoryAndStatusNotAndStatusNot(cat, StatusProblem.UNDER_CONSIDERATION, StatusProblem.REJECTED));
+            var problems =problemService.findByCategoryAndStatusNotAndStatusNot(cat,
+                    StatusProblem.UNDER_CONSIDERATION,
+                    StatusProblem.REJECTED);
+            if (votesFilter)
+                Collections.sort(problems, Collections.reverseOrder());
+            modelMap.addAttribute("problems", problems);
         }
-        else
-            modelMap.addAttribute("problems", problemService.findProblemsByStatusOrStatus(StatusProblem.NOT_RESOLVED, StatusProblem.RESOLVED));
+        else{
+            var problems = problemService.findProblemsByStatusOrStatus(StatusProblem.NOT_RESOLVED, StatusProblem.RESOLVED);
+            if (votesFilter)
+                Collections.sort(problems, Collections.reverseOrder());
+            modelMap.addAttribute("problems", problems);
+        }
         return "problems/problems";
     }
 

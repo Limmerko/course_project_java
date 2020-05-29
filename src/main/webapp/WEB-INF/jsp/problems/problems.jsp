@@ -81,6 +81,14 @@
                             </option>
                         </c:forEach>
                     </select>
+                    <select id="votesFilter" name="votesFilter" class="categories">
+                        <option value="false">
+                            По дате
+                        </option>
+                        <option value="true">
+                            По кол-ву оцениваний
+                        </option>
+                    </select>
                 </td><td>
                     <button class="btn btn-primary" type="submit" style="height: 50px">Фильтр</button>
             </div>

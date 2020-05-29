@@ -18,6 +18,7 @@ import vlsu.pri117.mep.service.impl.AsyncService;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -44,7 +45,9 @@ public class NewsController {
 
     @GetMapping("/news")
     public String getAllNews(ModelMap modelMap) {
-        modelMap.addAttribute("news", newsService.findAll());
+        var news = newsService.findAll();
+        Collections.sort(news, Collections.reverseOrder());
+        modelMap.addAttribute("news", news);
         return "news/news";
     }
 

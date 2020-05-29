@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "news")
-public class News {
+public class News implements Comparable<News> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -145,5 +145,10 @@ public class News {
                 ", creationDate=" + creationDate +
                 ", photos=" + photos +
                 '}';
+    }
+
+    @Override
+    public int compareTo(News news) {
+        return getCreationDate().compareTo(news.getCreationDate());
     }
 }

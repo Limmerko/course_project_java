@@ -121,10 +121,10 @@
                                     <fmt:parseDate value="${ news.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
                                     <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }" />
 
-                                    <sec:authorize access="hasRole('ROLE_NEWS_MODERATOR')">
-                                        <div align="right">
-                                            <form action="/news/edit/${news.id}" method="get" style="display: inline-block;">
-                                                <button class="btn btn-primary" type="submit" >Изменить новость</button>
+                                    <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR', 'ROLE_NEWS_MODERATOR')">
+                                        <div style="display: inline-block; float: right;">
+                                            <form action="/news/edit/${news.id}" method="get">
+                                                <button class="btn btn-primary" type="submit"><i class="fas fa-pen"></i> Изменить</button>
                                             </form>
                                         </div>
                                     </sec:authorize>

@@ -58,7 +58,6 @@
     </ul>
 </head>
 <body>
-
 <c:forEach items="${problems}" var="problem">
     <input hidden type="text" name="problemsCoords" value="${problem.address}"/>
     <input hidden type="text" name="problemsId" value="${problem.id}"/>

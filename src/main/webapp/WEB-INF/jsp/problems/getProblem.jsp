@@ -77,10 +77,10 @@
 <div class="container px-xl-2">
     <div class="row mx-lg-n5">
         <div class="col">
-            <table class="table table-striped table-bordered" style="min-width: 600px; width: 950px; margin: auto">
+            <table class="table table-striped table-bordered" style="width: 950px; margin: auto">
                 <tbody>
                 <tr scope="row">
-                    <td scope="col" style="min-width: 400px; width: 500px">
+                    <td scope="col" style="width: 500px">
                         <div id="carouselPhotos" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner text-center" style="width: 500px; height: 300px; text-align: center">
                                 <div class="carousel-item active text-center" style="align-content: center;">
@@ -102,8 +102,8 @@
                             </a>
                         </div>
                     </td>
-                    <td rowspan="4" border="1" style="min-width: 100px; width: 450px">
-                        <div style="max-height: 300px; overflow-y: auto">
+                    <td rowspan="4" border="1" style="width: 450px">
+                        <div style="height: 450px; overflow-y: auto">
                             <c:forEach var="comment" items="${problem.comments}">
                                 <span class="badge badge-pill badge-primary">${comment.author.login}</span>
                                 <p>${comment.text}</p>
@@ -112,10 +112,14 @@
                     </td>
                 </tr>
                 <tr scope="row">
-                    <td>${problem.description}</td>
+                    <td>
+                        <div lang="ru" style="word-break: break-all; hyphens: auto; word-wrap: break-word;">${problem.description} </div>
+                    </td>
                 </tr>
                 <tr scope="row">
-                    <td>${problem.category.description}</td>
+                    <td>
+                        ${problem.category.description}
+                    </td>
                 </tr>
                 <tr scope="row">
                     <td>${problem.status.description}</td>
@@ -156,7 +160,7 @@
                         </sec:authorize>
                         <sec:authorize access="!isAuthenticated()">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Авторизуйтесь"/>
+                                <input class="form-control" type="text" disabled placeholder="Авторизуйтесь"/>
                                 <button class="btn btn-outline-primary" disabled type="submit" title="Оставить комментарий">
                                     <i class="far fa-paper-plane"></i>
                                 </button>

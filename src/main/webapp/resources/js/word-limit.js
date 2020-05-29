@@ -1,5 +1,5 @@
 function WordLimit(){
-    var maxCount = 90;
+    var maxCount = 500;
 
     $('#wordCounter').text(maxCount);
 

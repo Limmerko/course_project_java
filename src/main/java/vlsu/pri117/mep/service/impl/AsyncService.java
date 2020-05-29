@@ -1,5 +1,7 @@
 package vlsu.pri117.mep.service.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,8 +21,12 @@ import java.util.List;
 public class AsyncService {
 
     private final ProblemService problemService;
+
     private final PhotoService photoService;
+
     private final NewsService newsService;
+
+    private static final Logger log = LogManager.getLogger();
 
     public AsyncService(ProblemService problemService, PhotoService photoService, NewsService newsService) {
         this.problemService = problemService;
@@ -30,7 +36,6 @@ public class AsyncService {
 
     @Async
     public void saveProblemAsync(Problem problem, List<byte[]> filesToUpload) {
-
         problem = problemService.save(problem);
         photoService.addPhotosToProblem(problem, filesToUpload);
     }
@@ -42,6 +47,7 @@ public class AsyncService {
     }
 
     public List<byte[]> convertFilesToBytes(MultipartFile[] files){
+        log.info("Convert files to bytes");
         List<byte[]> filesToUpload = new ArrayList<>();
         for (int i = 0; i < files.length; i++){
             try {

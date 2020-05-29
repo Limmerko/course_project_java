@@ -32,7 +32,7 @@ function init() {
                                 '<div><p>Статус: '+problemsStatus[i].value+'</p></div>' +
                                 '<div><p>Категория: '+problemsCategory[i].value+'</p></div>' +
                                 '<div><p>Отправлено: '+now.toLocaleDateString("ru-RU", options)+'</p></div>' +
-                                '<div><p><a href="'+details+'">Подробнее</a></p></div>'
+                                '<div style="margin-top: 5px; text-align:right"><strong><p><a href="'+details+'">Подробнее</a></p></strong></div>'
             }
         });
         myMap.geoObjects.add(myGeoObject);

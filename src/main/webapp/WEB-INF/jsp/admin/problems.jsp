@@ -48,15 +48,15 @@
             <div>
                 <span class="format-text-username" style="color: #606060;"><h4>${pageContext.request.userPrincipal.name}</h4></span>
                 <sec:authorize access="!isAuthenticated()">
-                <h4><a href="/login">Войти <i class="fas fa-user"></i></a></h4>
+                <h4><a href="/login">Вход <i class="fas fa-user"></i></a></h4>
             </div>
         </li>
         <li>
             <div>
-                <h4><a href="/registration">Зарегистрироваться <i class="fas fa-user-plus"></i></a></h4>
+                <h4><a href="/registration">Регистрация <i class="fas fa-user-plus"></i></a></h4>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-                <h4><a href="/logout">Выйти <i class="fas fa-user-slash"></i></a></h4>
+                <h4><a href="/logout">Выход <i class="fas fa-user-slash"></i></a></h4>
                 </sec:authorize>
         </li>
         <li>
@@ -74,12 +74,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <form>
-    <table>
+    <table style="margin: auto">
         <div class="form-group">
             <div class="row-cols-sm-4">
                 <tr><td>
                     <select id="status" name="status" class="categories">
-                        <option value="">Статус проблемы:</option>
+                        <option value="">Статус проблемы</option>
                         <c:forEach items="${statuses}" var="status">
                             <option value="${status}">
                                 <c:out value="${status.description}"></c:out>

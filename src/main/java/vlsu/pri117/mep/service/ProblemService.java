@@ -1,6 +1,7 @@
 package vlsu.pri117.mep.service;
 
 import vlsu.pri117.mep.model.Problem;
+import vlsu.pri117.mep.model.User;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 
@@ -22,4 +23,6 @@ public interface ProblemService {
     List<Problem> findByStatus(StatusProblem status);
 
     List<Problem> findProblemsByStatusOrStatus(StatusProblem status, StatusProblem status1);
+
+    List<Problem> findProblemsByAuthor(User user);
 }

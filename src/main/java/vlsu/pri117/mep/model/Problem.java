@@ -27,6 +27,7 @@ public class Problem implements Comparable<Problem>{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private LocalDateTime resolveDate;
 
+    @NotBlank
     private String description;
 
     private String mainPhoto;

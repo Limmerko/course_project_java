@@ -91,11 +91,13 @@
                     </td>
                 </tr>
                 <tr>
-
                     <td align="center" style=" height: 50px;">
-                        <form:input class="form-control" path="files" type="file" multiple="multiple" accept="image/*,image/jpeg" />
+                        <form:input class="form-control" path="files" type="file" maxlength="5" multiple="multiple" accept="image/*,image/jpeg" />
                     </td>
                 </tr>
+                <sec:authorize access="isAuthenticated()">
+                    <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
+                </sec:authorize>
                 <tr>
                     <td>
                         <button id="createBtn" class="glo" type="submit" onclick="pageRedirect()">Отправить</button>

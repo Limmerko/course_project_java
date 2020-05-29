@@ -3,19 +3,17 @@ package vlsu.pri117.mep.web.rest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import vlsu.pri117.mep.model.Comment;
-import vlsu.pri117.mep.model.Photo;
 import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.service.PhotoService;
 import vlsu.pri117.mep.service.ProblemService;
+import vlsu.pri117.mep.service.UserService;
 import vlsu.pri117.mep.service.impl.AsyncService;
 
-import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -24,19 +22,26 @@ public class ProblemController {
     private final ProblemService problemService;
     private final PhotoService photoService;
     private final AsyncService asyncService;
+    private final UserService userService;
 
 
 
-    public ProblemController(ProblemService problemService, PhotoService photoService, AsyncService asyncService) {
+    public ProblemController(ProblemService problemService, PhotoService photoService, AsyncService asyncService, UserService userService) {
         this.problemService = problemService;
         this.photoService = photoService;
         this.asyncService = asyncService;
+        this.userService = userService;
     }
 
 
 
     @PostMapping("/problems/new")
-    public RedirectView createProblem(@ModelAttribute("problem") Problem problem){
+    public RedirectView createProblem(@ModelAttribute("problem") Problem problem,
+                                      @RequestParam(value = "authorLogin", defaultValue ="", required = false) String login){
+        if(!login.isEmpty()){
+            var user = userService.findByLogin(login);
+            problem.setAuthor(user);
+        }
         List<byte[]> filesToUpload = asyncService.convertFilesToBytes(problem.getFiles());
         asyncService.saveProblemAsync(problem, filesToUpload);
         return new RedirectView( "/problems");
@@ -84,6 +89,14 @@ public class ProblemController {
                 Collections.sort(problems, Collections.reverseOrder());
             modelMap.addAttribute("problems", problems);
         }
+        return "problems/problems";
+    }
+
+    @PostMapping("/problems/usersProblems")
+    public String getUsersProblems(@RequestParam(value = "authorLogin", required = true) String login,
+                                   ModelMap modelMap){
+        var user = userService.findByLogin(login);
+        modelMap.addAttribute("problems", problemService.findProblemsByAuthor(user));
         return "problems/problems";
     }
 

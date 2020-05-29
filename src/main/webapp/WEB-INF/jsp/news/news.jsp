@@ -50,9 +50,12 @@
                 </sec:authorize>
         </li>
         <li>
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
+                <h4><a href="/admin/problems">Администрирование <i class="fas fa-crown"></i></a></h4>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <h4><a href="/admin">Администрирование <i class="fas fa-crown"></i></a></h4>
+                    <h4><a href="/admin">Пользователи <i class="fas fa-users"></i></a></h4>
                 </sec:authorize>
+            </sec:authorize>
             </div>
         </li>
     </ul>
@@ -66,16 +69,18 @@
 
 
 <div class="col text-center">
-<p class="h4">
-<form action="/news/new ">
-    <button class="btn btn-outline-primary">
-        <i class="fas fa-plus"></i>
-        <span>
-          Создать новость
-        </span>
-    </button>
-</form>
-</p>
+<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR', 'ROLE_NEWS_MODERATOR')">
+    <p class="h4">
+        <form action="/news/new ">
+            <button class="btn btn-outline-primary">
+                <i class="fas fa-plus"></i>
+                <span>
+                  Создать новость
+                </span>
+            </button>
+        </form>
+    </p>
+</sec:authorize>
 </div>
 
 

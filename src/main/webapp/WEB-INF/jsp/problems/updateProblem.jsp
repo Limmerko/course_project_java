@@ -140,4 +140,7 @@
     </table>
 </div>
 </form:form>
+<footer class="footerFormMain">
+    <jsp:include page="${pageContext.request.contextPath}\..\footer.jsp"/>
+</footer>
 </html>

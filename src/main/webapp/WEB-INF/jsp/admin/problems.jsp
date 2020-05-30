@@ -161,4 +161,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/getAddressFromCoords.js"></script>
 
 </body>
+<footer class="footerForm">
+    <jsp:include page="${pageContext.request.contextPath}\..\footer.jsp"/>
+</footer>
 </html>

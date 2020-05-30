@@ -24,7 +24,7 @@
     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 }
 
-.ThxForm {
+.thxForm {
     font-family: 'Ubuntu Condensed', sans-serif;
     font-size: 200%;
     text-align: center;
@@ -35,5 +35,28 @@
     width: 450px; /* Ширина блока */
     height: 450px; /* Высота блока */
     margin: auto;
+}
 
+.footerForm {
+    padding: 1rem;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 120%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #606060;
+    height: 50px;
+}
+
+.footerFormMain {
+    padding: 1rem;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 120%;
+    text-align: center;
+    margin: auto;
+    bottom: 0;
+    width: 100%;
+    color: #606060;
+    height: 50px;
 }

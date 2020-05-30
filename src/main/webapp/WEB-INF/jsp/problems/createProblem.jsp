@@ -91,13 +91,16 @@
                 </tr>
                 <tr>
                     <td align="center">
-                        <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText" id="descText" path="description" type="textarea" placeholder="Описание проблемы" cssStyle="width: 90%; resize: none;"/>
+                        <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText" id="descText"
+                                       path="description" type="textarea" placeholder="Описание проблемы"
+                                       cssStyle="width: 90%; resize: none;"/>
                         <div class="counter">Осталось символов: <span id="wordCounter">255</span></div>
                     </td>
                 </tr>
                 <tr>
                     <td align="center" style=" height: 50px;">
-                        <form:input class="form-control" path="files" type="file" maxlength="5" multiple="multiple" accept="image/*,image/jpeg" />
+                        <form:input class="form-control" path="files" maxlength="5" type="file"
+                                    multiple="multiple" accept="image/*,image/jpeg" style="height: 45px;"/>
                     </td>
                 </tr>
                 <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>

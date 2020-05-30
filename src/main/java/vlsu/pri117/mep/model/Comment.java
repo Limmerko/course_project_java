@@ -1,6 +1,7 @@
 package vlsu.pri117.mep.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,6 +13,7 @@ public class Comment {
     @JoinColumn(name = "comment_id")
     private Long id;
 
+    @Size(max = 100)
     private String text;
 
     @ManyToOne

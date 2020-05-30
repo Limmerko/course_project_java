@@ -53,11 +53,14 @@
 <body>
 
 
-<div class="ThxForm">Спасибо,
+<div class="thxForm">Спасибо,
     <br> ваша заявка была отправлена!
     <p> Наши модераторы ее проверят и скоро она появится на сайте.
 </div>
 
 
 </body>
+<footer class="footerForm">
+    <jsp:include page="${pageContext.request.contextPath}\..\footer.jsp"/>
+</footer>
 </html>

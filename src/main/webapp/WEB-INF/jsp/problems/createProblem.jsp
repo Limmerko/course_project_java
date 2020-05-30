@@ -113,4 +113,7 @@
         </div>
     </form:form>
 </body>
+<footer class="footerFormMain">
+    <jsp:include page="${pageContext.request.contextPath}\..\footer.jsp"/>
+</footer>
 </html>

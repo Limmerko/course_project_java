@@ -167,4 +167,7 @@
     </div>
 </div>
 </body>
+<footer class="footerForm">
+    <jsp:include page="${pageContext.request.contextPath}\..\footer.jsp"/>
+</footer>
 </html>

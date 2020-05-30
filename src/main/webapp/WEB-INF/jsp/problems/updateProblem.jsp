@@ -118,12 +118,12 @@
                 <c:forEach var="photo" items="${problem.photos}">
                     <div>
                         <img src="${photo.url}" class="rounded" width="150px" height="auto">
-                        <form action="/admin/problems/edit/photo/main" method="post" style="display: inline-block;" >
+                        <form action="/problems/edit/photo/main" method="post" style="display: inline-block;" >
                             <input hidden value="${photo.id}" name="photoId">
                             <input hidden value="${problem.id}" name="problemId">
                             <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Сделать главным"><i class="fas fa-image"></i></button>
                         </form>
-                        <form action="/admin/problems/edit/photo/delete" method="post" style="display: inline-block;">
+                        <form action="/problems/edit/photo/delete" method="post" style="display: inline-block;">
                             <input hidden value="${photo.id}" name="photoId">
                             <input hidden value="${problem.id}" name="problemId">
                             <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Удалить фото"><i class="fas fa-times"></i></button>

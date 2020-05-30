@@ -87,7 +87,7 @@
 
             <div class="form-group">
                 <label for="photos">Фотографии</label>
-             <form:input class="form-control" id="photos" path="files" type="file" multiple="multiple" accept="image/*,image/jpeg"/>
+             <form:input class="form-control" id="photos" path="files" type="file" multiple="multiple" accept="image/*,image/jpeg" style="height: 45px;"/>
             </div>
              <button class="glo" data-toggle="tooltip"
                      data-placement="top" title="Создать новость" type="submit">Отправить</button>

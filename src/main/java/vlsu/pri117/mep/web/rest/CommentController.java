@@ -24,6 +24,8 @@ public class CommentController {
     @PostMapping("/news/comments/new")
     public RedirectView createCommentNews(@ModelAttribute("comment") Comment comment,
                                           @RequestParam(value = "authorLogin",defaultValue = "", required = false) String authorLogin) {
+        if (comment.getText().isEmpty())
+            return new RedirectView( "/news/" + comment.getNews().getId());
         comment.setAuthor(userService.findByLogin(authorLogin));
         commentService.save(comment);
         return new RedirectView( "/news/" + comment.getNews().getId());
@@ -32,6 +34,8 @@ public class CommentController {
     @PostMapping("/problems/comments/new")
     public RedirectView createCommentProblems(@ModelAttribute("comment") Comment comment,
                                               @RequestParam(value = "authorLogin",defaultValue = "", required = false) String authorLogin) {
+        if (comment.getText().isEmpty())
+            return new RedirectView( "/problems/" + comment.getProblem().getId());
         comment.setAuthor(userService.findByLogin(authorLogin));
         commentService.save(comment);
         return new RedirectView( "/problems/" + comment.getProblem().getId());

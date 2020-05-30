@@ -40,7 +40,8 @@ public class ProblemController {
 
     @PostMapping("/problems/new")
     public String createProblem(@ModelAttribute("problem") Problem problem,
-                                      @RequestParam(value = "authorLogin", defaultValue ="", required = false) String login){
+                                @RequestParam(value = "authorLogin", defaultValue ="", required = false) String login,
+                                ModelMap modelMap){
         if(!login.isEmpty()){
             var user = userService.findByLogin(login);
             problem.setAuthor(user);

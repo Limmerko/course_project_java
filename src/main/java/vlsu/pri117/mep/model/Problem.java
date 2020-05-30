@@ -8,6 +8,7 @@ import vlsu.pri117.mep.model.enums.Roles;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
@@ -27,6 +28,7 @@ public class Problem implements Comparable<Problem>{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private LocalDateTime resolveDate;
 
+    @Size(max = 255)
     private String description;
 
     private String mainPhoto;

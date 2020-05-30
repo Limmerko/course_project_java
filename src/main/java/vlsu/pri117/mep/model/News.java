@@ -26,8 +26,6 @@ public class News implements Comparable<News> {
     @Size(max = 255)
     private String description;
 
-    private Long countOfVotes;
-
     @Transient
     private MultipartFile[] files;
 
@@ -66,14 +64,6 @@ public class News implements Comparable<News> {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Long getCountOfVotes() {
-        return countOfVotes;
-    }
-
-    public void setCountOfVotes(Long countOfVotes) {
-        this.countOfVotes = countOfVotes;
     }
 
     public List<Comment> getComments() {
@@ -125,7 +115,6 @@ public class News implements Comparable<News> {
                 Objects.equals(title, news.title) &&
                 Objects.equals(mainPhoto, news.mainPhoto) &&
                 Objects.equals(description, news.description) &&
-                Objects.equals(countOfVotes, news.countOfVotes) &&
                 Objects.equals(comments, news.comments) &&
                 Objects.equals(creationDate, news.creationDate) &&
                 Objects.equals(photos, news.photos);
@@ -133,7 +122,7 @@ public class News implements Comparable<News> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, mainPhoto, description, countOfVotes, comments, creationDate, photos);
+        return Objects.hash(id, title, mainPhoto, description, comments, creationDate, photos);
     }
 
     @Override
@@ -143,7 +132,6 @@ public class News implements Comparable<News> {
                 ", title='" + title + '\'' +
                 ", mainPhoto='" + mainPhoto + '\'' +
                 ", description='" + description + '\'' +
-                ", countOfVotes=" + countOfVotes +
                 ", comments=" + comments +
                 ", creationDate=" + creationDate +
                 ", photos=" + photos +

@@ -70,42 +70,49 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-
-<div style="text-align: center">
-<sec:authorize access="isAuthenticated()">
-    <form method="post" action="/problems">
-        <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
-        <button class="btn btn-primary" type="submit" style="height: 50px;">Мои проблемы</button>
-    </form>
-</sec:authorize>
-</div>
-
 <form action="/problems">
     <table style="margin: auto">
         <div class="form-group">
             <div class="row-cols-sm-4">
-                <tr><td>
-                    <select id="category" name="category" class="categories">
-                        <option value="">Укажите категорию проблемы</option>
-                        <c:forEach items="${categories}" var="category">
-                            <option value="${category}">
-                                <c:out value="${category.description}"></c:out>
-                            </option>
-                        </c:forEach>
-                    </select>
-                    <select id="votesFilter" name="votesFilter" class="categories">
-                        <option value="false">
-                            По дате
-                        </option>
-                        <option value="true">
-                            По кол-ву оцениваний
-                        </option>
-                    </select>
-                    <div style="margin: auto">${str}</div>
-                </td><td>
-                    <button class="btn btn-primary" type="submit" style="height: 50px">Фильтр</button>
+                <tr>
+                    <td>
+                        <sec:authorize access="isAuthenticated()">
+                            <form method="post" action="/problems">
+                                <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
+                                <button class="btn btn-primary" type="submit" style="height: 50px;">Мои проблемы</button>
+                            </form>
+                        </sec:authorize>
+                    </td>
+                        <td>
+                            <select id="category" name="category" class="categories">
+                                <option value="">Укажите категорию проблемы</option>
+                                <c:forEach items="${categories}" var="category">
+                                    <option value="${category}">
+                                        <c:out value="${category.description}"></c:out>
+                                    </option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="votesFilter" name="votesFilter" class="categories">
+                                <option value="false">
+                                    По дате
+                                </option>
+                                <option value="true">
+                                    По кол-ву оцениваний
+                                </option>
+                            </select>
+                        </td>
+                    <td>
+                        <button class="btn btn-primary" type="submit" style="height: 50px; margin: 20px">Фильтр</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center">
+                        <div style="margin: auto; height: 40px;">${str}</div>
+                    </td>
+                </tr>
             </div>
-            </td></tr>
         </div>
     </table>
 </form>

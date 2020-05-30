@@ -19,10 +19,6 @@ public class Photo {
     @JoinColumn(name = "problem_id")
     private Problem problem;
 
-/*    @ManyToOne
-    @JoinColumn(name = "request_id")
-    private Request request;*/
-
     private String url;
 
     public Photo() {
@@ -51,14 +47,6 @@ public class Photo {
     public void setProblem(Problem problem) {
         this.problem = problem;
     }
-
-/*    public Request getRequest() {
-        return request;
-    }
-
-    public void setRequest(Request request) {
-        this.request = request;
-    }*/
 
     public String getUrl() {
         return url;

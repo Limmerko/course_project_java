@@ -96,7 +96,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="center" style=" height: 50px;">
+                    <td align="center" style="height: 50px;">
                         <form:input class="form-control" path="files" type="file" maxlength="5" multiple="multiple" accept="image/*,image/jpeg" />
                     </td>
                 </tr>

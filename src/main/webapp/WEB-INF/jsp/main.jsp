@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/format-text.css">
 
+
     <title>Главная</title>
 
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
@@ -63,7 +64,7 @@
 </head>
 <body>
 <c:forEach items="${problems}" var="problem">
-    <input hidden type="text" name="problemsCoords" value="${problem.address}"/>
+    <input hidden type="text" name="problemsMainCoords" value="${problem.address}"/>
     <input hidden type="text" name="problemsId" value="${problem.id}"/>
     <input hidden type="text" name="problemsStatus" value="${problem.status.description}"/>
     <input hidden type="text" name="problemsPhoto" value="${problem.mainPhoto}"/>
@@ -106,7 +107,9 @@
         <span class="format-text" style="color: #606060; text-align: center;"><h5>Самая важная</h5></span>
         <div class="col-6 col-md-4">
             <form:form method = "GET" action = "/problems/${mostVotedProblem.id}">
-                <button type="submit" style="border-radius: 10px 10px; border: #ff0c13; box-shadow: 0 0 5px #ff585f;">
+                <button type="submit" style="border-radius: 10px 10px; border: #f98d02; box-shadow: 0 0 5px #f98d02;
+                        background-image: linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.4)), url('https://i.gifer.com/3q62.gif');
+                        background-position: bottom; background-repeat: no-repeat;">
                     <table class="table" style="height: 240px; width: 320px">
                         <tbody>
                         <tr scope="row">
@@ -151,7 +154,9 @@
 <span class="format-text" style="color: #606060; text-align: center;"><h5>Самая обсуждаемая</h5></span>
 <div class="col-6 col-md-4">
     <form:form method = "GET" action = "/problems/${mostCommentProblem.id}">
-        <button type="submit" style="border-radius: 10px 10px; border: #ff0c13; box-shadow: 0 0 5px #ff585f;">
+        <button type="submit" style="border-radius: 10px 10px; border: #0144ff; box-shadow: 0 0 5px #0144ff;
+        background-image: linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.4)), url('https://i.gifer.com/5Jxn.gif');
+        background-position: bottom; background-repeat: no-repeat;">
             <table class="table" style="height: 240px; width: 320px">
                 <tbody>
                 <tr scope="row">
@@ -193,7 +198,7 @@
 </tr>
 </table>
 
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/getAddressFromCoords.js"></script>
 
 
 </body>

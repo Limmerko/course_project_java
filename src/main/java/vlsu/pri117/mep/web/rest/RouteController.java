@@ -6,15 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 import vlsu.pri117.mep.service.NewsService;
 import vlsu.pri117.mep.service.ProblemService;
 import vlsu.pri117.mep.service.impl.NewsServiceImpl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -34,16 +33,31 @@ public class RouteController {
                               ModelMap modelMap) {
         List<CategoriesProblem> categoriesProblems = new ArrayList<CategoriesProblem>
                 (Arrays.asList(CategoriesProblem.values()));
-
+        List<Problem> problems;
+        String str;
         modelMap.addAttribute("categories", categoriesProblems);
         if (!category.isEmpty()){
             CategoriesProblem cat = CategoriesProblem.valueOf(category);
-            String str = "Отображаются проблемы в категории: " + cat.getDescription();
+            str = "Отображаются проблемы в категории: " + cat.getDescription();
             modelMap.addAttribute("str", str);
-            modelMap.addAttribute("problems", problemService.findByCategoryAndStatusNotAndStatusNot(cat, StatusProblem.UNDER_CONSIDERATION, StatusProblem.REJECTED));
+            problems = problemService.findByCategoryAndStatusNotAndStatusNot(cat, StatusProblem.UNDER_CONSIDERATION, StatusProblem.REJECTED);
+
         }
         else
-            modelMap.addAttribute("problems", problemService.findProblemsByStatusOrStatus(StatusProblem.NOT_RESOLVED, StatusProblem.RESOLVED));
+            problems = problemService.findProblemsByStatusOrStatus(StatusProblem.NOT_RESOLVED, StatusProblem.RESOLVED);
+        var problemsToHot = problemService.findByStatus(StatusProblem.NOT_RESOLVED);
+        Collections.sort(problemsToHot, Collections.reverseOrder());
+        Problem mostVotedProblem = problemsToHot.get(0);
+        Collections.sort(problemsToHot, (problem, t1) -> {
+            var size1 = problem.getComments().size();
+            var size2 = t1.getComments().size();
+            return Integer.compare(size1,size2);
+        });
+        Problem mostCommentProblem = problemsToHot.get(problemsToHot.size() - 1);
+        modelMap.addAttribute("problems", problems);
+        modelMap.addAttribute("mostVotedProblem", mostVotedProblem);
+        modelMap.addAttribute("mostCommentProblem", mostCommentProblem);
+
         return "main";
     }
 

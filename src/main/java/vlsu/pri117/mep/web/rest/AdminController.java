@@ -5,6 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import vlsu.pri117.mep.model.Problem;
 import vlsu.pri117.mep.model.Role;
 import vlsu.pri117.mep.model.User;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
@@ -27,8 +28,14 @@ public class AdminController {
     }
 
     @GetMapping("/admin")
-    public String userList(ModelMap modelMap) {
-        modelMap.addAttribute("allUsers", userService.findAll());
+    public String userList(@RequestParam(defaultValue = "", required = false) String login, ModelMap modelMap) {
+        if (!login.isEmpty()){
+            List<User> list = new ArrayList<User>();
+            list.add(userService.findByLogin(login));
+            modelMap.addAttribute("allUsers", list);
+        }
+        else
+            modelMap.addAttribute("allUsers", userService.findAll());
         modelMap.addAttribute("roles", Roles.values());
         return "users/admin";
     }

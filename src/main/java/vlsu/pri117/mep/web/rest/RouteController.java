@@ -47,16 +47,23 @@ public class RouteController {
             problems = problemService.findProblemsByStatusOrStatus(StatusProblem.NOT_RESOLVED, StatusProblem.RESOLVED);
         var problemsToHot = problemService.findByStatus(StatusProblem.NOT_RESOLVED);
         Collections.sort(problemsToHot, Collections.reverseOrder());
-        Problem mostVotedProblem = problemsToHot.get(0);
+        if (problemsToHot.size() != 0){
+            Problem mostVotedProblem =  problemsToHot.get(0);
+            modelMap.addAttribute("mostVotedProblem", mostVotedProblem);
+        }
+
         Collections.sort(problemsToHot, (problem, t1) -> {
             var size1 = problem.getComments().size();
             var size2 = t1.getComments().size();
             return Integer.compare(size1,size2);
         });
-        Problem mostCommentProblem = problemsToHot.get(problemsToHot.size() - 1);
+
+        if (problemsToHot.size() != 0){
+            Problem mostCommentProblem = problemsToHot.get(problemsToHot.size() - 1);
+            modelMap.addAttribute("mostCommentProblem", mostCommentProblem);
+        }
+
         modelMap.addAttribute("problems", problems);
-        modelMap.addAttribute("mostVotedProblem", mostVotedProblem);
-        modelMap.addAttribute("mostCommentProblem", mostCommentProblem);
 
         return "main";
     }

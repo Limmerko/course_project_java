@@ -1,6 +1,6 @@
 ymaps.ready(init);
 
-var problemsCoords = document.getElementsByName('problemsCoords');
+var problemsMainCoords = document.getElementsByName('problemsMainCoords');
 var problemsId = document.getElementsByName('problemsId');
 var problemsStatus = document.getElementsByName('problemsStatus');
 var problemsPhoto = document.getElementsByName('problemsPhoto');
@@ -17,7 +17,7 @@ function init() {
         searchControlProvider: 'yandex#search'
     });
 
-    for (let i=0; i < problemsCoords.length; i++) {
+    for (let i=0; i < problemsMainCoords.length; i++) {
         let details = "/problems/" + problemsId[i].value;
         let now = new Date(problemsDate[i].value);
         // Создаем геообъект с типом геометрии "Точка".
@@ -25,7 +25,7 @@ function init() {
             // Описание геометрии.
             geometry: {
                 type: "Point",
-                coordinates: problemsCoords[i].value.split(",")
+                coordinates: problemsMainCoords[i].value.split(",")
             },
             properties: {
                 balloonContent: '<div><p><img src='+problemsPhoto[i].value+' style=" width="100px;" height="100px" "/></p></div>' +

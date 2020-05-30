@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/format-text.css">
 
+
     <title>Главная</title>
 
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
@@ -63,7 +64,7 @@
 </head>
 <body>
 <c:forEach items="${problems}" var="problem">
-    <input hidden type="text" name="problemsCoords" value="${problem.address}"/>
+    <input hidden type="text" name="problemsMainCoords" value="${problem.address}"/>
     <input hidden type="text" name="problemsId" value="${problem.id}"/>
     <input hidden type="text" name="problemsStatus" value="${problem.status.description}"/>
     <input hidden type="text" name="problemsPhoto" value="${problem.mainPhoto}"/>
@@ -72,12 +73,12 @@
 </c:forEach>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/ya-map.js"></script>
 
-
+<table style="margin: auto">
 <form>
-<table style="margin-left: 70px">
 <div class="form-group">
     <div class="row-cols-sm-4">
-        <tr><td>
+        <tr>
+        <td style="height: 50px; align-content: center;">
     <select id="category" name="category" class="categories">
         <option value="">Укажите категорию проблемы</option>
         <c:forEach items="${categories}" var="category">
@@ -86,103 +87,135 @@
             </option>
         </c:forEach>
     </select>
-        </td><td>
+        </td>
+         <td style="height: 50px; align-content: center;">
        <button class="btn btn-primary" type="submit" style="height: 50px">Фильтр</button>
     </div>
     </td>
-    <td>
+    <td style="height: 50px; align-content: center; text-align: center;">
     <label>${str}</label>
-    </td></tr>
+    </td>
 </div>
-</table>
 </form>
+</table>
+<table style="margin: auto">
+    <tr>
+    <td rowspan="3">
+            <div id="map" style="width: 900px; height: 800px;  margin: 0 auto; border: 3px solid #bfbfbf"></div>
+    </td>
+    <td>
+        <span class="format-text" style="color: #606060; text-align: center;"><h5>Самая важная</h5></span>
+            <div class="col-6 col-md-4">
+                <c:choose>
+                    <c:when test="${mostVotedProblem != null}">
+                <form:form method = "GET" action = "/problems/${mostVotedProblem.id}">
+                    <button type="submit" style="border-radius: 10px 10px; border: #f98d02; box-shadow: 0 0 5px #f98d02;
+                        background-image: linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.4)), url('https://i.gifer.com/3q62.gif');
+                        background-position: bottom; background-repeat: no-repeat;">
+                        <table class="table" style="height: 240px; width: 320px">
+                            <tbody>
+                            <tr scope="row">
+                                <td height="150px" colspan="2">
+                                    <div style="text-align: center;">
+                                        <img src="${mostVotedProblem.mainPhoto}" class="rounded"  width="auto" height="150px">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr scope="row">
+                                <td colspan="2" style="height: 80px">
+                                    <label hidden name="problemsCoords">${mostVotedProblem.address}</label>
+                                    <label name="problemsAddress"></label>
+                                </td>
+                            </tr>
+                            <tr  scope="row">
+                                <td height="25px">
+                                    <label name="problemsCategory">${mostVotedProblem.category.description}</label>
+                                </td>
+                                <td height="25px" align="right">
+                                    <span class="badge badge-pill badge-warning" style="font-size: 15px">${mostVotedProblem.status.description}</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr scope="row">
+                                <td><i class="far fa-calendar-alt"></i>
+                                    <fmt:parseDate value="${ mostVotedProblem.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                                    <fmt:formatDate dateStyle="MEDIUM" value="${ parsedDateTime }" />
+                                </td>
+                                <td align="right"><i class="far fa-arrow-alt-circle-up"></i> ${mostVotedProblem.countOfVotes}    <i class="far fa-comment"></i> ${fn:length(mostVotedProblem.comments)}</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </button>
+                </form:form>
+                </c:when>
+                <c:otherwise>
+                    <p> Нет нерешенных проблем! </p>
+                </c:otherwise>
+                </c:choose>
+            </div>
+    </td>
+    </tr>
+<tr>
+<td>
+<span class="format-text" style="color: #606060; text-align: center;"><h5>Самая обсуждаемая</h5></span>
 
+            <div class="col-6 col-md-4">
+                <c:choose>
+                <c:when test="${mostCommentProblem != null}">
+                <form:form method = "GET" action = "/problems/${mostCommentProblem.id}">
+                    <button type="submit" style="border-radius: 10px 10px; border: #0144ff; box-shadow: 0 0 5px #0144ff;
+        background-image: linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.4)), url('https://i.gifer.com/5Jxn.gif');
+        background-position: bottom; background-repeat: no-repeat;">
+                        <table class="table" style="height: 240px; width: 320px">
+                            <tbody>
+                            <tr scope="row">
+                                <td height="150px" colspan="2">
+                                    <div style="text-align: center;">
+                                        <img src="${mostCommentProblem.mainPhoto}" class="rounded"  width="auto" height="150px">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr scope="row">
+                                <td colspan="2" style="height: 80px">
+                                    <label hidden name="problemsCoords">${mostCommentProblem.address}</label>
+                                    <label name="problemsAddress"></label>
+                                </td>
+                            </tr>
+                            <tr  scope="row">
+                                <td height="25px">
+                                    <label name="problemsCategory">${mostCommentProblem.category.description}</label>
+                                </td>
+                                <td height="25px" align="right">
+                                    <span class="badge badge-pill badge-warning" style="font-size: 15px">${mostCommentProblem.status.description}</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr scope="row">
+                                <td><i class="far fa-calendar-alt"></i>
+                                    <fmt:parseDate value="${ mostCommentProblem.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
+                                    <fmt:formatDate dateStyle="MEDIUM" value="${ parsedDateTime }" />
+                                </td>
+                                <td align="right"><i class="far fa-arrow-alt-circle-up"></i> ${mostCommentProblem.countOfVotes}    <i class="far fa-comment"></i> ${fn:length(mostCommentProblem.comments)}</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </button>
+                </form:form>
 
-<p>
-<div id="map" style="width: 90%; height: 600px;  margin: 0 auto; border: 3px solid #bfbfbf"></div>
+        </c:when>
+        <c:otherwise>
+            <p> Нет нерешенных проблем! </p>
+        </c:otherwise>
+    </c:choose>
+ </div>
+</td>
+</tr>
+</table>
 
-<h1>Самая горяченькая проблемка</h1>
-<div class="col-6 col-md-4">
-    <form:form method = "GET" action = "/problems/${mostVotedProblem.id}">
-        <button type="submit" style="border-radius: 10px 10px; border: #007bff; box-shadow: 0 0 5px #007bff;">
-            <table class="table" style="height: 250px; width: 320px">
-                <tbody>
-                <tr scope="row">
-                    <td height="150px" colspan="2">
-                        <div style="text-align: center;">
-                            <img src="${mostVotedProblem.mainPhoto}" class="rounded"  width="auto" height="150px">
-                        </div>
-                    </td>
-                </tr>
-                <tr scope="row">
-                    <td colspan="2" style="height: 80px">
-                        <label hidden name="problemsCoords">${mostVotedProblem.address}</label>
-                        <label name="problemsAddress"></label>
-                    </td>
-                </tr>
-                <tr  scope="row">
-                    <td height="25px">
-                        <label name="problemsCategory">${mostVotedProblem.category.description}</label>
-                    </td>
-                    <td height="25px" align="right">
-                       <span class="badge badge-pill badge-warning" style="font-size: 15px">${mostVotedProblem.status.description}</span>
-                    </td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr scope="row">
-                    <td><i class="far fa-calendar-alt"></i>
-                        <fmt:parseDate value="${ mostVotedProblem.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
-                        <fmt:formatDate dateStyle="MEDIUM" value="${ parsedDateTime }" />
-                    </td>
-                    <td align="right"><i class="far fa-arrow-alt-circle-up"></i> ${mostVotedProblem.countOfVotes}    <i class="far fa-comment"></i> ${fn:length(mostVotedProblem.comments)}</td>
-                </tr>
-                </tfoot>
-            </table>
-        </button>
-    </form:form>
-</div>
-<h1>Самая обсуждаемая проблемка</h1>
-<div class="col-6 col-md-4">
-    <form:form method = "GET" action = "/problems/${mostCommentProblem.id}">
-        <button type="submit" style="border-radius: 10px 10px; border: #007bff; box-shadow: 0 0 5px #007bff;">
-            <table class="table" style="height: 250px; width: 320px">
-                <tbody>
-                <tr scope="row">
-                    <td height="150px" colspan="2">
-                        <div style="text-align: center;">
-                            <img src="${mostCommentProblem.mainPhoto}" class="rounded"  width="auto" height="150px">
-                        </div>
-                    </td>
-                </tr>
-                <tr scope="row">
-                    <td colspan="2" style="height: 80px">
-                        <label hidden name="problemsCoords">${mostCommentProblem.address}</label>
-                        <label name="problemsAddress"></label>
-                    </td>
-                </tr>
-                <tr  scope="row">
-                    <td height="25px">
-                        <label name="problemsCategory">${mostCommentProblem.category.description}</label>
-                    </td>
-                    <td height="25px" align="right">
-                        <span class="badge badge-pill badge-warning" style="font-size: 15px">${mostCommentProblem.status.description}</span>
-                    </td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr scope="row">
-                    <td><i class="far fa-calendar-alt"></i>
-                        <fmt:parseDate value="${ mostCommentProblem.creationDate }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime" type="both"/>
-                        <fmt:formatDate dateStyle="MEDIUM" value="${ parsedDateTime }" />
-                    </td>
-                    <td align="right"><i class="far fa-arrow-alt-circle-up"></i> ${mostCommentProblem.countOfVotes}    <i class="far fa-comment"></i> ${fn:length(mostCommentProblem.comments)}</td>
-                </tr>
-                </tfoot>
-            </table>
-        </button>
-    </form:form>
-</div>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/getAddressFromCoords.js"></script>
+
 
 </body>
 </html>

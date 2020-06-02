@@ -54,11 +54,11 @@ public class KonohaTgBot extends TelegramLongPollingBot{
 
         var tgProblem = getTgProblem(update);
 
-        if (update.hasMessage() &&
-                update.getMessage().hasText() &&
-                update.getMessage().getText().toLowerCase().equals("отправить")){
-            if (tgProblem.get_status() == TgStatus.ADDED_LOCATION ||
-                    tgProblem.get_status() == TgStatus.ADDED_PHOTOS){
+        if (tgProblem.get_status() == TgStatus.ADDED_LOCATION ||
+                tgProblem.get_status() == TgStatus.ADDED_PHOTOS){
+            if (update.hasMessage() &&
+                    update.getMessage().hasText() &&
+                    update.getMessage().getText().toLowerCase().contains("отправить")){
                 endCreationProblem(update, tgProblem);
                 return;
             }
@@ -95,6 +95,7 @@ public class KonohaTgBot extends TelegramLongPollingBot{
                     e.printStackTrace();
                 }
                 endCreationProblem(update, tgProblem);
+                return;
             }
 
             try {
@@ -224,13 +225,13 @@ public class KonohaTgBot extends TelegramLongPollingBot{
 
     private void handleJustStartedProblem(Update update, TgProblemWithStatus tgProblem) {
         if (tgProblem.get_problem().getCategory() == null){
-            if (update.hasCallbackQuery())
+            if (update.hasCallbackQuery()){
                 addCategoryFromCallback(update, tgProblem);
+                return;
+            }
+
             replyMarkupCategory(update.getMessage().getChatId());
         }
-
-
-
     }
 
     private void addCategoryFromCallback(Update update, TgProblemWithStatus tgProblem) {

@@ -123,7 +123,7 @@ public class KonohaTgBot extends TelegramLongPollingBot{
             tgProblem.set_status(TgStatus.ADDED_PHOTOS);
 
             try {
-                var number = tgProblem.get_photosToBeAdded().size() + 1;
+                var number = tgProblem.get_photosToBeAdded().size();
                 execute(new SendMessage(update.getMessage().getChatId(),"Фотография №" + number + " добавлена к проблеме!"));
             } catch (TelegramApiException e) {
                 e.printStackTrace();

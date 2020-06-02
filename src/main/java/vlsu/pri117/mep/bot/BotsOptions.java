@@ -8,13 +8,13 @@ import org.telegram.telegrambots.meta.ApiContext;
 public class BotsOptions {
 
     private DefaultBotOptions options;
-    private static final String s_PROXY_HOST = "54.39.16.26";
-    private static final int s_PROXY_PROT = 45100;
+    private final String proxyHost = BotConstans.getS_PROXY_HOST();
+    private static final int s_PROXY_PROT = BotConstans.getS_PROXY_PORT();
 
     public BotsOptions(){
         options = ApiContext.getInstance(DefaultBotOptions.class);
         options.setProxyType(DefaultBotOptions.ProxyType.SOCKS5);
-        options.setProxyHost(s_PROXY_HOST);
+        options.setProxyHost(proxyHost);
         options.setProxyPort(s_PROXY_PROT);
     }
 

@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.telegram.telegrambots.ApiContextInitializer;
 import vlsu.pri117.mep.model.Role;
 import vlsu.pri117.mep.model.enums.Roles;
 import vlsu.pri117.mep.repository.RoleRepository;
@@ -21,6 +22,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        ApiContextInitializer.init();
         SpringApplication.run(Main.class, args);
     }
 

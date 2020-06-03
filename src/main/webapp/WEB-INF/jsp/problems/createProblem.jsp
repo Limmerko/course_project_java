@@ -80,7 +80,7 @@
                 </tr>
                 <tr>
                     <td align="center">
-                        <form:select path="category" class="categories">
+                        <form:select path="category" name="category" class="categories">
                             <option selected disabled>Укажите категорию проблемы</option>
                             <c:forEach var="categ" items="${categories}">
                                 <form:option value="${categ}">${categ.getDescription()}</form:option>

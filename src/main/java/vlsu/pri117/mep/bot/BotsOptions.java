@@ -1,10 +1,10 @@
 package vlsu.pri117.mep.bot;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.meta.ApiContext;
 
-@Service
+@Component
 public class BotsOptions {
 
     private DefaultBotOptions options;

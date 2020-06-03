@@ -1,5 +1,7 @@
 package vlsu.pri117.mep.bot;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -7,7 +9,6 @@ import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.methods.send.SendChatAction;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendSticker;
-import org.telegram.telegrambots.meta.api.objects.Location;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.PhotoSize;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -23,9 +24,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+@EnableScheduling
 @Component
 public class KonohaTgBot extends TelegramLongPollingBot{
 
@@ -47,6 +50,8 @@ public class KonohaTgBot extends TelegramLongPollingBot{
         } catch (TelegramApiException e){
             e.printStackTrace();
         }
+
+        checkForAfk();
     }
 
     @Override
@@ -54,22 +59,100 @@ public class KonohaTgBot extends TelegramLongPollingBot{
 
         var tgProblem = getTgProblem(update);
 
+        if (switchCommands(tgProblem, update)){
+            return;
+        }
+        switchStatusTgObj(tgProblem, update);
+    }
+
+    private boolean switchCommands(TgProblemWithStatus tgProblem, Update update){
+        if (update.hasMessage() &&
+                update.getMessage().hasText() &&
+                update.getMessage().getText().equals("/start") &&
+                tgProblem.get_status() != TgStatus.JUST_STARTED){
+            try {
+                execute(new SendMessage(update.getMessage().getChatId(), "Создание проблемы уже началось!"));
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+            return true;
+        }
+
+        if (update.hasMessage() &&
+                update.getMessage().hasText() &&
+                update.getMessage().getText().equals("/start") &&
+                tgProblem.get_status() == TgStatus.JUST_STARTED){
+            handleJustStartedProblem(update, tgProblem);
+            return true;
+        }
+
+        if (update.hasMessage() &&
+                update.getMessage().hasText() &&
+                update.getMessage().getText().equals("/reset")){
+            resetTgProblem(update.getMessage().getChatId());
+            return true;
+        }
+
         if (tgProblem.get_status() == TgStatus.ADDED_LOCATION ||
                 tgProblem.get_status() == TgStatus.ADDED_PHOTOS){
             if (update.hasMessage() &&
                     update.getMessage().hasText() &&
-                    update.getMessage().getText().toLowerCase().contains("отправить")){
+                    update.getMessage().getText().toLowerCase().contains("/send")){
                 endCreationProblem(update, tgProblem);
-                return;
+                return true;
+            }
+        } else {
+            if (update.hasMessage() &&
+                    update.getMessage().hasText() &&
+                    update.getMessage().getText().toLowerCase().contains("/send")) {
+                try {
+                    execute(new SendMessage(tgProblem.get_chatId(), "Сначала выполни все шаги создания"));
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+                return true;
             }
         }
-
-        checkStatusTgObj(tgProblem, update);
+        return false;
     }
 
-    private void checkStatusTgObj(TgProblemWithStatus tgProblem, Update update){
+    //Проверка активности пользователя
+    @Scheduled(cron = "0 * * ? * *")
+    private void checkForAfk(){
+        var dateNow = new Date(System.currentTimeMillis());
+        for (var tgProblem : _mapTgObjects.values()) {
+            if (tgProblem == null)
+                continue;
+            Long diffDate = dateNow.getTime() - tgProblem.get_date().getTime();
+
+            if (diffDate/1000 > 2 * 60){
+                try {
+                    execute(new SendMessage(tgProblem.get_chatId(), "Закнончи создание проблемы или отмени через команду /reset"));
+                    execute(new SendSticker().setSticker(BotConstans.getS_STICKER_HEY()).setChatId(tgProblem.get_chatId()));
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (diffDate/1000 > 5 * 60)
+                resetTgProblem(tgProblem.get_chatId());
+
+        }
+    }
+
+    private void resetTgProblem(Long chatId) {
+        _mapTgObjects.remove(chatId.toString());
+        try {
+            execute(new SendMessage(chatId, "Создание проблемы отменено!"));
+            execute(new SendSticker().setSticker(BotConstans.getS_STICKER_CROSS()).setChatId(chatId));
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void switchStatusTgObj(TgProblemWithStatus tgProblem, Update update){
         switch (tgProblem.get_status()){
-            case JUST_STATED:
+            case JUST_STARTED:
                 handleJustStartedProblem(update, tgProblem);
                 break;
             case ADDED_CATEGORY:
@@ -146,7 +229,7 @@ public class KonohaTgBot extends TelegramLongPollingBot{
 
         try {
             execute(new SendMessage(chatId, "Спасибо, ваша заявка была отправлена! Наши модераторы ее проверят и скоро она появится на сайте."));
-            execute(new SendSticker().setSticker("CAACAgQAAxkBAALmG17WzzTyi-CiodZ7DtdQ3M-Sm22LAAL7AANLae4Q9VuDjHMVkUkaBA").setChatId(chatId));
+            execute(new SendSticker().setSticker(BotConstans.getS_STICKER_THANKS()).setChatId(chatId));
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
@@ -162,7 +245,10 @@ public class KonohaTgBot extends TelegramLongPollingBot{
             setLocation(update.getMessage(), tgProblem);
         } else {
             try {
-                execute(new SendMessage(update.getCallbackQuery().getMessage().getChatId(), "Отправь локацию проблемы (Скрепка и выбери фото (Максимум 5 штук))!"));
+                if (update.hasMessage())
+                    execute(new SendMessage(update.getMessage().getChatId(), "Отправь локацию проблемы (Скрепка -> Локация)!"));
+                if (update.hasCallbackQuery())
+                    execute(new SendMessage(update.getCallbackQuery().getMessage().getChatId(), "Отправь локацию проблемы (Скрепка -> Локация)!"));
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
@@ -203,7 +289,7 @@ public class KonohaTgBot extends TelegramLongPollingBot{
         try {
             execute(new SendMessage(message.getChatId(),"Локация добавлена к проблеме!"));
             execute(new SendMessage(message.getChatId(),"Теперь отправь фотографии проблемы. (Скрепка и выбери фото (Максимум 5 штук))"));
-            execute(new SendMessage(message.getChatId(), "После того, как отправишь все фото, напиши: \"Отправить\""));
+            execute(new SendMessage(message.getChatId(), "После того, как отправишь все фото, отправь команду /send"));
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
@@ -215,7 +301,7 @@ public class KonohaTgBot extends TelegramLongPollingBot{
             setDescription(update.getMessage(), tgProblem);
         } else{
             try {
-                execute(new SendMessage(update.getCallbackQuery().getMessage().getChatId(), "Отправь описание проблемы ((Скрепка -> Локация))!"));
+                execute(new SendMessage(update.getCallbackQuery().getMessage().getChatId(), "Отправь описание проблемы (Текстом, максимум 255 символов)!"));
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
@@ -229,20 +315,19 @@ public class KonohaTgBot extends TelegramLongPollingBot{
                 addCategoryFromCallback(update, tgProblem);
                 return;
             }
+            if (update.hasMessage()){
+                try {
+                    execute(new SendMessage(update.getMessage().getChatId(), "Начинаем создание проблемы!"));
+                } catch (TelegramApiException e) {
+                    e.printStackTrace();
+                }
+            }
 
             replyMarkupCategory(update.getMessage().getChatId());
         }
     }
 
     private void addCategoryFromCallback(Update update, TgProblemWithStatus tgProblem) {
-        if (update.hasMessage()){
-            try {
-                execute(new SendMessage(update.getMessage().getChatId(), "Необходимо нажать на кнопку!!!"));
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
-            replyMarkupCategory(update.getMessage().getChatId());
-        }
 
         var callbackData = update.getCallbackQuery().getData();
         tgProblem.get_problem().setCategory(CategoriesProblem.valueOf(callbackData));
@@ -287,11 +372,6 @@ public class KonohaTgBot extends TelegramLongPollingBot{
         }
         tgProblem = _mapTgObjects.get(chatId.toString());
         if (tgProblem == null){
-            try {
-                execute(new SendMessage(update.getMessage().getChatId(), "Начинаем создание проблемы!"));
-            } catch (TelegramApiException e) {
-                e.printStackTrace();
-            }
             tgProblem = new TgProblemWithStatus(chatId);
             _mapTgObjects.put(chatId.toString(), tgProblem);
         }

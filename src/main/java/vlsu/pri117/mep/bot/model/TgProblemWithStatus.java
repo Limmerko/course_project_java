@@ -18,7 +18,7 @@ public class TgProblemWithStatus {
         _chatId = chatId;
         _photosToBeAdded = new ArrayList<>();
         _problem = new Problem();
-        _status = TgStatus.JUST_STATED;
+        _status = TgStatus.JUST_STARTED;
         _date = new Date(System.currentTimeMillis());
     }
 

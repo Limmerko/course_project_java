@@ -32,8 +32,8 @@ import java.util.List;
 @Component
 public class KonohaTgBot extends TelegramLongPollingBot{
 
-    private static final String s_TOKEN = BotConstans.getS_TOKEN();
-    private static final String s_BOT_NAME = BotConstans.getS_BOT_NAME();
+    private final String _token = BotConstans.getS_TOKEN();
+    private final String _botName = BotConstans.getS_BOT_NAME();
     private final AsyncService _asyncService;
     private HashMap<String, TgProblemWithStatus> _mapTgObjects;
 
@@ -402,11 +402,11 @@ public class KonohaTgBot extends TelegramLongPollingBot{
 
     @Override
     public String getBotUsername() {
-        return s_BOT_NAME;
+        return _botName;
     }
 
     @Override
     public String getBotToken() {
-        return s_TOKEN;
+        return _token;
     }
 }

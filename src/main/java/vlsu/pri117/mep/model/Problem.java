@@ -1,17 +1,14 @@
 package vlsu.pri117.mep.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.web.multipart.MultipartFile;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
-import vlsu.pri117.mep.model.enums.Roles;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 

@@ -9,13 +9,13 @@ public class BotsOptions {
 
     private DefaultBotOptions options;
     private final String proxyHost = BotConstans.getS_PROXY_HOST();
-    private static final int s_PROXY_PROT = BotConstans.getS_PROXY_PORT();
+    private final int proxyPort = BotConstans.getS_PROXY_PORT();
 
     public BotsOptions(){
         options = ApiContext.getInstance(DefaultBotOptions.class);
         options.setProxyType(DefaultBotOptions.ProxyType.SOCKS5);
         options.setProxyHost(proxyHost);
-        options.setProxyPort(s_PROXY_PROT);
+        options.setProxyPort(proxyPort);
     }
 
     public DefaultBotOptions getOptions() {

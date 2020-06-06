@@ -75,14 +75,14 @@
                 <tr>
                     <td align="center">
                         <div id="map" style="width: 90%; height: 300px; margin: 10px auto; border: 3px solid #bfbfbf"></div>
-                        <input class="form-control" type="text" id="myInput" placeholder="Укажите точку на карте" disabled readonly/>
-                        <form:hidden path="address" name="myInputBD" id="myInputBD"/>
+                        <input class="form-control" type="text" id="myInput" placeholder="Укажите точку на карте" disabled readonly oninput="validation()"/>
+                        <form:hidden path="address" name="myInputBD" id="myInputBD" oninput="validation()"/>
                     </td>
                 </tr>
                 <tr>
                     <td align="center">
-                        <form:select path="category" name="category" id="category" class="categories" onkeyup="validation()">
-                            <option selected disabled>Укажите категорию проблемы</option>
+                        <form:select path="category" name="category" id="category" class="categories" onchange="validation()">
+                            <option value="-1">Укажите категорию проблемы</option>
                             <c:forEach var="categ" items="${categories}">
                                 <form:option value="${categ}">${categ.getDescription()}</form:option>
                             </c:forEach>

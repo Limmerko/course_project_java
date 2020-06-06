@@ -15,7 +15,6 @@ function init() {
     myPlacemark = createPlacemark(coords);
     myMap.geoObjects.add(myPlacemark);
     getAddress(myPlacemark.geometry.getCoordinates());
-    console.log("Логи: " + myMap.geoObjects.toString());
     // Клик на карте.
     myMap.events.add('click', function (e) {
        myMap.geoObjects.remove(myPlacemark);

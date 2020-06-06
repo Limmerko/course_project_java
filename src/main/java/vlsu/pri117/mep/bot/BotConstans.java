@@ -5,8 +5,8 @@ public class BotConstans {
     private static final String s_TOKEN ="1074615896:AAH83HsLHHT8FQTgDAzOj1o4TM48kRyqsaw";
     private static final String s_BOT_NAME = "KonohaLiveBot";
 
-    private static final String s_PROXY_HOST = "54.39.16.26";
-    private static final int s_PROXY_PORT = 45100;
+    private static final String s_PROXY_HOST = "78.46.218.20";
+    private static final int s_PROXY_PORT = 10801;
 
 
     private static final String s_STICKER_THANKS = "CAACAgQAAxkBAALmG17WzzTyi-CiodZ7DtdQ3M-Sm22LAAL7AANLae4Q9VuDjHMVkUkaBA";

@@ -4,17 +4,24 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main-menu.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttonReportProblem.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/format-text.css">
+
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <spring:url value="resources/css/bootstrap.css" var="bootstrap"/>
+    <spring:url value="/resources/css/modern-business.css" var="startertemplate"/>
+    <link href="${bootstrap}" rel="stylesheet" />
+    <link href="${startertemplate}" rel="stylesheet" />
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
@@ -99,7 +106,7 @@
         </tr>
         <tr>
             <td align="center">
-                <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText" id="descText" path="description" value="${problem.description}" type="textarea" placeholder="Описание проблемы" cssStyle="width: 90%; resize: none;"/>
+                <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText" id="descText" path="description" value="${problem.description}" type="textarea" cssStyle="width: 90%; resize: none;"/>
                 <div class="counter">Осталось символов: <span id="wordCounter">255</span></div>
             </td>
         </tr>

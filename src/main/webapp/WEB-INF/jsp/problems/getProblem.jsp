@@ -143,7 +143,8 @@
                             <sec:authorize access="isAuthenticated()">
                                 <button id="upvoteButton"
                                         class="btn btn-outline-primary"
-                                        onclick="upvoteProblem(${problem.id}, '${pageContext.request.userPrincipal.name}')">
+                                        onclick="upvoteProblem(${problem.id}, '${pageContext.request.userPrincipal.name}')"
+                                        data-toggle="tooltip" data-placement="bottom" title="Поднять актуальность проблемы">
                                     <i class="far fa-arrow-alt-circle-up"></i>
                                 </button>
                             </sec:authorize>
@@ -162,7 +163,7 @@
                                 <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
                                 <div class="input-group">
                                     <form:input class="form-control" id="comment" path="text" type="text" maxlength="100" placeholder="Оставить комментарий"/>
-                                    <button class="btn btn-outline-primary" type="submit" title="Оставить комментарий">
+                                    <button class="btn btn-outline-primary" type="submit" title="Отправить">
                                         <i class="far fa-paper-plane"></i>
                                     </button>
                                 </div>
@@ -171,7 +172,7 @@
                         <sec:authorize access="!isAuthenticated()">
                             <div class="input-group">
                                 <input class="form-control" type="text" disabled placeholder="Авторизуйтесь"/>
-                                <button class="btn btn-outline-primary" disabled type="submit" title="Оставить комментарий">
+                                <button class="btn btn-outline-primary" disabled type="submit" title="Отправить">
                                     <i class="far fa-paper-plane"></i>
                                 </button>
                             </div>

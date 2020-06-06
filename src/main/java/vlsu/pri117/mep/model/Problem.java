@@ -1,17 +1,14 @@
 package vlsu.pri117.mep.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.web.multipart.MultipartFile;
 import vlsu.pri117.mep.model.enums.CategoriesProblem;
-import vlsu.pri117.mep.model.enums.Roles;
 import vlsu.pri117.mep.model.enums.StatusProblem;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,9 +21,6 @@ public class Problem implements Comparable<Problem>{
     private Long id;
 
     private String address;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
-    private LocalDateTime resolveDate;
 
     @Size(max = 255)
     private String description;
@@ -67,6 +61,7 @@ public class Problem implements Comparable<Problem>{
     public void incrementCountOfVotes(){
         countOfVotes++;
     }
+
     public Long getId() {
         return id;
     }
@@ -81,14 +76,6 @@ public class Problem implements Comparable<Problem>{
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public LocalDateTime getResolveDate() {
-        return resolveDate;
-    }
-
-    public void setResolveDate(LocalDateTime resolveDate) {
-        this.resolveDate = resolveDate;
     }
 
     public String getDescription() {
@@ -171,6 +158,14 @@ public class Problem implements Comparable<Problem>{
         this.category = category;
     }
 
+    public List<User> getVotedUsers() {
+        return votedUsers;
+    }
+
+    public void setVotedUsers(List<User> votedUsers) {
+        this.votedUsers = votedUsers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -178,7 +173,6 @@ public class Problem implements Comparable<Problem>{
         Problem problem = (Problem) o;
         return Objects.equals(id, problem.id) &&
                 Objects.equals(address, problem.address) &&
-                Objects.equals(resolveDate, problem.resolveDate) &&
                 Objects.equals(description, problem.description) &&
                 Objects.equals(mainPhoto, problem.mainPhoto) &&
                 Arrays.equals(files, problem.files) &&
@@ -194,7 +188,7 @@ public class Problem implements Comparable<Problem>{
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, address, resolveDate, description, mainPhoto, countOfVotes, votedUsers, category, author, status, comments, creationDate, photos);
+        int result = Objects.hash(id, address, description, mainPhoto, countOfVotes, votedUsers, category, author, status, comments, creationDate, photos);
         result = 31 * result + Arrays.hashCode(files);
         return result;
     }
@@ -204,7 +198,6 @@ public class Problem implements Comparable<Problem>{
         return "Problem{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
-                ", resolveDate=" + resolveDate +
                 ", description='" + description + '\'' +
                 ", mainPhoto='" + mainPhoto + '\'' +
                 ", countOfVotes=" + countOfVotes +
@@ -215,14 +208,6 @@ public class Problem implements Comparable<Problem>{
                 ", creationDate=" + creationDate +
                 ", photos=" + photos +
                 '}';
-    }
-
-    public List<User> getVotedUsers() {
-        return votedUsers;
-    }
-
-    public void setVotedUsers(List<User> votedUsers) {
-        this.votedUsers = votedUsers;
     }
 
     @Override

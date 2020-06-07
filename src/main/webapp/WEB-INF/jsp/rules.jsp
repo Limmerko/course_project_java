@@ -53,7 +53,7 @@
 <body>
 
 
-<div>
+<div class="rulesForm">
     <br> На сайте запрещается:
     <ul>
         <li>

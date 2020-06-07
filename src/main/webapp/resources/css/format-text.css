@@ -37,6 +37,20 @@
     margin: auto;
 }
 
+
+.rulesForm {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 150%;
+    vertical-align: middle;
+    color: #606060;
+    top: 90%; /* Отступ в процентах от верхнего края окна */
+    left: 50%; /* Отступ в процентах от левого края окна */
+    width: 800px; /* Ширина блока */
+    margin: auto;
+}
+
+
+
 .footerForm {
     padding: 1rem;
     font-family: 'Ubuntu Condensed', sans-serif;

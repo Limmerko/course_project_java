@@ -14,6 +14,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
+    </script>
+
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main-menu.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/table-style.css">
@@ -104,8 +107,8 @@
                             </a>
                         </div>
                     </td>
-                    <td rowspan="4" border="1" style="width: 450px; max-height: 540px;">
-                        <div style="height: 450px; max-height: 530px; overflow-y: auto">
+                    <td rowspan="5" border="1" style="width: 450px; max-height: 600px;">
+                        <div style="max-height: 600px; overflow-y: auto">
                             <c:forEach var="comment" items="${problem.comments}">
                                 <span class="badge badge-pill badge-primary">${comment.author.login}</span>
                                 <sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
@@ -123,7 +126,13 @@
                 </tr>
                 <tr scope="row">
                     <td>
-                        <div lang="ru" style="word-break: break-all; hyphens: auto; word-wrap: break-word;">${problem.description} </div>
+                        <div lang="ru" style="height: 115px; word-break: break-all; hyphens: auto; word-wrap: break-word;">${problem.description} </div>
+                    </td>
+                </tr>
+                <tr  scope="row">
+                    <td>
+                        <label hidden name="problemsCoords">${problem.address}</label>
+                        <label name="problemsAddress"></label>
                     </td>
                 </tr>
                 <tr scope="row">
@@ -143,7 +152,8 @@
                             <sec:authorize access="isAuthenticated()">
                                 <button id="upvoteButton"
                                         class="btn btn-outline-primary"
-                                        onclick="upvoteProblem(${problem.id}, '${pageContext.request.userPrincipal.name}')">
+                                        onclick="upvoteProblem(${problem.id}, '${pageContext.request.userPrincipal.name}')"
+                                        data-toggle="tooltip" data-placement="bottom" title="Поднять актуальность проблемы">
                                     <i class="far fa-arrow-alt-circle-up"></i>
                                 </button>
                             </sec:authorize>
@@ -162,7 +172,7 @@
                                 <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
                                 <div class="input-group">
                                     <form:input class="form-control" id="comment" path="text" type="text" maxlength="100" placeholder="Оставить комментарий"/>
-                                    <button class="btn btn-outline-primary" type="submit" title="Оставить комментарий">
+                                    <button class="btn btn-outline-primary" type="submit" title="Отправить">
                                         <i class="far fa-paper-plane"></i>
                                     </button>
                                 </div>
@@ -171,7 +181,7 @@
                         <sec:authorize access="!isAuthenticated()">
                             <div class="input-group">
                                 <input class="form-control" type="text" disabled placeholder="Авторизуйтесь"/>
-                                <button class="btn btn-outline-primary" disabled type="submit" title="Оставить комментарий">
+                                <button class="btn btn-outline-primary" disabled type="submit" title="Отправить">
                                     <i class="far fa-paper-plane"></i>
                                 </button>
                             </div>
@@ -183,7 +193,7 @@
         </div>
         <br/>
     </div>
-
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/getAddressFromCoords.js"></script>
 </div>
 </body>
 <footer class="footerForm">

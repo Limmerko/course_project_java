@@ -6,6 +6,8 @@
 <footer>
 <hr style="color: #007bff">
 <div>
+    <a href="${pageContext.request.contextPath}/rules">Правила сайта.</a>
+    <br>
     Данный сайт не является реальным продуктом.
     Сделано в учебных целях.
 

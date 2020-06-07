@@ -60,6 +60,7 @@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=1d2ebd06-147f-4d5c-bcf3-0922e11867eb&lang=ru_RU" type="text/javascript">
     </script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/placemark.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/validation.js"></script>
 
 </head>
 <body>
@@ -73,15 +74,15 @@
                 </tr>
                 <tr>
                     <td align="center">
-                        <div id="map" style="width: 90%; height: 300px; margin: 10px auto; border: 3px solid #bfbfbf"></div>
-                        <input class="form-control" type="text" id="myInput" placeholder="Укажите точку на карте" disabled readonly/>
-                        <form:hidden path="address" name="myInputBD" id="myInputBD"/>
+                        <div id="map" onclick="validation()" style="width: 90%; height: 300px; margin: 10px auto; border: 3px solid #bfbfbf"></div>
+                        <input class="form-control" type="text" id="myInput" placeholder="Укажите точку на карте" disabled readonly />
+                        <form:hidden path="address" name="myInputBD" id="myInputBD" />
                     </td>
                 </tr>
                 <tr>
                     <td align="center">
-                        <form:select path="category" name="category" class="categories">
-                            <option selected disabled>Укажите категорию проблемы</option>
+                        <form:select path="category" name="category" id="category" class="categories" onchange="validation()">
+                            <option value="-1">Укажите категорию проблемы</option>
                             <c:forEach var="categ" items="${categories}">
                                 <form:option value="${categ}">${categ.getDescription()}</form:option>
                             </c:forEach>
@@ -91,7 +92,7 @@
                 </tr>
                 <tr>
                     <td align="center">
-                        <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText" id="descText"
+                        <form:textarea class="form-control" rows="3" onkeyup="WordLimit(), validation()" name="descText" id="descText"
                                        path="description" type="textarea" placeholder="Описание проблемы"
                                        cssStyle="width: 90%; resize: none;"/>
                         <div class="counter">Осталось символов: <span id="wordCounter">255</span></div>
@@ -106,7 +107,7 @@
                 <input hidden id="authorLogin" name="authorLogin" value="${pageContext.request.userPrincipal.name}"/>
                 <tr>
                     <td>
-                        <button id="createBtn" class="glo" type="submit">Отправить</button>
+                        <button disabled="disabled" id="createBtn" class="glo" type="submit">Отправить</button>
                     </td>
                 </tr>
             </table>

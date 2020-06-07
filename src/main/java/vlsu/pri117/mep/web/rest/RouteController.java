@@ -68,4 +68,9 @@ public class RouteController {
         return "main";
     }
 
+    @GetMapping("/rules")
+    public String rules() {
+        return "rules";
+    }
+
 }

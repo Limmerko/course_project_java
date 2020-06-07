@@ -8,5 +8,4 @@ function validation() {
  } else {
      $('#createBtn').attr('disabled','disabled');
  }
-
 }

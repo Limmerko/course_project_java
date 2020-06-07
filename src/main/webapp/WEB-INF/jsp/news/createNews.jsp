@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/word-limit.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/validationNews.js"></script>
 
     <ul class="menu-main">
         <li class="nazvanie"><a href="/">KonohaLIVE</a></li>
@@ -68,18 +69,19 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+
 <div class="container">
     <div class="row">
         <div class="col-sm">
         <form:form method="post" action="/news/new" modelAttribute="news" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Заголовок</label>
-                <form:input class="form-control" id="title" path="title" maxlength="100" type="text" placeholder="Заголовок"/>
+                <form:input class="form-control" id="title" path="title" maxlength="100" type="text" oninput="validationNews()" placeholder="Заголовок"/>
             </div>
 
             <div class="form-group">
                 <label for="description">Описание</label>
-                <form:textarea class="form-control" rows="3" onkeyup="WordLimit()" name="descText"
+                <form:textarea class="form-control" rows="3" onkeyup="WordLimit(), validationNews()" name="descText"
                                id="descText" path="description" type="textarea" placeholder="Описание проблемы"
                                cssStyle="width: 90%; resize: none;"/>
                 <div class="counter">Осталось символов: <span id="wordCounter">255</span></div>
@@ -89,7 +91,7 @@
                 <label for="photos">Фотографии</label>
              <form:input class="form-control" id="photos" path="files" type="file" multiple="multiple" accept="image/*,image/jpeg" style="height: 45px;"/>
             </div>
-             <button class="glo" data-toggle="tooltip"
+             <button disabled="disabled" class="glo" data-toggle="tooltip" id="createBtn"
                      data-placement="top" title="Создать новость" type="submit">Отправить</button>
         </form:form>
         </div>

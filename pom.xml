@@ -136,6 +136,6 @@
     <properties>
         <java.version>11.0</java.version>
         <spring.framework.version>5.2.3.RELEASE</spring.framework.version>
-        <mysql.connector.version>8.0.17</mysql.connector.version>
+        <mysql.connector.version>8.0.28</mysql.connector.version>
     </properties>
 </project>
